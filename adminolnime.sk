@@ -1,0 +1,23 @@
+command /admin:
+    trigger:
+        loop all players:
+            loop-player has permission "adminlist.admin":
+                {admin.list.%loop-player%} is true:
+                    add loop-player to {_admins::*}
+        size of {_admins::*} is 0:
+            send "&cAktualnie nie ma nikogo z administracji."
+                    #send "&aAdministracja online (%size of {_admins::*}%):&7 %{_admins::*}%"
+        else:
+            send "&aAdministracja online (%size of {_admins::*}%):&7 %{_admins::*}%"
+
+command /hide [<text>]:
+    trigger:
+        player has permission "adminlist.hide":
+            arg 1 is "on":
+                set {admin.list.%player%} to true
+                send "&aZostales widoczny na liscie administracji."
+            arg 1 is "off":
+                set {admin.list.%player%} to false
+                send "&cZostales ukryty na liscie administracji."
+        else:
+            send "&cNie masz uprawnien."

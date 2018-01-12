@@ -1,0 +1,11 @@
+############################################################
+# #         ExtremeGames Autor: Zabujca997 ©             # #
+############################################################
+
+on join:
+        if player has permissions "eloszki.a":
+                broadcast "&8[&2+&8]&c Administrator &6%player%"
+
+on quit:
+        if player has permissions "pozdro.a":
+                broadcast "&8[&c-&8]&c Administrator &6%player%"
