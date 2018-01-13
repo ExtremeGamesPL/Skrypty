@@ -20,4 +20,4 @@ Strona WWW: http://z57354.webwavecms.com/
 TS3: ExtremeGames.gclan.pl
 FanPage: https://www.facebook.com/ExtremeGamesFanPage/Sklep 
 
-***Copyright © 2017 Zabujca997 ExtremeGames. All rights reserved.
+***Copyright © 2017 Zabujca997 ExtremeGames. All rights reserved.***
