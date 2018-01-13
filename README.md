@@ -10,7 +10,7 @@ Skrypty z pluginu Script By Zabujca997
 ## Praca
 Skrypty zostały wykorzystane na serwerze ExtremeGames.maxc.pl i działają poprawnie są skryptowane od podstaw i dodawane tylko jeżeli poprawnie działają nie wrzucamy plików które nie działają 
 
-### Osoby pomagające
+########## Osoby pomagające
 -Mateuszanierusza - Technik sieci ExtremeGames
 
 # KONTAKT
