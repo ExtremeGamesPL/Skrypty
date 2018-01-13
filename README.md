@@ -19,7 +19,8 @@ Forum: http://Onlykill.pl
 Strona WWW: http://z57354.webwavecms.com/
 TS3: ExtremeGames.gclan.pl
 FanPage: https://www.facebook.com/ExtremeGamesFanPage/Sklep 
-###
+
+###1
 ```
-Copyright © 2017 Zabujca997 ExtremeGames. All rights reserved.
+Copyright © 2018 Zabujca997 ExtremeGames. All rights reserved.
 ```
