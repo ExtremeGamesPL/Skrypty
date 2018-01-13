@@ -1,0 +1,52 @@
+#====================================================================
+#	          █  Plugin  : Help                         █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+
+
+command /pomocy:
+    trigger:
+        open chest with 3 rows named "&e&oPOMOC" to players
+        wait 1 tick
+        format slot 0 of players with 1 black stained glass pane named "&7Brak" to be unstealable
+        format slot 1 of players with 1 black stained glass pane named "&7Brak" to be unstealable
+        format slot 2 of players with 1 black stained glass pane named "&7Brak" to be unstealable
+        format slot 3 of players with 1 black stained glass pane named "&7Brak" to be unstealable
+        format slot 4 of players with 1 Cobweb named  "&e&oPomoc" with lore "&7Nacisnij Jezeli Potrzebujsz pomocy || Wysle to wiadomosc do administracji" to run [make player execute "helpme"]
+        format slot 5 of players with 1 black stained glass pane named "&7Brak" to be unstealable
+        format slot 6 of players with 1 black stained glass pane named "&7Brak" to be unstealable
+        format slot 7 of players with 1 black stained glass pane named "&7Brak" to be unstealable
+        format slot 8 of players with 1 black stained glass pane named "&7Brak" to be unstealable
+        format slot 9 of players with 1 black stained glass pane named "&7Brak" to be unstealable
+        format slot 10 of players with 1 black stained glass pane named "&7Brak" to be unstealable
+        format slot 11 of players with 1 black stained glass pane named "&7Brak" to be unstealable
+        format slot 12 of players with 1 black stained glass pane named "&7Brak" to be unstealable
+        format slot 13 of players with 1 button named "&e&oZnalazlem Buga" with lore "&7Nacisnij Jezeli Znalazles Buga || Wysyla wiadomosc ze znalazles buga" to run [make player execute "helpbug"]
+        format slot 14 of players with 1 black stained glass pane named "&7Brak" to be unstealable
+        format slot 15 of players with 1 black stained glass pane named "&7Brak" to be unstealable
+        format slot 16 of players with 1 black stained glass pane named "&7Brak" to be unstealable
+        format slot 17 of players with 1 black stained glass pane named "&7Brak" to be unstealable
+        format slot 18 of players with 1 black stained glass pane named "&7Brak" to be unstealable
+        format slot 19 of players with 1 black stained glass pane named "&7Brak" to be unstealable
+        format slot 20 of players with 1 black stained glass pane named "&7Brak" to be unstealable
+        format slot 21 of players with 1 black stained glass pane named "&7Brak" to be unstealable
+        format slot 22 of players with 1 beacon named "&e&oChce range" with lore "&7Nacisnij jezeli masz problem z rangą Gracz czy innymi || Wysyla wiadomosc o błędzie w randze" to run [make player execute "helpran"]
+        format slot 23 of players with 1 black stained glass pane named "&7Brak" to be unstealable
+        format slot 24 of players with 1 black stained glass pane named "&7Brak" to be unstealable
+        format slot 25 of players with 1 black stained glass pane named "&7Brak" to be unstealable
+        format slot 26 of players with 1 paper named "&e&oINFORMACJE" with lore "&7Autor Skryptu: &c&oZabujca997 || &7Wersja: &c&o1.0 || &7Znalazles Blad W Skrypcie? Napisz do Administracji" to be unstealable
+command /helpme:
+    trigger:
+        send "&e&oGracz &c&o%player% &e&oPotrzebuje Pomocy! &8[ &7GUI-HELP &8]" to all ops
+        
+command /helpbug:
+    trigger:
+        send "&e&oGracz &c&o%player% &e&oZnalazl Buga! &8[ &7BUG-HELP &8]" to all ops
+        
+command /helpran:
+    trigger:
+        send "&e&oGracz &c&o%player% &e&oma problem z rangą! &8[ &7RANG-HELP &8]" to all ops

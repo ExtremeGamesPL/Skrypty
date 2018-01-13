@@ -1,0 +1,15 @@
+#====================================================================
+#	          █  Plugin  : Pytanie                      █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+command /pytanie [<text>]:
+	trigger:
+		if arg 1 is set:
+			send "&7Pytanie zostalo wyslane!"
+			log "%player%: %arg 1%" to "pytanie: "
+		else:
+			send "&7Najpierw zadaj pytanie!"

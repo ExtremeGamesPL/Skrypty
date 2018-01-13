@@ -1,0 +1,27 @@
+#====================================================================
+#	          █  Plugin: MegaKilof                      █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+on script load:
+        register new shaped recipe for diamond pickaxe of efficiency 10 and fortune 5 and unbreaking 10 named "&a&lMEGA &f&lKILOF" with lore "Kilof Zostal Stworzony przez Zabujca997" using diamond block, diamond block, diamond block, air, stick, air, air, stick, air
+
+command /megakilof:
+				trigger:
+								open chest with 3 rows named "&a&lCRAF&f&lTING" to player
+								format slot 3 of player with 1 diamond block to close
+								format slot 4 of player with 1 diamond block to close
+								format slot 5 of player with 1 diamond block to close
+								format slot 13 of player with 1 stick to close
+								format slot 22 of player with 1 stick to close
+								
+command /dajkilofa [<text>]:
+	permission: KILOF.ADMIN
+	permission message: &cNie masz dostępu do Komendy
+	trigger:
+		give 3 diamond block to player
+		give 2 stick to player
+		

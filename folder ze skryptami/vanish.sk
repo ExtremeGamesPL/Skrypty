@@ -1,0 +1,58 @@
+#====================================================================
+#	          █  Plugin  : Vanish                       █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+variables:
+  {tag} = "           &6&lExtreme&9&lGames&6"
+command /v:
+  aliases: vanish
+  trigger:
+    if player has permission "fkania2.vanish":
+      if {v.%player%} is false:
+        set {v.%player%} to true
+        apply invisibility 3 to the player for 9999 seconds 
+        strike lightning effect at the player
+        send "%{tag}%" to all ops
+        send "&2%player% &6wlaczyl Vanisha!" to all ops
+      else:
+        set {v.%player%} to false
+        remove invisibility from the player
+        strike lightning effect at the player
+        send "%{tag}%" to all ops
+        send "&2%player% wylaczyl Vanisha!" to all ops
+command /vanish:
+  aliases: v
+  trigger:
+    if player has permission "fkania2.vanish":
+      if {v.%player%} is false:
+        set {v.%player%} to true
+        apply invisibility 3 to the player for 9999 seconds 
+        strike lightning effect at the player
+        send "%{tag}%" to all ops
+        send "&2%player% &6wlaczyl Vanisha!" to all ops
+      else:
+        set {v.%player%} to false
+        remove invisibility from the player
+        strike lightning effect at the player
+        send "%{tag}%" to all ops
+        send "&2%player% wylaczyl Vanisha!" to all ops
+on damage:
+  if {v.%victim%} is true:
+    cancel event
+  if {v.%attacker%} is true:
+    cancel event
+on pickup:
+  if {v.%player%} is true:
+    cancel event
+on place:
+  if {v.%player%} is true:
+    cancel event
+on break:
+  if {v.%player%} is true:
+    cancel event
+on load:
+ send "Skrypt na Vanisha wykonal Zabujca997" to console

@@ -1,0 +1,19 @@
+#====================================================================
+#	          █  Plugin  : Premiumcheck                 █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+command /premium [<text>]:
+	trigger:
+		arg is not set:
+			send "&cPodaj nick."
+			stop
+		else:
+			set {_x} to text from url "https://minecraft.net/haspaid.jsp?user=%arg%"
+			if {_x} is "true":
+				send "&7Gracz &6%arg% &7jest &aPREMIUM"
+			else:
+				send "&7Gracz &6%arg% &7jest &cNON-PREMIUM"

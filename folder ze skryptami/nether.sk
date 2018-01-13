@@ -1,0 +1,27 @@
+#====================================================================
+#	          █  Plugin: Nether                         █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+Variables:
+	{netherstatus} = true #jak true to domyslnie wlaczony
+Command /nether [<text>]:
+	permission: nether.admin
+	permission message: Nie masz uprawnien
+	trigger:
+		arg is not set:
+			send "<red>Wpisz dalsza czesc komendy on/off"
+		arg is "on":
+			set {netherstatus} to true
+			send "<orange> Nether zostal wlaczony"
+		arg is "off":
+			set {netherstatus} to false
+			send "<orange> Nether zostal wylaczony"
+
+On portal:
+	{netherstatus} is false:
+		cancel event
+		send "<red>Nether jest aktualnie wylaczony"

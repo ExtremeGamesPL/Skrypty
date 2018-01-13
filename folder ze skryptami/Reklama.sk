@@ -1,0 +1,95 @@
+#====================================================================
+#	          █  Plugin  : Reklama                      █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+on script load:
+	if file "plugins/Skript/scripts/niReklama/config.yml" doesn't exists:
+		set yaml value "wyswietlenia" from file "niReklama/config.yml" to "30"
+		set yaml value "polubienia" from file "niReklama/config.yml" to "5"
+		set yaml value "czas" from file "niReklama/config.yml" to "2:54"
+		set yaml value "ip" from file "niReklama/config.yml" to "fCraft.pl"
+		set yaml value "komenda" from file "niReklama/config.yml" to "/say {player}"
+		set yaml value "link" from file "niReklama/config.yml" to "http://tailer.pl"
+		set yaml value "brak_uprawnien" from file "niReklama/messages.yml" to "&6» &7Nie masz uprawnien do tej komendy."
+		set yaml value "trwa_laczenie" from file "niReklama/messages.yml" to "&6» &7Trwa laczenie..."
+		set yaml value "za_malo_wyswietlen" from file "niReklama/messages.yml" to "&6» &7Minimalna ilosc wyswietlen to {wyswietlenia}."
+		set yaml value "za_malo_polubien" from file "niReklama/messages.yml" to "&6» &7Minimalna ilosc polubien to {polubienia}."
+		set yaml value "brak_ip_w_opisie" from file "niReklama/messages.yml" to "&6» &7Brakuje w opisie ""&6{ip}&7""."
+		set yaml value "za_malo_czasu" from file "niReklama/messages.yml" to "&6» &7Musisz wstawic nasz tailer z {link}."
+		set yaml value "to_juz_jest" from file "niReklama/messages.yml" to "&6» &7Reklama zostala juz zuzyta."
+		set yaml value "sukces" from file "niReklama/messages.yml" to "&6» &aDziekujemy za reklame. Otrzymales nagrode."
+		set yaml value "brak_arg" from file "niReklama/messages.yml" to "&6» &7Poprawne uzycie: &6/reklama sprawdz <id filmu>"
+		set yaml value "potrzeba_id" from file "niReklama/messages.yml" to "&6» &7Musisz wpisac id filmu, nie jego link."
+		send "Stworzono pliki konfiguracyjne niReklama." to console
+	if file "plugins/Skript/scripts/niReklama/lista.log" doesn't exists:
+		create file "plugins/Skript/scripts/niReklama/lista.log"
+	set {niReklama::wyswietlenia} to yaml value "wyswietlenia" from file "niReklama/config.yml"
+	set {niReklama::wyswietlenia} to {niReklama::wyswietlenia} parsed as integer
+	set {niReklama::brak_arg} to yaml value "brak_arg" from file "niReklama/messages.yml"
+	set {niReklama::polubienia} to yaml value "polubienia" from file "niReklama/config.yml"
+	set {niReklama::polubienia} to {niReklama::polubienia} parsed as integer
+	set {niReklama::czas} to yaml value "czas" from file "niReklama/config.yml"
+	set {niReklama::czas} to {niReklama::czas} parsed as integer
+	set {niReklama::ip} to yaml value "ip" from file "niReklama/config.yml"
+	set {niReklama::komenda} to yaml value "komenda" from file "niReklama/config.yml"
+	set {niReklama::link} to yaml value "link" from file "niReklama/config.yml"
+	set {niReklama::brak_uprawnien} to yaml value "brak_uprawnien" from file "niReklama/messages.yml"
+	set {niReklama::trwa_laczenie} to yaml value "trwa_laczenie" from file "niReklama/messages.yml"
+	set {niReklama::za_malo_wyswietlen} to yaml value "za_malo_wyswietlen" from file "niReklama/messages.yml"
+	set {niReklama::za_malo_polubien} to yaml value "za_malo_polubien" from file "niReklama/messages.yml"
+	set {niReklama::brak_ip_w_opisie} to yaml value "brak_ip_w_opisie" from file "niReklama/messages.yml"
+	set {niReklama::za_malo_czasu} to yaml value "za_malo_czasu" from file "niReklama/messages.yml"
+	set {niReklama::to_juz_jest} to yaml value "to_juz_jest" from file "niReklama/messages.yml"
+	set {niReklama::potrzeba_id} to yaml value "potrzeba_id" from file "niReklama/messages.yml"
+	set {niReklama::sukces} to yaml value "sukces" from file "niReklama/messages.yml"
+	send "Zaladowano pliki konfiguracyjne niReklama." to console
+command /reklama [<text>] [<text>]:
+	trigger:
+		if player has permissions "niReklama.sprawdz":
+			if arg 1 is "sprawdz":
+				if arg 2 is set:
+					if arg 2 contains "http":
+						send "%{niReklama::potrzeba_id}%"
+					else:
+						send "%{niReklama::trwa_laczenie}%"
+						set {_niReklama::wyswietlenia} to text from "http://apis.re-host.ovh/~quaczi/views.php?link=%arg 2%"
+						set {_niReklama::wyswietlenia} to {_niReklama::wyswietlenia} parsed as integer
+						if {_niReklama::wyswietlenia} >= {niReklama::wyswietlenia}:
+							set {_niReklama::polubienia} to text from "http://apis.re-host.ovh/~quaczi/likes.php?link=https://www.youtube.com/watch?v=%arg 2%"
+							set {_niReklama::polubienia} to {_niReklama::polubienia} parsed as integer
+							if {_niReklama::polubienia} >= {niReklama::polubienia}:
+								set {_niReklama::czas} to text from "http://apis.re-host.ovh/~quaczi/dur.php?link=https://www.youtube.com/watch?v=%arg 2%"
+								set {_niReklama::czas} to {_niReklama::czas} parsed as integer
+								if {_niReklama::czas} = {niReklama::czas}:
+									set {_niReklama::ip} to text from "http://apis.re-host.ovh/~quaczi/desc.php?link=https://www.youtube.com/watch?v=%arg 2%"
+									if {_niReklama::ip} contains {niReklama::ip}:
+										set {_niReklama::reklamy} to content of file "plugins/Skript/scripts/niReklama/lista.log"
+										if {_niReklama::reklamy} contains arg 2:
+											send "%{niReklama::to_juz_jest}%"
+										else:
+											replace "{player}" in {niReklama::komenda} with "%player%"
+											execute console command {niReklama::komenda}
+											send "%{niReklama::sukces}%"
+											wf "%player%: https://www.youtube.com/watch?v=%arg 2% | %day%.%month%.%year% %hour%:%minute%" to "plugins/Skript/scripts/niReklama/lista.log"
+									else:
+										replace "{ip}" in {niReklama::brak_ip_w_opisie} with "%{niReklama::ip}%"
+										send "%{niReklama::brak_ip_w_opisie}%"
+								else:
+									replace "{link}" in {niReklama::za_malo_czasu} with "%{niReklama::link}%"
+									send "%{niReklama::za_malo_czasu}%"
+							else:
+								replace "{polubienia}" in {niReklama::za_malo_polubien} with "%{niReklama::polubienia}%"
+								send "%{niReklama::za_malo_polubien}%"
+						else:
+							replace "{wyswietlenia}" in {niReklama::za_malo_wyswietlen} with "%{niReklama::wyswietlenia}%"
+							send "%{niReklama::za_malo_wyswietlen}%"
+				else:
+					send "%{niReklama::brak_arg}%"
+			else:
+				send "%{niReklama::brak_arg}%"
+		else:
+			send "%{niReklama::brak_uprawnien}%"

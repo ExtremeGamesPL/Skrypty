@@ -1,0 +1,46 @@
+#====================================================================
+#	          █  Plugin  : Spamchat                     █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+options:
+	{cmd.%player%}=0
+    
+on join:
+	set {cmd.%player%} to 0	
+
+on command:
+	player has permission "cmd.spam":
+    	stop
+    player doesn't have permission "cmd.spam":
+		{cmd.%player%} is 0:
+    		set {cmd.%player%} to 5
+        	wait 1 second
+        	set {cmd.%player%} to 4
+        	wait 1 second
+        	set {cmd.%player%} to 3
+        	wait 1 second
+        	set {cmd.%plater%} to 2
+        	wait 1 second
+        	set {cmd.%player%} to 1
+        	wait 1 second
+        	set {cmd.%player%} to 0
+    		stop
+		{cmd.%player%} is 1:
+    		send "&4&l✘&c Nastepna komende mozesz wpisac za %{cmd.%player%}% sekund!"
+        	stop
+		{cmd.%player%} is 2:
+    		send "&4&l✘&c Nastepna komende mozesz wpisac za %{cmd.%player%}% sekund!"
+        	stop
+		{cmd.%player%} is 3:
+    		send "&4&l✘&c Nastepna komende mozesz wpisac za %{cmd.%player%}% sekund!"
+        	stop
+		{cmd.%player%} is 4:
+    		send "&4&l✘&c Nastepna komende mozesz wpisac za %{cmd.%player%}% sekund!"
+        	stop
+		{cmd.%player%} is 5:
+    		send "&4&l✘&c Nastepna komende mozesz wpisac za %{cmd.%player%}% sekund!"
+        	stop

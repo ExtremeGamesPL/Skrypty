@@ -1,0 +1,24 @@
+#====================================================================
+#	          █  Plugin: Kick                           █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+command /kick [<offlineplayer>] [<text>]:
+	trigger:
+		player has permission "skript.kick":
+			argument-offlineplayer is set:
+				argument 1 is set:
+					offlineplayer-argument is online:
+						broadcast "&7[&2ETG&7]&4&l &3%argument-offlineplayer% &6zostal wyrzucony z serwera przez &2&l%player%! powód: &4(%argument 2%)"
+						kick offlineplayer-argument due to "&cZostales wyrzucony z serwera za: &8%argument 2%"
+					else:
+						send "&cNie ma takiego gracza na serwerze!"
+				else:
+					send "&cPrzyklad: /kick <nick> <powod>"
+			else:
+				send "&cPrzyklad: /kick <nick> <powod>"
+		else:
+			send "&cNie masz uprawnien!"

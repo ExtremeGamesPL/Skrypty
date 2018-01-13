@@ -1,0 +1,27 @@
+#====================================================================
+#	          █  Plugin  : Wyczysc                          █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+command /usunitemy [<text>]:
+	permission: op
+	trigger:
+		if arg 1 is set:
+			set {chat} to false
+			broadcast "&8>> &7Za &610&7 sekund zostaną usuniete wszystkie itemy z ziemi "
+			wait 6 seconds
+			broadcast "&8>> &73"
+			wait 1 seconds
+			broadcast "&8>> &72"
+			wait 1 seconds
+			broadcast "&8>> &71"
+			wait 1 tick
+			broadcast "&8>> &7Usuwanie itemow!"
+			loop all players:
+				set {walka.%loop-player%} to false
+			execute player command "stoplag"
+			execute player command "stoplag -c"
+			set {chat} to true

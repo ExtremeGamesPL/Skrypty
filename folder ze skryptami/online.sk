@@ -1,0 +1,27 @@
+#====================================================================
+#	          █  Plugin  : Online                       █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+variables:
+    {czas.%player%} = 0
+    {odliczanie.%player%} = false
+
+on join:
+    set {odliczanie.%player%} to true
+
+on quit:
+    set {odliczanie.%player%} to false
+    clear {czas.%player%}
+
+every 1 minute:
+    loop all players:
+        if {odliczanie.%loop-player%} is true:
+            add 1 to {czas.%loop-player%}
+
+command /czas:
+    trigger:
+        send "&6Grasz na serwerze:&2 %{czas.%player%}% minut."

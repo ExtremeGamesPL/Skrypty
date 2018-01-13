@@ -1,0 +1,31 @@
+﻿#====================================================================
+#	          █  Plugin: Brodcast                       █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+command /bc [<text>]:
+        permission: XawuS.bc
+	description: Pisze globalna wiadomosc.
+	trigger:
+		broadcast "&6&lExtremeGames &8» &c%coloured arg%"
+
+command /broadcast [<text>]:
+        permission: XawuS.bcq
+	description: Pisze globalna wiadomosc.
+	trigger:
+		broadcast "&6&lExtremeGames &8» &c%coloured arg%"
+
+command /say [<text>]:
+        permission: XawuS.bcqw
+	description: Pisze globalna wiadomosc.
+	trigger:
+		broadcast "&6&ExtremeGames &a» &3%coloured arg%"
+
+command /sms [<text>]:
+        permission: XawuS.bcqwe
+	description: Pisze globalna wiadomosc.
+	trigger:
+		broadcast "&6&lExtremeGames &8» &7%coloured arg%"

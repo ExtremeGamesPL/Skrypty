@@ -1,0 +1,131 @@
+#====================================================================
+#	          █  Plugin: Premiumcase                    █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================	
+command /case [<player>]:
+	permission: case.op
+	trigger:
+		send "&bOtrzymales 1 &c&lPremium&1&l Case!" to the argument 1
+		give 1 trapped chest named "&c&lPremium&1&l Case" to the argument 1
+		
+command /caseop:
+	permission: case.op
+	trigger:
+		give 64 trapped chest named "&c&lPremium&1&l Case" to the player
+		
+command /caseall:
+	permission: case.op
+	trigger:
+		broadcast "&bCaly Serwer Otrzymuje &c&lPremium&1&l Case &bOd Admina"
+		give 1 trapped chest named "&c&lPremium&1&l Case" to all players
+		
+command /caseall2:
+	permission: case.op
+	trigger:
+		broadcast "&bCaly Serwer Otrzymuje &c&lPremium&1&l Case &5&lx2 &bOd Admina"
+		give 2 trapped chest named "&c&lPremium&1&l Case" to all players
+		
+command /caseall3:
+	permission: case.op
+	trigger:
+		broadcast "&bCaly Serwer Otrzymuje &c&lPremium&1&l Case&5&l x3 &bOd Admina"
+		give 3 trapped chest named "&c&lPremium&1&l Case" to all players
+
+command /skrzynki:
+	trigger:
+		send "&4&l============================================="
+		send ""
+		send "&aWszystkie Case"
+		send ""
+		send "&c&lPremium&1&l Case"
+		send ""
+		send "&aAby zakupic wybrana skrzynie wpisz &6/casesms"
+		send ""
+		send "&4&l============================================="
+		
+command /casesms:
+	trigger:
+		send "&2##################################"
+		send ""
+		send "&aSkrzynie kupisz Tutaj: http://itemshop.pl/636201.html"
+		send ""
+		send "&2##################################"
+		
+#Skrzynia
+on place trapped chest:
+	if player's tool is trapped chest named "&c&lPremium&1&l Case":
+		set block to air
+		wait 0.1 second
+		set block to emerald block
+		wait 0.1 second
+		set block to gold block
+		wait 0.1 second
+		set block to iron block
+		wait 0.1 second
+		set block to diamond block
+		wait 0.1 second
+		set block to air block
+		send "&bOtworzyles &c&lPremium&1&l Case"
+		chance of 50%:
+			drop 16 diamond
+			send ""
+		chance of 10%:
+			drop 1 310 of protection 4 and unbreaking 3 named "&aBania 4/3"
+			send ""
+		chance of 40%:
+			drop 16 emerald
+			send ""
+		chance of 10%:
+			drop 1 311 of protection 4 and unbreaking 3 named "&aKlata 4/3"
+			send ""
+		chance of 10%:
+			drop 1 312 of protection 4 and unbreaking 3 named "&aSpodnie 4/3"
+			send ""
+		chance of 10%:
+			drop 1 313 of protection 4 and unbreaking 3 named "&aBuciki 4/3"
+			send ""
+		chance of 35%:
+			drop 32 gold ingot
+			send ""
+		chance of 8%:
+			drop 1 276 of sharpness 5 and fire aspect 2 named "&4Miecz 5/2"
+			send ""
+		chance of 10%:
+			drop 1 276 of knockback 2 named "&4Knockback 2"
+			send ""
+		chance of 1.5%:
+			drop 1 278 of efficiency 6 and unbreaking 3 and fortune 3 named "&cKilof 6/3/3"
+			send "&cGRATULACJE wydropiles &aKilof 6/3/3"
+		chance of 1.5%:
+			drop 1 146 named "&c&lPremium&1&l Case"
+			send "&aWydropiles &c&lPremium&1&l Case"
+		chance of 32%:
+		    drop 32 tnt
+			send ""
+		chance od 16%:
+		    drop 64 tnt
+			send ""
+		chance of 6%:
+		    drop 322:1 8
+			send ""
+		chance of 12%:
+		    drop 322:1 2
+			send ""
+		chance of 20%:
+		    drop 322:0 16
+			send ""
+		chance of 10%:
+		    drop 322:0 8
+			send ""
+		chance of 0.5%:
+		    drop 138 1
+			send "&aWylosowales &f&lB&4&lE&2&lA&5&lC&6&lO&a&lN&b&lA&d&l!"
+			
+		
+on mine of stone:
+	chance of 0.1%
+	drop 1 146 named "&c&lPremium&1&l Case"

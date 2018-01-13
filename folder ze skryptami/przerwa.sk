@@ -1,0 +1,53 @@
+#====================================================================
+#	          █  Plugin  : Przerwa techniczn            █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+
+on connect:
+	if {p} is not set: #zmienna blokujaca
+		if {adw.%player%} is not set:
+			kick player due to "&7===&6Serwer zamknięty Wbija na Ts3 po więcej informacji. &4&lPrzerwa techniczna!&4===" #wyrzuca gracza z wiadomoscia w ""
+		
+command /blokada [<text>] [<text>]: #Komenda adm dodajaca lub usuwajaca uzytkownika z listy
+	aliases: /bl
+	permission: bl.*
+	trigger:
+		if argument 1 is "remove" or "add":
+			if argument 2 is set:
+				if argument 1 is "add":
+					set {adw.%argument 2%} to true
+					send "&aWlaczono serwer dla %argument 2%!"
+				if argument 1 is "remove":
+					clear {adw.%argument 2%}
+					send "&cWylaczono serwer dla %argument 2%!"
+			else:
+				send "&c/blokada add <nick>"
+				send "&c/blokada remove <nick>"
+		if argument 1 is "all":
+			if {p} is not set:
+				set {p} to true
+				send "&aWlaczono serwer dla all!"
+			else:
+				clear {p}
+				send "&cWylaczono serwer dla all!"
+		if argument 1 is not set:
+			send "&c/blokada add <nick>"
+			send "&c/blokada remove <nick>"
+			send "&c/blokada all"
+			
+			
+command /wywal [<text>]: #wyrzuca graczy bez przywileju...
+	permission: w.*
+	trigger:
+		if argument 1 is set:
+			loop all players:
+				if {adw.%loop-player%} is not set:
+					kick loop-player due to "&6&lSerwer nieczynny z przyczyny %argument%!" #...z przyczyny podanej przez ciebie
+		else:
+			loop all players:
+				if {adw.%loop-player%} is not set:
+					kick loop-player due to "&6&lSerwer nieczynny! Przerwa techniczna!" #...z przyczyny nadanej w ""

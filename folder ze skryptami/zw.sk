@@ -1,0 +1,25 @@
+#====================================================================
+#	          █  Plugin  : ZW                           █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+variabls:
+	{czascmd::%player%} = now
+
+command /zw [<player>]:
+        trigger:
+	if difference between {czascmd::%player%} and now is smaller 5 seconds:
+                send "&7[&4&l%player%&7] &b&lZaraz Wracam &cnie ma mnie teraz !" to player
+                send "&7Gracz &b&l%player% &7ma teraz status &9&lzaraz wracam !" to all players
+                Wait 60 second
+                stop
+
+command /jj [<player>]:
+        trigger:
+    if difference between {czascmd::%player%} and now is smaller 5 seconds:
+                send "&7[&2&l%player%&7] &bJuz jestem ! &cI gram dalej!" to player
+                send "&7Gracz &b&l%player% &7ma status na &2&ljuz jestem !" to all players
+                stop 

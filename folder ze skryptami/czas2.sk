@@ -1,0 +1,47 @@
+#====================================================================
+#	          █  Plugin: Onlytime 2                     █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 2.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+variables:
+	{seconds.%player%} = 0
+	{minutes.%player%} = 0
+	{hours.%player%} = 0
+	{days.%player%} = 0
+	{weeks.%player%} = 0
+	
+options:
+	tag: &8[&9%player%&3 Czas&8]&b
+every 1 second:
+	loop all players:
+		add 1 to {seconds.%loop-player%}
+		if {seconds.%loop-player%} is 60:
+			add 1 to {minutes.%loop-player%} 
+			set {seconds.%loop-player%} to 0 
+			if {minutes.%loop-player%} is 60:
+				add 1 to {hours.%loop-player%}
+				set {minutes.%loop-player%} to 0
+				if {hours.%loop-player%} is 24:
+					add 1 to {days.%loop-player%}
+					set {hours.%loop-player%} to 0
+					if {days.%loop-player%} is 31:
+						add 1 to {weeks.%loop-player%}
+						set {days.%loop-player%} to 0
+						stop
+
+command /Czasgracza:
+	aliases: put, uptime, ut, ontime, ot
+	usage: {@tag} Aby użyć komendy wpisz poprostu &9/PlayerU&3pTimer&b.
+	trigger: #
+		send "                {@tag}                        "
+		send "    » &bNa naszym serwerze przegrales:&r    «"
+		send ""
+		send "                 &b%{seconds.%player%}% sekund"
+		send "                 &b%{minutes.%player%}% minut"
+		send "                 &b%{hours.%player%}% godzin"
+		send "                 &b%{days.%player%}% dni"
+		send "                 &b%{weeks.%player%}% tygodni"
+		stop

@@ -1,0 +1,216 @@
+#====================================================================
+#	          █  Plugin  : OX                           █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+command /oxtak:
+	description: Odpowiedz TAK
+	usage: &8/&2o&4x&6tak
+	permission: ox.sk
+	permission message: &4Nie masz permissi do uzycia tej komendy
+	trigger:
+		Wait 1 second
+		broadcast "&8[&2O&4X&8] &6Za 30 sekund biale pole zniknie"
+		Wait 20 second
+		broadcast "&8[&2O&4X&8] &6Za 10 sekund biale pole zniknie"
+		Wait 7 second
+		broadcast "&8[&2O&4X&8] &6Za 3"
+		Wait 1 second
+		broadcast "&8[&2O&4X&8] &6Za 2"
+		Wait 1 second
+		broadcast "&8[&2O&4X&8] &6Za 1"
+		Wait 1 second
+		execute player command "rg select bialy"
+		execute player command "//set 0"
+		execute player command "rg select plotki1"
+		execute player command "//set 85"
+		execute player command "rg select plotki"
+		execute player command "//set 85"
+		Wait 2 second
+		broadcast "&8[&2O&4X&8] &6Za 5 sekund ukaze sie prawdziwa odpowiedz"
+		Wait 2 second
+		broadcast "&8[&2O&4X&8] &6Za 3"
+		Wait 1 second
+		broadcast "&8[&2O&4X&8] &6Za 2"
+		Wait 1 second
+		broadcast "&8[&2O&4X&8] &6Za 1"
+		Wait 1 second
+		broadcast "&8[&2O&4X&8] &6Poprawna odpowiedz to &2&lTAK"
+		execute player command "rg select nie"
+		execute player command "//set 0"
+		execute player command "rg select plotki1"
+		execute player command "//set 0"
+		Wait 5 second
+		execute player command "rg select nie"
+		execute player command "//set 35:14"
+		Wait 1 second
+		execute player command "rg select bialy"
+		execute player command "//set 35"
+		Wait 1 second
+		Wait 1 second
+		execute player command "rg select plotki"
+		execute player command "//set 0"
+		
+command /oxnie:
+	description: Odpowiedz TAK
+	usage: &8/&2o&4x&6tak
+	permission: ox.sk
+	permission message: &4Nie masz permissi do uzycia tej komendy!
+	trigger:
+		Wait 1 second
+		broadcast "&8[&2O&4X&8] &6Za 30 sekund biale pole zniknie"
+		Wait 20 second
+		broadcast "&8[&2O&4X&8] &6Za 10 sekund biale pole zniknie"
+		Wait 7 second
+		broadcast "&8[&2O&4X&8] &6Za 3"
+		Wait 1 second
+		broadcast "&8[&2O&4X&8] &6Za 2"
+		Wait 1 second
+		broadcast "&8[&2O&4X&8] &6Za 1"
+		Wait 1 second
+		execute player command "rg select bialy"
+		execute player command "//set 0"
+		execute player command "rg select plotki1"
+		execute player command "//set 85"
+		execute player command "rg select plotki"
+		execute player command "//set 85"
+		Wait 2 second
+		broadcast "&8[&2O&4X&8] &6Za 5 sekund ukaze sie prawdziwa odpowiedz"
+		Wait 2 second
+		broadcast "&8[&2O&4X&8] &6Za 3"
+		Wait 1 second
+		broadcast "&8[&2O&4X&8] &6Za 2"
+		Wait 1 second
+		broadcast "&8[&2O&4X&8] &6Za 1"
+		Wait 1 second
+		broadcast "&8[&2O&4X&8] &6Poprawna odpowiedz to &4&lNIE"
+		execute player command "rg select tak"
+		execute player command "//set 0"
+		execute player command "rg select plotki"
+		execute player command "//set 0"
+		Wait 5 second
+		execute player command "rg select tak"
+		execute player command "//set 35:13"
+		Wait 1 second
+		execute player command "rg select bialy"
+		execute player command "//set 35"
+		Wait 1 second 
+		execute player command "rg select plotki1"
+		execute player command "//set 0"
+		
+command /oxmenu:
+	description: Menu OX
+	usage: &8/&2o&4x
+	permission: oxmenu.sk
+	permission message: &4Nie masz permissi do uzycia tej komendy!
+	trigger:
+		Wait 1 second
+		send "&8[&2O&4X&8] ========&6Menu OX Gracza&8========"
+		send "&8[&2O&4X&8] &6Odpowiedz na pytanie &2/ox odpowiedz (tekst)"
+		send "&8[&2O&4X&8] ========&6Menu OX Gracza&8========"
+		send ""
+		send "&8[&2O&4X&8] ========&6Menu OX Admina&8========"
+		send "&8[&2O&4X&8] &6Rozpocznij ox &2/ox start"
+		send "&8[&2O&4X&8] &6Zatrzymaj ox &2/ox stop"
+		send "&8[&2O&4X&8] &6Zadaj pytanie &2/ox pytanie (pytanie)"
+		send "&8[&2O&4X&8] &6Poprawna odpowiedz: TAK /&2ox tak"
+		send "&8[&2O&4X&8] &6Poprawna odpowiedz: NIE &2/ox nie"
+		send "&8[&2O&4X&8] &6Osoba która wygrałą &2/ox wygrany (nick)"
+		send "&8[&2O&4X&8] ========&6Menu OX Admina&8========"
+		
+command /ox [<text>] [<text>]:
+        trigger:
+                if arg 1 is "pomoc":
+                        if player has permission "ox.gracz" or "ox.*":
+                                send "&8[&2O&4X&8] ========&6Menu OX Gracza&8========"
+                                send "&8[&2O&4X&8] &6Dołącz do ox &2/ox dolącz"
+                                send "&8[&2O&4X&8] ========&6Menu OX Gracza&8========"
+                                send ""
+                                send "&8[&2O&4X&8] ========&6Menu OX Admina&8========"
+                                send "&8[&2O&4X&8] &6Rozpocznij ox &2/ox start ox"
+                                send "&8[&2O&4X&8] &6Zatrzymaj ox &2/ox stop ox"
+                                send "&8[&2O&4X&8] &6Zadaj pytanie &2/ox pytanie (pytanie)"
+                                send "&8[&2O&4X&8] &6Poprawna odpowiedz: TAK /&2oxtak"
+                                send "&8[&2O&4X&8] &6Poprawna odpowiedz: NIE &2/oxnie"
+                                send "&8[&2O&4X&8] &6Osoba która wygrałą &2/ox wygrany (nick)"
+                                send "&8[&2O&4X&8] ========&6Menu OX Admina&8========"
+                        else:
+                                send " &8» &3Nie masz do tego uprawnień"
+                                stop
+                if arg 1 is "start":
+                        if arg 2 is "ox":
+                                if player has permission "ox.start" or "ox.*":
+                                        Wait 1 second
+                                        broadcast ""
+                                        broadcast "&8[&2O&4X&8] &6&lAdministrator &4&l%player% &6&lWystartował OX"
+                                        broadcast ""
+                                        Wait 5 second
+                                        broadcast ""
+                                        broadcast "&8[&2O&4X&8] &2&lOx zacznie sie za 30 sek"
+                                        broadcast "&8[&2O&4X&8] &2&laby dołączyć napisz /ox dolacz"
+                                        broadcast ""
+                                        Wait 5 second
+                                        broadcast "&8[&2O&4X&8] &4&lMiłej zabawy zyczy Cała Administracja"
+                                else:
+                                        send " &8» &3Nie masz do tego uprawnień"
+                                        stop
+                        else:
+                                send " &c» &3Poprawne uzycie /ox start ox"
+                                stop
+                if arg 1 is "Dolacz":
+                        if player has permission "ox.dolacz" or "ox.*":
+                                Wait 1 second
+                                execute player command "warp ox"
+                                broadcast ""
+                                broadcast "&8[&2O&4X&8] &9Gracz &6%player% &9Dołączył do &2O&4X"
+                                broadcast ""
+                        else:
+                                send " &8» &3Nie masz do tego uprawnień"
+                                stop
+								
+                if arg 1 is "Tak":
+                        if player has permission "ox.Tak" or "ox.*":
+                                Wait 1 second
+                                execute player command "oxtak"
+                                broadcast ""
+                                broadcast "&8[&2O&4X&8] &7Gracz &6&l%player% &7Zagłosował na: &2&lTak"
+                                broadcast ""
+                        else:
+                                send " &8» &3Nie masz do tego uprawnień"
+                                stop
+								
+                if arg 1 is "Nie":
+                        if player has permission "ox.Nie" or "ox.*":
+                                Wait 1 second
+                                execute player command "oxnie"
+                                broadcast ""
+                                broadcast "&8[&2O&4X&8] &7Gracz &6&l%player% &7Zagłosował na: &4&lnie"
+                                broadcast ""
+                        else:
+                                send " &8» &3Nie masz do tego uprawnień"
+                                stop
+								
+                if arg 1 is "stop":
+                        if arg 2 is not set:
+                                if player has permission "ox.stop":
+                                        send "&cPodaj powod!"
+                                else:
+                                        Wait 1 second
+                                        broadcast ""
+                                        broadcast "&8[&2O&4X&8] &6&lAdministrator &4&l%player% &6&lZatrzymał Ox %arg 2%"
+                                        broadcast ""
+                                        stop
+										
+                if arg 1 is "pytanie":
+                        if arg 2 is not set:
+                                if player has permission "ox.pytanie":
+                                        send "&cNapisz pytanie!"
+                                else:
+                                        Wait 1 second
+                                        broadcast ""
+                                        broadcast "&8[&2O&4X&8] &6&lAdministrator &4&l%player%"
+                                        broadcast "&2&lZadał pytanie:&4&l %arg 2%"
+                                        broadcast ""

@@ -1,0 +1,49 @@
+#====================================================================
+#	          █  Plugin: Onlytime                       █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+# ----- /onlinetime <nick> - onlinetime.sprawdz
+ 
+every second:
+  loop all players:
+    add 1 to {onlinetime.seconds.%loop-player%}
+    if {onlinetime.seconds.%loop-player%} is 60:
+      add 1 to {onlinetime.minutes.%loop-player%}
+      set {onlinetime.seconds.%loop-player%} to 0
+    if {onlinetime.minutes.%loop-player%} is 60:
+      add 1 to {onlinetime.hours.%loop-player%}
+      set {onlinetime.minutes.%loop-player%} to 0
+    if {onlinetime.hours.%loop-player%} is 24:
+      add 1 to {onlinetime.days.%loop-player%}
+      set {onlinetime.hours.%loop-player%} to 0
+ 
+command /onlinetime [<offlineplayer>]:
+  description: Sprawdz czas online gracza.
+  permission: onlinetime.sprawdz
+  permission message: Wybacz, nie masz uprawnien.
+  aliases: /ot
+  trigger:
+    if argument is not set:
+      message "<cyan>Czas online by. Zabujca997"
+      message "<pink>Komenda: /onlinetime <nick>"
+      stop
+    if {onlinetime.seconds.%argument%} is not set:
+      message "<pink>Tego gracza nigdy nie bylo na serwerze."
+      stop
+    else:
+      message "<lime>Gracz <yellow>%argument% <lime>czas online:"
+      if {onlinetime.days.%argument%} is set:
+        message "<gold>%{onlinetime.days.%argument%}%<gold> dni %{onlinetime.hours.%argument%}%<gold> godziny %{onlinetime.minutes.%argument%}%<gold> minut %{onlinetime.seconds.%argument%}%<gold> sekund"
+        stop
+      if {onlinetime.hours.%argument%} is set:
+        message "<gold>%{onlinetime.hours.%argument%}%<gold> godziny %{onlinetime.minutes.%argument%}%<gold> minut %{onlinetime.seconds.%argument%}%<gold> sekund"
+        stop
+      if {onlinetime.minutes.%argument%} is set:
+        message "<gold>%{onlinetime.minutes.%argument%}%<gold> minut %{onlinetime.seconds.%argument%}%<gold> sekund"
+        stop
+      else:
+        message "<gold>%{onlinetime.seconds.%argument%}%<gold> sekund"

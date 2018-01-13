@@ -1,0 +1,27 @@
+#====================================================================
+#	          █  Plugin: autofosa+autosandfarmer        █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997. All rights reserved.
+#====================================================================
+on script load:
+	register new shaped recipe for 121 named "&2----- &c&LAutoMatyczny  SandFarmer &2-----" using 12, 12, 12, 12, 327, 12, 12, 12, 12
+	
+on place of 121:
+    if player's tool is 121 named "&2----- &c&LAutoMatyczny  SandFarmer &2-----":
+        loop blocks under event-block:
+            if loop-block is bedrock:
+                stop
+            set loop-block to sand
+			
+on script load:
+	register new shaped recipe for 120 named "&2----- &c&LAutoMatyczny BoyFarmer &2-----" using 49, 49, 49, 49, 327, 49, 49, 49, 49
+	
+on place of 120:
+    if player's tool is 120 named "&2----- &c&LAutoMatyczny BoyFarmer &2-----":
+        loop blocks under event-block:
+            if loop-block is bedrock:
+                stop
+            set loop-block to obsidian

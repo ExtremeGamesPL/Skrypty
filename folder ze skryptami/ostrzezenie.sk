@@ -1,0 +1,22 @@
+#====================================================================
+#	          █  Plugin  : WarnMute                          █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+variables:
+	{rep.%player%} = 0
+
+command /ostrzezenie <player>:
+	trigger:
+		if player has permission "ost.admin":
+			if {rep.%player%} is less or equal to 3:
+				add 1 to {rep.%player%}
+				if {rep.%player%} is 3:
+					execute player command "mute %arg 1%"
+					broadcast "&fGracz &c&l%arg 1% &fzostal wyciszony na 5 min za nie przestrzeganie regulaminu serwera."
+					set {rep.%player%} to 0
+				else:
+					send "&fGracz posiada dopiero &c%{rep.%player%}%&f/&c3 &fostrzezen, gdy bedzie mial 3/3 dostanie mute na 5 min"

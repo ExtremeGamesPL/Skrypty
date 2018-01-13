@@ -1,0 +1,32 @@
+#====================================================================
+#	          █  Plugin: list                        █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+command /lista:
+
+        trigger:
+
+                wait 2 ticks
+
+                open chest with 6 rows named "            &4&l> &9&lONLINE &4&l<" to player
+
+                wait 3 tick
+
+                loop all players:
+
+                        add 1 to {_online}
+
+                        if {_online} is smaller than 54:
+
+                                if loop-players has permission "list.dupa":
+
+                                        format slot {_online}-1 of player with 1 of red wool named "&7&m-&m&8]&2&m--&r &cAdministrator" with lore "||&e&m-----------------------&r|||| &7Nick:   &7%name of loop-player%|| &7Ranga:   &7%displayname of loop-player%|| &7Kordy:   %loop-player's location%|| &7W reku ma: %loop-player's tool %||||&e&m-----------------------&r" to close 
+
+                                else:
+
+                                        format slot {_online}-1 of player with 1 of light green wool named "&7&m-&8&m]&2&m--&r &3Gracz" with lore "||&e&m-----------------------&r|||| &7Nick:   &7%name of loop-player%|| &7Ranga:   &7%displayname of loop-player%|| &7Kordy:   %loop-player's location%|| &7W reku ma: %loop-player's tool %||||&e&m-----------------------&r" to close
+

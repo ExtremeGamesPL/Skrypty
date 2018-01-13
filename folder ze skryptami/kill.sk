@@ -1,0 +1,35 @@
+#====================================================================
+#	          █  Plugin: Death                          █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+on death of player:
+    damage was caused by suffocation:
+        broadcast "&6%victim% &7zginal w scianie!"
+    damage was caused by fall:
+        broadcast "&6%victim% &7Spadł z gór!"
+    damage was caused by fire:
+        broadcast "&6%victim% &7spalil sie przez ogień!"
+    damage was caused by burning:
+        broadcast "&6%victim% &7spalil sie!"
+    damage was caused by lava:
+        broadcast "&6%victim% &7spalil sie w lawie!"
+    damage was caused by drowning:
+        broadcast "&6%victim% &7utopil sie!"
+    damage was caused by entity explosion:
+        broadcast "&6%victim% &7wybuchl!"
+    damage was caused by block explosion:
+        broadcast "&6%victim% &7wybuchl!"
+    damage was caused by starvation:
+        broadcast "&6%victim% &7umarl z glodu!"
+    damage was caused by poison:
+        broadcast "&6%victim% &7zatrul sie!"
+    damage was caused by potion:
+        broadcast "&&6%victim% &7zatrul sie potkami!"
+    damage was caused by falling block:
+        broadcast "6%victim% &7dostal czyms w glowe!"
+    damage was caused by unknown:
+        broadcast "&6%victim% &7Zmarł w nieznanych okolicznościach!" 

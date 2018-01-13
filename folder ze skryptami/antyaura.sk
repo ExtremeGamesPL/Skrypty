@@ -1,0 +1,358 @@
+#    ___                    _                   _         _   _   ___ _                _   
+#   / _ \_ __ ___ _ __ ___ (_)_   _ _ __ ___   /_\  _ __ | |_(_) / __\ |__   ___  __ _| |_ 
+#  / /_)/ '__/ _ \ '_ ` _ \| | | | | '_ ` _ \ //_\\| '_ \| __| |/ /  | '_ \ / _ \/ _` | __|
+# / ___/| | |  __/ | | | | | | |_| | | | | | /  _  \ | | | |_| / /___| | | |  __/ (_| | |_ 
+# \/    |_|  \___|_| |_| |_|_|\__,_|_| |_| |_\_/ \_/_| |_|\__|_\____/|_| |_|\___|\__,_|\__|
+# ------------------------------------------------------------------------------------------                                                                                      
+# Zabraniam podszywania się pod autora skryptu. Wszelkie próby tego typu będą karane.
+# Edytować można jedynie za moją zgodą.
+# Autor: Zabujca997 Firma: ExtremeGames © 
+# Wersja V.1.7
+
+options:
+#SNEAK/FLY CONFIG
+	PACSNEAK: 3 #Po ilu próbach użycia "Sneak" gracz ma zostać dodany do JDay? Domyslnie więcej niż 2.
+	PACFLY: 3 #Po ilu próbach użycia "Fly/Flight" gracz ma zostać dodany do JDay? Domyslnie więcej niż 2.
+#REACH CONFIG
+	REACHODLEGLOSC: 5 #Po uderzeniu z jakiej odległości ma gracz zostać dodany do JDay? Domyślnie większej niż 4 kratki. 
+	PACREACH: 3 #Po ilu próbach użycia "Reach" gracz ma zostać dodany do JDay? Domyslnie więcej niż 2.
+#AURA CONFIG
+	PACAURA: 3 #Po ilu próbach użycia "KillAura" gracz ma zostać dodany do JDay? Domyslnie więcej niż 2.
+#AutoJD CONFIG
+	AutoJD: 2000 #Co ile sekund ma się włączać JudgementDay? Domyślnie 2000.
+
+#Anty WaterWalk
+	
+on walk on water:
+	block at player is air
+	block under player is water
+	wait 5 ticks
+	block under player is water
+	wait 1 tick
+	block at player is air
+	block under player is water
+	if {PACWW} is true:
+		teleport player to block under player
+		send "&8[&cPAC&8] &7Tylko wybrancy moga chodzic po wodzie..." to player
+	else:
+		stop
+	
+#Anty KillAura
+
+on join:
+	wait 2 tick
+	if {PACAURA} is true:
+		create a citizen named "&aPAC_&c%player%" at location 2 blocks behind player
+		set {KillAura.Bot.%player%} to last created citizen id
+		loop all players:
+			hide citizen {KillAura.Bot.%loop-player%} from all players
+	else:
+		stop
+on damage: 
+	if attacker's gamemode is creative:
+		stop
+	if {PACAURA} is true:
+		chance of 50%:
+			set {_loc} to location 2 blocks behind attacker
+			add 1 to y-coord of {_loc}
+			teleport citizen {KillAura.Bot.%attacker%} to {_loc}
+			reveal citizen {KillAura.Bot.%attacker%} from attacker
+			wait 5 ticks
+			hide citizen {KillAura.Bot.%attacker%} from attacker
+	else:
+		stop
+on quit:
+	remove citizen {KillAura.Bot.%player%}
+on citizen left click:
+	if player's gamemode is creative:
+		stop
+	if citizen is {KillAura.Bot.%player%}:
+		if {PACAURA} is true:
+			kick player due to "&8[&cPAC&8] &cPowod: &3KillAura"
+			send "&8[&cPAC&8] &7Wyrzucono &3%player% &cPowod: &3KillAura" to ops
+			log "------------------------ [ETG] ------------------------" to "PAC"
+			log "Gracz %player% Zostal Wyrzucony Za:" to "PAC"
+			log "KillAure" to "PAC"
+			log "------------------------------------------------------------" to "PAC"
+			log "   " to "PAC"
+			add 1 to {PACAURA.%player%}
+	else:
+		stop
+
+#AntyReach
+
+on damage of player:
+	attacker is a player
+	projectile doesn't exist
+	if {PACREACH} is true:
+		if distance between attacker and victim is bigger than {@REACHODLEGLOSC}:
+			cancel event
+			kick attacker due to "&8[&cPAC&8] &cPowod: &3Reach HACK"
+			log "------------------------ [ETG] ------------------------" to "PAC"
+			log "Gracz %attacker% Zostal Wyrzucony Za:" to "PAC"
+			log "REACH HACK" to "PAC"
+			log "------------------------------------------------------------" to "PAC"
+			log "   " to "PAC"
+			add 1 to {PACREACH.%attacker%}
+	else:
+		stop
+
+#NoSlowDown
+
+on any movement:
+	if {PACNSD} is true:
+		block under player is soulsand:
+			player has potion of speed:
+				stop
+			player's walking speed is bigger than or equal to 0.3:
+				kick player due to "&8[&cETG&8] &7Zostales wyrzucony za uzywanie: NoSlowDown."
+
+#AntySneak
+
+on chat:
+	wait 20 ticks
+	if player is sneaking:
+		wait 2 ticks
+		if {PACSNEAK} is true:
+			add 1 to {PACSNEAK.%player%}
+	else:
+		stop
+
+on inventory open:
+	wait 10 ticks
+	if player is sneaking:
+		if {PACSNEAK} is true:
+			add 1 to {PACSNEAK.%player%}
+	else:
+		stop
+
+on prepare item craft:
+	wait 10 ticks
+	if player is sneaking:
+		if {PACSNEAK} is true:
+			add 1 to {PACSNEAK.%player%}
+	else:
+		stop
+
+#AntyFly
+
+on flight toggle:
+	if player's gamemode is not creative:
+		if player has permission "essentials.fly":
+			stop
+		if {PACSNEAK} is true:
+			cancel event
+			kick player due to "&8[&cPAC&8] &cPowod: &3FLY"
+			log "------------------------ [ETG] ------------------------" to "PAC"
+			log "Gracz %player% Zostal Wyrzucony Za:" to "PAC"
+			log "FLY" to "PAC"
+			log "------------------------------------------------------------" to "PAC"
+			log "   " to "PAC"
+			add 1 to {PACFLY.%player%}
+	else:
+		stop
+
+#JudgementDay
+
+command /jday:
+	description: Uruchamia dzien zaglady dla cheaterow!
+	permission: JDay.PAC
+	permission message: &6&l> &r&cNie mozesz tego zrobic!
+	trigger:
+		wait 5 ticks
+		broadcast "&8[&cPAC&8] &cAdministrator&c uruchomil wlasnie dzien zaglady dla cheaterow"
+		broadcast "&8[&cPAC&8] &2Zacznie sie on za 30sekund. Cheaterzy Pozegnajcie sie z serwerem :)"
+		wait 20 real seconds
+		broadcast "&8[&cPAC&8] &2Dzien Zaglady rozpocznie sie za 10 sekund :)"
+		wait 10 real seconds 
+		loop all players:
+			if {PACSNEAK.%loop-player%} is bigger than {@PACSNEAK}:
+				kick loop-player due to "&8[&cPAC&8] &2Nie ma miejsca dla cheaterow :)"
+				ban loop-player due to "&8[&cPAC&8] &2Nie ma miejsca dla cheaterow :)"
+			if {PACREACH.%loop-player%} is bigger than {@PACREACH}:
+				kick loop-player due to "&8[&cPAC&8] &2Nie ma miejsca dla cheaterow :)"
+				ban loop-player due to "&8[&cPAC&8] &2Nie ma miejsca dla cheaterow :)"
+			if {PACAURA.%loop-player%} is bigger than {@PACAURA}:
+				kick loop-player due to "&8[&cPAC&8] &2Nie ma miejsca dla cheaterow :)"
+				ban loop-player due to "&8[&cPAC&8] &2Nie ma miejsca dla cheaterow :)"
+			if {PACFLY.%loop-player%} is bigger than {@PACFLY}:
+				kick loop-player due to "&8[&cPAC&8] &2Nie ma miejsca dla cheaterow :)"
+				ban loop-player due to "&8[&cPAC&8] &2Nie ma miejsca dla cheaterow :)"
+			broadcast "&8[&cPAC&8] &2Dzien Zaglady zakoczyl sie milej gry :)"
+			clear {PACFLY.%loop-player%}
+			clear {PACSNEAK.%loop-player%}
+			clear {PACAURA.%loop-player%}
+			clear {PACREACH.%loop-player%}
+			stop
+
+#AutoJDay
+
+every {@AutoJD} seconds:
+	if {AutoJD} is true:
+		execute console command "jday"
+
+#GUI PAC
+
+command /pac [<text="main">]:
+	permission: MENU.PAC
+	permission message: &6&l> &r&cNie mozesz tego zrobic!
+	trigger:
+		if arg is "main":
+			wait 2 ticks
+			open chest with 3 rows named "&cPAC &7- &2AntyCHEAT" to player
+			format slot 0 of player with 1 of magenta glass to close
+			format slot 1 of player with 1 of magenta glass to close
+			format slot 2 of player with 1 of magenta glass to close
+			format slot 3 of player with 1 of magenta glass to close
+			format slot 4 of player with 1 of magenta glass to close
+			format slot 5 of player with 1 of magenta glass to close
+			format slot 6 of player with 1 of magenta glass to close
+			format slot 7 of player with 1 of magenta glass to close
+			format slot 8 of player with 1 of magenta glass to close
+			format slot 9 of player with 1 of orange glass to close
+			format slot 10 of player with 1 of diamond sword named "&aWyczysc Liste Dodanych" with lore "&cDo JudgementDay" to run "paclear" 
+			format slot 11 of player with 1 of orange glass to close
+			format slot 12 of player with 1 of orange glass to close
+			format slot 13 of player with 1 of fire named "&c&lJDay - Zaglada Dla Cheaterow" to run "jday" 
+			format slot 14 of player with 1 of orange glass to close
+			format slot 15 of player with 1 of orange glass to close
+			format slot 16 of player with 1 of bone named "&2Edytowanie Sprawdzania" to close then run [execute player command "pac JDayEdit"]
+			format slot 17 of player with 1 of orange glass to close
+			format slot 18 of player with 1 of magenta glass to close
+			format slot 19 of player with 1 of magenta glass to close
+			format slot 20 of player with 1 of magenta glass to close
+			format slot 21 of player with 1 of magenta glass to close
+			if {AutoJD} is true:
+				format slot 22 of player with 1 of stick named "&aAutomatyczny &cJudgementDay" with lore "&e» &7Aktywne&8: &aTAK||Wykonywane co {@AutoJD} sekund." to run [make player execute command "/runjd %player% /AutoJD"]
+			else:
+				format slot 22 of player with 1 of stick named "&aAutomatyczny &cJudgementDay" with lore "&e» &7Aktywne&8: &cNIE" to run [make player execute command "/runjd %player% /AutoJD"]
+			format slot 23 of player with 1 of magenta glass to close
+			format slot 24 of player with 1 of magenta glass to close
+			format slot 25 of player with 1 of magenta glass to close
+			format slot 26 of player with 1 of magenta glass to close
+		if arg is "JDayEdit":
+			close player's inventory
+			wait 2 ticks
+			open chest with 1 row named "&2Co ma byc sprawdzane?" to player
+			if {PACAURA} is true:
+				format slot 0 of player with 1 of diamond sword named "&2AURA" with lore "&e» &7Aktywne&8: &2TAK" to run [make player execute command "/runpac %player% /PACAURA"]
+			else:
+				format slot 0 of player with 1 of diamond sword named "&2AURA" with lore "&e» &7Aktywne&8: &cNIE" to run [make player execute command "/runpac %player% /PACAURA"]
+			if {PACFLY} is true:
+				format slot 1 of player with 1 of diamond sword named "&2FLY" with lore "&e» &7Aktywne&8: &2TAK" to run [make player execute command "/runpac %player% /PACFLY"]
+			else:
+				format slot 1 of player with 1 of diamond sword named "&2FLY" with lore "&e» &7Aktywne&8: &cNIE" to run [make player execute command "/runpac %player% /PACFLY"]
+			if {PACSNEAK} is true:
+				format slot 2 of player with 1 of diamond sword named "&2SNEAK" with lore "&e» &7Aktywne&8: &2TAK" to run [make player execute command "/runpac %player% /PACSNEAK"]
+			else:
+				format slot 2 of player with 1 of diamond sword named "&2SNEAK" with lore "&e» &7Aktywne&8: &cNIE" to run [make player execute command "/runpac %player% /PACSNEAK"]
+			if {PACREACH} is true:
+				format slot 3 of player with 1 of diamond sword named "&2REACH" with lore "&e» &7Aktywne&8: &2TAK" to run [make player execute command "/runpac %player% /PACREACH"]
+			else:
+				format slot 3 of player with 1 of diamond sword named "&2REACH" with lore "&e» &7Aktywne&8: &cNIE" to run [make player execute command "/runpac %player% /PACREACH"]
+			if {PACWW} is true:
+				format slot 4 of player with 1 of diamond sword named "&2WaterWalk" with lore "&e» &7Aktywne&8: &2TAK" to run [make player execute command "/runpac %player% /PACWW"]
+			else:
+				format slot 4 of player with 1 of diamond sword named "&2WaterWalk" with lore "&e» &7Aktywne&8: &cNIE" to run [make player execute command "/runpac %player% /PACWW"]
+			if {PACNSD} is true:
+				format slot 5 of player with 1 of diamond sword named "&2NoSlowDown" with lore "&e» &7Aktywne&8: &2TAK" to run [make player execute command "/runpac %player% /PACNSD"]
+			else:
+				format slot 5 of player with 1 of diamond sword named "&2NoSlowDown" with lore "&e» &7Aktywne&8: &cNIE" to run [make player execute command "/runpac %player% /PACNSD"]
+command /runpac [<player>] [<text>]:
+	permission: run.pac
+	trigger:
+		if arg 1 is set:
+			if arg 2 is set:
+				make player execute command "pac JDayEdit"
+				run arg 1 command "%arg 2%" as op
+command /runjd [<player>] [<text>]:
+	permission: run.pac
+	trigger:
+		if arg 1 is set:
+			if arg 2 is set:
+				close player's inventory
+				make player execute command "pac"
+				run arg 1 command "%arg 2%" as op
+command /pacclear:
+	permission: MENU.PAC
+	permission message: &6&l> &r&cNie mozesz tego zrobic!
+	trigger:
+		send "&aTrwa czyszczenie listy osob z cheatami..."
+		wait 20 ticks
+		loop all players:
+			clear {PACFLY.%loop-player%}
+			clear {PACSNEAK.%loop-player%}
+			clear {PACAURA.%loop-player%}
+			clear {PACREACH.%loop-player%}
+			send "&cPAC &7- &aLista wyczyszczona!"
+			stop
+command /AutoJD:
+	permission message: &8 » &7Nieznana komeda!
+	permission: MENU.PAC
+	trigger:
+		if {AutoJD} is true:
+			set {AutoJD} to false
+			send "&cPAC &7- &2AutoJD jest teraz: wylaczone"
+		else:
+			set {AutoJD} to true
+			send "&cPAC &7- &2AutoJD jest teraz: wlaczone"
+command /PACWW:
+	permission message: &8 » &7Nieznana komeda!
+	permission: MENU.PAC
+	trigger:
+		if {PACWW} is true:
+			set {PACWW} to false
+			send "&cPAC &7- &2PACWW jest teraz: wylaczone"
+		else:
+			set {PACWW} to true
+			send "&cPAC &7- &2PACWW jest teraz: wlaczone"
+command /PACAURA:
+	permission message: &8 » &7Nieznana komeda!
+	permission: MENU.PAC
+	trigger:
+		if {PACAURA} is true:
+			set {PACAURA} to false
+			send "&cPAC &7- &2PACAURA jest teraz: wylaczone"
+		else:
+			set {PACAURA} to true
+			send "&cPAC &7- &2PACAURA jest teraz: wlaczone"
+command /PACNSD:
+	permission message: &8 » &7Nieznana komeda!
+	permission: MENU.PAC
+	trigger:
+		if {PACNSD} is true:
+			set {PACNSD} to false
+			send "&cPAC &7- &2PACNSD jest teraz: wylaczone"
+		else:
+			set {PACNSD} to true
+			send "&cPAC &7- &2PACNSD jest teraz: wlaczone"
+command /PACFLY:
+	permission message: &8 » &7Nieznana komeda!
+	permission: MENU.PAC
+	trigger:
+		if {PACFLY} is true:
+			set {PACFLY} to false
+			send "&cPAC &7- &2PACFLY jest teraz: wylaczone"
+		else:
+			set {PACFLY} to true
+			send "&cPAC &7- &2PACFLY jest teraz: wlaczone"
+command /PACSNEAK:
+	permission message: &8 » &7Nieznana komeda!
+	permission: MENU.PAC
+	trigger:
+		if {PACSNEAK} is true:
+			set {PACSNEAK} to false
+			send "&cPAC &7- &2PACSNEAK jest teraz: wylaczone"
+		else:
+			set {PACSNEAK} to true
+			send "&cPAC &7- &2PACSNEAK jest teraz: wlaczone"
+command /PACREACH:
+	permission message: &8 » &7Nieznana komeda!
+	permission: MENU.PAC
+	trigger:
+		if {PACREACH} is true:
+			set {PACREACH} to false
+			send "&cPAC &7- &2PACREACH jest teraz: wylaczone"
+		else:
+			set {PACREACH} to true
+			send "&cPAC &7- &2PACREACH jest teraz: wlaczone"

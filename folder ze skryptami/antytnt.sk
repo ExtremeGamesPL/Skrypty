@@ -1,0 +1,58 @@
+#====================================================================
+#	          █  Plugin: AntiTNT                        █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997. All rights reserved.
+#====================================================================
+options:
+                messageTnTOFF: &eETGTnt»» &6&oTnT i wagoniki zostaly wylaczone przez %player%
+                messageTnTON: &eETGTnt»» &6&oTnT i wagoniki zostaly wlaczone przez %player%
+                messagePermission: &4Nie Masz Permissji!
+                PROCENTOBS: 33
+                PROCENTWODA: 33
+                messagePopolozeniu: &eETGTnt»» &6&oTnT jest wylaczone!
+                blokOBS: air
+                blokWODA: air
+variables:
+        {tntItachi} = 0
+on place of tnt:
+        if {tntItachi} is 1:
+                send "{@messagePopolozeniu}"
+on explode:
+        if {tntItachi} is 1:
+                loop blocks in radius 4 of event-location:
+                        loop-block is water or lava:
+                                if chance of 0%:
+                                        set loop-block to cobblestone
+                loop blocks in radius 4 of event-location:
+                        loop-block is obsidian:
+                                if chance of 0%:
+                                        set loop-block to air
+                cancel event
+on explode:
+        if {tntItachi} is 0:
+                loop blocks in radius 4 of event-location:
+                        loop-block is water or lava:
+                                if chance of {@PROCENTWODA}%:
+                                        set loop-block to {@blokWODA}
+                loop blocks in radius 4 of event-location:
+                        loop-block is obsidian:
+                                if chance of {@PROCENTOBS}%:
+                                        set loop-block to {@blokOBS}
+command /tnt [<text>]:
+        trigger:
+                if player has permissions "tnt.lord":
+                        if arg 1 is not set:
+                                send "&eLTnt»» &6&oTnT on/off"
+                                send "&eLTnt»» &6&o/tnt on <-Wlacz tnt"
+                                send "&eLTnt»» &6&o/tnt off <-Wylacz tnt"
+                        if arg 1 is "OFF":
+                                set {tntItachi} to 1
+                                broadcast "{@messageTnTOFF}"
+                        if arg 1 is "ON":
+                                set {tntItachi} to 0
+                                broadcast "{@messageTnTON}"
+                else:
+                        send "{@messagePermission}"

@@ -1,0 +1,17 @@
+#====================================================================
+#	          █  Plugin: Laggclear                      █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+options:
+        time: 50
+every {@time} minutes:
+        broadcast "&7[&6!&7] &4Â»  &4Za 15 minut sprzątam wszystkie itemki z ziemii &4!"
+        wait 900 second
+        broadcast "&7[&6!&7] &4Â»  &4Czyszczenie Itemków z Ziemii za 5 minut &7"
+        wait 300 second
+        broadcast "&7[&6!&7] &2Â» &2Wszystkie itemki usuniete &4!"
+        execute console command "/remove item 9999999" 

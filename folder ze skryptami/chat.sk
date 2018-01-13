@@ -1,0 +1,9 @@
+#====================================================================
+#	          █  Plugin: Chatspam                       █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1                            █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+on chat:	if player doesn't have permission "vip.*":		if {chat.%player%} < 1:			set {chat.%player%} to 3			stop		if {chat.%player%} > 0:			send "&7Na chacie bedziesz mogl cos napisac za &6%{chat.%player%}% &6sek&7!"			send "&7Zakup konto &9VIP &7aby zmniejszyc ten limit!"			cancel event	else:		if {chat.%player%} < 1:			set {chat.%player%} to 3			stop		if {chat.%player%} > 0:			send "&7Na chacie bedziesz mogl cos napisac za &6%{chat.%player%}% &6sek&7!"			cancel eventevery 1 second:	loop all players:		remove 1 from {chat.%loop-player%} 

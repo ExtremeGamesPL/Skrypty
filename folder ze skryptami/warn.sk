@@ -1,0 +1,53 @@
+#=================# Skript #=================#
+# - Wersja: 3.0
+# - Wymagane pluginy: Skript
+# - Autor: Zabujca997
+#============================================#
+
+#=================# Zezwalam na #=================#
+# + Edycje
+# + Zmiane wiadomosci
+#=================================================#
+
+#=================# Zabraniam #=================#
+# - Zarabiania na skrypcie
+# - Sprzedawania skryptu
+# - Usuwania informacji o autorze
+# - Podszywanie sie pod autora
+# - Publikacji skryptu
+#===============================================#
+
+#=====================# Opcje #=====================#
+
+options:
+	prefix: &8[&4WarnETG&8]
+	nopermission: &4Nie masz uprawnien do uzycia tej komendy!
+	admin: warnpro.admin
+	gracz: warnpro.gracz
+	
+variables:
+	{warny} = 0
+
+#=====================# Komendy #=====================#
+
+command /zglos [<text>] [<text>]:
+	description: Sklada skarge na gracza
+	permission: {@gracz}
+	permission message: {@prefix} {@nopermission}
+	trigger:
+		if arg 1 is not set:
+			send "{@prefix} &eWpisz /zglos <nick> <powod> &cAby zglosic gracza"
+		if arg 1 is set:
+			if arg 2 is not set:
+				send "{@prefix} &cPodaj powod!"
+			else:
+				if arg 2 is set:
+					log "Gracz %player% slozyl skarge na %arg 1%  Powod: %arg 2%" to "Skargi"
+					send "{@prefix} &6&lZglosiles gracza o nicku &2%arg 1%"
+command /?:
+	description: Blokuje sprawdzanie listy pluginów
+	aliases: /plugins, /pl, /?, /craftbukkit, /lagg, /version
+	trigger:
+		send "Nieznana komenda"
+		
+#=====================# Blokowanie przeklenstw, reklam, poprawa ort #=====================#

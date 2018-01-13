@@ -1,0 +1,22 @@
+#====================================================================
+#	          █  Plugin: Obsydiarka                     █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+on script load:
+        register new shaped recipe for Stone named "&6&lObsydianiarka" using obsidian, obsidian, obsidian, obsidian, redstone, obsidian, obsidian, obsidian, obsidian
+ 
+On place Stone :
+    name of player's tool is "&6&lObsydianiarka":
+        add location of target block to {obsidian::*}
+every 1 second:
+    loop {obsidian::*}:
+        if block above loop-value is air:
+            set block above loop-value to obsidian
+on break Stone:
+    loop {obsidian::*}:
+        if loop-value is location of target block:
+            remove location of target block from {obsidian::*}

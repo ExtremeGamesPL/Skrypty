@@ -1,0 +1,273 @@
+#====================================================================
+#	          █  Plugin: ETGChat                        █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+variables:
+        {chat} = true
+        {chat.%player%} = true
+        {spam.%player%} = true
+        {cenzura} = true
+        {slowmode} = true
+        {emotikony} = true
+        {chatx::%player%} = 0
+        {msg.%player%} = 0
+        {anticapslock} = true
+       
+options:
+        # Wiadomosc przy czyszczeniu chatu.
+        messageclear: &8» &6Chat zostal: &6wyczyszczony &6przez: &c%player%&6!
+ 
+        # Wiadomosc przy wylaczeniu chatu dla kazdego.
+        messageoff: &8» &6Chat zostal: &cwylaczony &6przez: &c%player%&6!
+ 
+        # Wiadomosc przy wlaczeniu chatu.
+        messageon: &8» &6Chat zostal: &awlaczony &6przez: &c%player%&6!
+ 
+        # Wiadomosc wysylana do gracza podczas kiedy gracz pisze na wylaczonym chacie.»
+        messageoffplayer: &8» &4Blad: &cChat jest aktualnie zablokowany!
+ 
+        # Czas slowmode'a w sekundach
+        slowmodetime: 3
+ 
+        # Wiadomosc przy wylaczeniu slowmode'a.
+        messageslowmodeoff: &8» &7Slowmode wylaczony !
+ 
+        # Wiadomosc przy wlaczeniu slowmode'a.
+        messageslowmodeon: &8» &7Slowmode wlaczony!
+ 
+        # Zmiana tekstu kiedy gracz napisze jakąś cenzure.
+        cenzura: &6Wulgaryzm!
+ 
+        # Wiadomosc przy wylaczeniu cenzury.
+        Censormessageoff: &8» &6Cenzura zostala &cwylaczona&6!
+ 
+        # Wiadomosc przy wlaczeniu cenzury.
+        Censormessageon: &8» &6Cenzura zostala: &awlaczona&6!
+ 
+        # Wiadomosc przy wlaczeniu emotikon.
+        messagebuzkion: &8» &6Emotikonki: &con&6!
+ 
+        # Wiadomosc przy wylaczeniu emotikon.
+        messagebuzkioff: &8» &6Emotikonki: &coff&6!
+ 
+ 
+ 
+command /chat [<text>] [<text>] [<player>]:
+        permission: lotus.chat
+        permission message: &8» &cNie masz dostepu do: &7(lotus.chat)
+        trigger:
+                if arg 1 is not set:
+                        send "&8» &6Wszyskie komendy znajdziesz pod: &c/chat pomoc 1/2"
+                        stop
+                if arg 1 is "pomoc" or "help":
+                        if arg 2 is "1":
+                                send "&8» &6/chat wyczysc &8- &cCzysci chat."
+                                send "&8» &6/chat wylacz &8- &cWylacza chat."
+                                send "&8» &6/chat wlacz &8- &cWlacza chat."
+                                send "&8» &6/chat slowmode wlacz &8- &cWlacza slowmode'a."
+                                send "&8» &6/chat slowmode wylacz &8- &cWylacza slowmode'a."
+                                send "&8» &6/chat info &8- &cInformacje o skripcie."
+                                send "&8» &6/chat spam <infomacja/spam> &8- &cSpamuje u wszyskich graczy ta sama wiadomoscia."
+                                send "&8» &6/chat emotikony wlacz &8- &cWlacza emotikony."
+                                send "&8» &6/chat emotikony wylacz &8- &cWylacza emotikony."
+                                stop
+                        if arg 2 is "2":
+                                send "&8» &6/cenzura wlacz &8- &cWlacza cenzure."
+                                send "&8» &6/cenzura wylacz &8- &cWylacza cenzure."
+                                send "&8» &6/cenzura dodaj <cenzura> &8- &cDodaje cenzure."
+                                send "&8» &6/cenzura usun <cenzura> &8- &cUsun z spisu cenzur cenzure."
+                                send "&8» &6/cenzura spis &8- &cPokazuje spis cenzur."
+                                send "&8» &6/chat statystyki <nick> &8- &cStatystyki dot. chatu."
+                                send "&8» &6/chat reload &8- &cPrzeladowywuje skrypt."
+                                send "&8» &6/chat anticapslock wlacz &8- &cWlacza antiCAPSLOCK'a."
+                                send "&8» &6/chat anticapslock wylacz &8- &cWylacza antiCAPSLOCK'a."
+                                stop                                           
+                if arg 1 is "wyczysc" or "c":
+                        loop 100 times:
+                                broadcast " "
+                        broadcast "{@messageclear}"
+                        stop
+                if arg 1 is "info":
+                        send "&8» &6Nazwa: &cxPrizonChat &8:|: &cxPrisonChat"
+                        send "&8» &6Wersja: &c2.1 &8:|: &cEasyWeHardUpdate"
+                        send "&8» &6Autor: &cZabujca997"
+                        stop   
+                if arg 1 is "wylacz" or "off":
+                        if {chat} is true:
+                                set {chat} to false
+                                broadcast "{@messageoff}"
+                        else:
+                                send "&8» &4Blad: &cChat jest juz wylaczony!"
+                                stop   
+                if arg 1 is "wlacz" or "on":
+                        if {chat} is false:
+                                set {chat} to true
+                                broadcast "{@messageon}"
+                        else:
+                                send "&8» &4Blad: &cChat jest juz wlaczony!"
+                                stop
+                if arg 1 is "slowmode":
+                        if arg 2 is "wylacz" or "off":
+                                if {slowmode} is true:
+                                        set {slowmode} to false
+                                        broadcast "{@messageslowmodeoff}"      
+                                else:
+                                        send "&8» &4Blad: &cSlowmode jest juz wylaczony!"
+                                        stop
+                        if arg 2 is "wlacz" or "on":
+                                if {slowmode} is false:
+                                        set {slowmode} to true
+                                        broadcast "{@messageslowmodeon}"
+                                else:
+                                        send "&8» &4Blad: &cSlowmode jest juz wlaczony!"
+                                        stop
+                if arg 1 is "spam":
+                        if arg 2 is set:
+                                loop 10 times:
+                                        broadcast "&8» &c%player% &8» &6%colored arg 2%"
+                                broadcast ""   
+                                stop   
+on chat:
+        if {chatvip} is false:
+                if player has permission "chat.vip":
+                        stop
+on chat:
+        if {chat} is false:
+                if player has permission "xprizon.chat":
+                        stop
+ 
+ 
+ 
+ 
+command /cenzura [<text>] [<text>]:
+        permission: chat.admin
+        permission message: &cNie masz uprawnien do tej komendy!
+        trigger:
+                if arg 1 is "wlacz" or "on":
+                        if {cenzura} is false:
+                                set {cenzura} to true
+                                broadcast "{@Censormessageon}"
+                        else:
+                                send "&8» &4Blad: &cCenzura jest juz wlaczona"     
+                                stop
+                if arg 1 is "wylacz" or "off":
+                        if {cenzura} is true:
+                                set {cenzura} to false
+                                broadcast "{@Censormessageoff}"
+                        else:
+                                send "&8» &4Blad: &cCenzura jest juz wlaczona"     
+                                stop                           
+                if arg 1 is "dodaj" or "add":
+                        if arg 2 is set:
+                                if {cenzura.%arg 2%} is not set:
+                                        add "%arg 2%" to {censor::*}
+                                        set {cenzura.%arg 2%} to "%arg 2%"
+                                        send "&8» &6Do cenzury dodales slowo: &c%arg 2%"
+                                else:
+                                        send "&8» &4Blad: &cW spisie cenzur juz jest taka cenzura."
+                        else:
+                                send "&4Blad: &cPodaj cenzure!"
+                                stop
+                if arg 1 is "usun" or "remove" or "delete":
+                        if arg 2 is set:
+                                if {cenzura.%arg 2%} is set:
+                                        remove "%arg 2%" from {censor::*}
+                                        set {cenzura.%arg 2%} to ""
+                                        send "&8» &6Z cenzury usunales slowo: &c%arg 2%"
+                                else:
+                                        send "&8» &4Blad: &cW spisie cenzur nie ma takiej cenzury."
+                        else:
+                                send "&8» &4Blad: &cPodaj cenzure!"
+                                stop   
+                if arg 1 is "lista" or "list" or "spis":
+                        if {censor::*} is not set:
+                                send "&6Spis cenzur: &cBrak cenzur."
+                        else:
+                                send "&6Spis cenzur: &c%{censor::*}%"
+                                stop   
+                                                                                   
+on chat:
+        if {chat} is false:
+                if player don't have permission "chat.vip":
+                        cancel event
+                        send "{@messageoffplayer}"
+                        stop        
+on chat:
+        if {slowmode} is true:
+                if player don't have permission "chat.admin":
+                        if {spam.%player%} is true:
+                                cancel event
+                                send "&8» &6Nastepna wiadomosc bedziesz mogl wyslac za: &c{@slowmodetime} &6sekund!"
+                        set {spam.%player%} to true
+                        wait {@slowmodetime} seconds
+                        set {spam.%player%} to false   
+                        stop   
+on chat:
+        if {cenzura} is true:
+                replace all {censor::*} with "{@cenzura}" in the message
+                stop
+on chat:
+        replace all ":)" and "(:" in message with "☺"
+        replace all "):" and ":(" in message with "☹"
+        replace all ":/" in message with "ツ"
+        replace all "<3" in message with "&4❤&f"
+        replace all "*mail" in message with "✉"
+        replace all "*music" in message with "♪♫♫♪"
+        replace all "*sun" in message with "☼"
+        replace all "*fm" in message with "♀"
+        replace all "*m" in message with "♂"
+        replace all "*3" in message with "ω"
+        replace all "*airplane" in message with "✈"
+        replace all "*PHONE" in message with "☎"
+        replace all "*radioactive" in message with "☢"
+        replace all "*bio" in message with "☣"
+        replace all "*Rekru" in message with "&4&l☣ &c&l"
+        replace all "*?" in message with "�"
+        replace all "*scizz" in message with "✂"
+        replace all "*arrow" in message with "➳"
+        replace all "*8" in message with "☃"
+        replace all "*flower" in message with "✿"
+        replace all "*o" in message with "&9●"
+        replace all "*hospital" and "*+" in message with "✚"
+        replace all "*v" in message with "✔"
+        replace all "*x" in message with "✘"
+        replace all "*[]" in message with "☐"
+        replace all "*[v]" and "[v]" in message with "☑"
+        replace all "*[x]" and "[x]" in message with "☒"     
+        replace all "*c" in message with "©"
+        replace all "*r" in message with "®"
+        replace all "->" and "*->" in message with "→"
+        replace all "<-" and "*<-" in message with "←"
+        replace all "\/" and "*\/" in message with "↓"
+        replace all "\\" and "*/\" in message with "↑"
+        replace all ">>" and "*>>" in message with "»"
+        replace all "<<" and "*<<" in message with "«"
+        replace all "*<" in message with "◄"
+        replace all "*>" in message with "►"
+        replace all "[]" in message with "█"
+        replace all "*lennyface" in message with "(﻿ ͡° ͜ʖ ͡°)"
+        replace all "*panda" in message with "ʕ•ᴥ•ʔ"
+        replace all "*none" in message with "\(ツ)/"
+        replace all "*wtf" in message with "(╯°□°）╯ʔ"
+        replace all "*table" in message with "┻━┻"
+        replace all "*wow" in message with "◉_◉"
+        replace all "*wow" in message with "ಠ_ಠ"
+        replace all "*r" in message with "®"
+        replace all "*c" in message with "©"
+        replace all "*music" in message with "♪"
+        replace all "*tm" in message with "™"
+        replace all "!!" in message with "‼"
+        replace all "..." in message with "…"
+        replace all "*kropka" in message with "▪"
+        replace all "*ptaszek" in message with "√"
+        replace all "*kula" in message with "Θ"
+        replace all "*słońce" in message with "҉"
+        replace all "*szatan" in message with "۞"
+        replace all "*krzyż" in message with "†"
+        replace all "*p" in message with "℗"
+        replace all "*nieskonczono" in message with "∞"
+        stop 

@@ -1,0 +1,40 @@
+#====================================================================
+#	          █  Plugin: Gracze                         █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+command /gracze [<integer=1>]:
+	trigger:
+		set {_strony} to rounded up (size of all players / 54)
+		if arg is between 1 and {_strony}:
+			open chest with 6 rows named "&aGracze online &8(&7%arg%&8)" to player
+			wait 2 tick
+			set {_num} to size of all players
+			set {_max} to arg * 53
+			set {_min} to {_max} - 52
+			set {_a} to 1
+			loop all players:
+				if {_a} is between {_min} and {_max}:
+					if {_a} is smaller than or equal to {_num}:
+						set player's current inventory's slot {_a}-1 to sign named "%display name of loop-player%"
+				add 1 to {_a}
+			if arg + 1 is smaller than or equal to {_strony}:
+				set player's current inventory's slot 53 to paper named "&6Nastepna strona"
+			stop
+on inventory click:
+	if "%uncoloured inventory name of player's current inventory%" contains "Gracze online (":
+		if slot is smaller than 0:
+			stop
+		if player's current inventory's slot slot is paper:
+			if name of player's current inventory's slot slot is "&6Nastepna strona":
+				cancel event
+				set {_strona} to uncoloured inventory name of player's current inventory
+				replace all "Gracze online (" with "" in {_strona}
+				replace all ")" with "" in {_strona}
+				set {_strona} to {_strona} parsed as integer
+				close player's inventory
+				wait 1 tick
+				execute player command "gui %{_strona}+1%"

@@ -1,0 +1,66 @@
+#====================================================================
+#	          █  Plugin  : IP                          █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+command /clearip [<text>]:
+
+	permission message: &cNie masz uprawnien!
+
+	permission: ip.clear
+
+	trigger:
+
+		delete {Dolaczenie::*}
+
+		send "&cWyczysciles ip!"
+
+on join:
+
+	if {Dolaczenie::%player%} is not set:
+
+		set {Dolaczenie::%player%} to 0
+
+	add 1 to {Dolaczenie::%player%}
+
+	set "%{Dolaczenie::%player%}%" to "%player's ip%" in yaml file "plugins/Ip-Logger/%player%.yml"
+
+on right click on player:
+
+	if player has permission "player.see.inv":
+
+		if player is holding stick:
+
+			wait 1 tick
+
+			open clicked player to player
+
+on join:
+
+	if {Joined::%player%} is not set:
+
+		set {Joined::%player%} to 0
+
+	add 1 to {Joined::%player%}
+
+	loop 10 times:
+
+		loop 12 times:
+
+			send ""
+
+		wait 0.5 tick
+
+	send "&e » &7Witaj: &6%player%"
+
+	send "&e » &7Odwiedziles nas: &6%{Joined::%player%}% razy"
+
+	send "&e » &7Ts3: &6ExtremeGames.gclan.pl"
+
+	send "&e » &7FB: &6https://www.facebook.com/ExtremeGamesFanPage/"
+	
+	send "&e » &7Forum: &6https://www.onlyskill.pl/forum"
+

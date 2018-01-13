@@ -1,0 +1,326 @@
+#====================================================================
+#	          █  Plugin  : TNT                          █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+options:
+#==================#
+#
+#
+# Konfiguracja ogolna
+#
+#
+#==================#
+	#Czy w konsoli maja pojawiac sie logi o prawidlowym wlaczeniu i wlaczeniu skryptu? [tak/nie]
+	log: nie
+
+	#Co ile sekund ma sprawdzac wersje skryptu?
+	autoczas: 500
+
+	#Czy crafting rzucanego tnt ma byc wlaczony? [tak/nie] Chwilowo nie ma mozliwosci edycji craftingu w opcjach.
+	crafting: tak
+
+	#Nazwa rzucanego tnt. 
+	tntnazwa: &cRzucane tnt
+
+	#Opis rzucanego tnt.
+	tntopis: &7Kliknij aby wystrzelic
+
+	#Moc tnt po wyrzuceniu.
+	moc: 2.0
+
+#==================#
+#
+#
+# Konfiguracja dropu z mobow
+#
+#
+#==================#
+
+	#Czy z mobow w losowej ilosci (1-32) ma wypadac rzucane tnt (tak/nie)
+	mobgive: tak
+
+	#Z jakich mobow ma wypadac rzucane tnt w losowej ilosci (1-32)
+	moby: skeleton or wither or zombie or spider or witch or creeper or enderman or blaze or ghast
+
+	#Szansa na losowa ilosc (1-32) rzucanego tnt z powyzszych mobow.
+	szansa: 1.0
+
+	#Po wylosowaniu dostajemy skrzynie. Gdy klikniemy PPM wylosujemy rzucane tnt
+	#Nazwa skrzynki dropiacej z mobow
+	chestnazwa: &6Magiczna skrzynka
+
+	#Opis skrzynki dropiacej z mobow
+	chestopis: &7Kliknij aby wylosowac rzucane tnt
+#==================#
+#
+#
+# Konfiguracja komendy
+#
+#
+#==================#
+
+	#Czy komenda wreczajaca rzucanetnt ma byc wlaczona? [tak/nie]
+	komenda: tak
+
+	#Itemy wymagane do uzycia komendy, aby zostawic puste pole wpisz "none"
+	item1: 8 tnt
+	item2: 1 ender pearl
+	item3: none
+	item4: none
+#==================#
+#
+#
+# Konfiguracja wiadomosci
+#
+#
+#==================#
+
+	#Czas na jaki ma pojawiac sie pasek smoka z wiadomoscia w sekundach.
+	bossbar_time_message: 10
+
+	#Wiadomosc po otrzymaniu rzucanego tnt przez  komende /casttnt
+	message_casttnt_command: &7&lOtrzymales rzucane tnt! Itemy zostaly pobrane.
+
+	#Wiadomosc wyswietlajaca sie gdy komenda /Casttnt zostala zablokowana w opcjach.
+	message_casttnt_disablecommand: &cTa komenda zostala wylaczona przez administratora.
+
+	#Wiadomosc o braku uprawnien do komendy /casttnt.
+	message_casttnt_nopermissions: &cNie posiadasz uprawnien do tej komendy
+
+	#Wiadomosci o braku wymaganych itemow do uzycia komendy /casttnt
+	message_casttnt_item1: &cNie posiadasz  TU WPISZ PIERWSZY ITEM WYMAGANY DO UZYCIA KOMENDY
+
+	message_casttnt_item2: &cNie posiadasz  TU WPISZ DRUGI ITEM WYMAGANY DO UZYCIA KOMENDY
+
+	message_casttnt_item3: &cNie posiadasz  TU WPISZ TRZECI ITEM WYMAGANY DO UZYCIA KOMENDY
+
+	message_casttnt_item4: &cNie posiadasz TU WPISZ CZWARTY ITEM WYMAGANY DO UZYCIA KOMENDY
+
+	#Wiadomosc o wystrzeleniu tnt
+	message_power: Tnt zostanie wystrzelone za kilka sekund.
+
+	#Wiadomosc po wystrzeleniu tnt
+	message_start: &cWystrzelono!
+
+	#Wiadomosc przy probie polozenia rzucanego tnt.
+	message_noplace: &cNie mozesz polozyc tego rodzaju tnt!
+
+	#Wiadomosc przy probie polozenia skrzynki losujacej rzucane tnt.
+	message_noplacechest: &cNie mozesz polozyc tego rodzaju skrzyni!
+
+	#Wiadomosc o braku uprawnien administratora
+	uprawnienia: &c Nie masz uprawnien do panelu admina
+
+	#Wiadomosc o wylosowaniu rzucanego tnt z moba
+	message_mob: Wylosowales skrzynke z losowa iloscia rzucanego tnt
+
+
+
+#==================#
+#
+#
+# Koniec konfiguracji
+# Kod skryptu
+#
+#==================#
+on script load:
+	if "{@log}" is "tak":
+		send "" to the console
+		send "[CastTNT] Skrypt zostal zaladowany." to the console
+		send "[CastTNT] Author: Anastair | Version: 1.0" to the console
+		send "" to the console
+
+on script unload:
+	if "{@log}" is "tak":
+		send "" to the console
+		send "[CastTNT] Skrypt zostal wylaczony." to the console
+		send "[CastTNT] Sciezka: plugins/Skript/scripts/%script%.sk" to the console
+		send "" to the console
+
+#Crafting rzucanego tnt
+on load:
+	if "{@crafting}" is "tak":
+		new Recipe "Tnt"
+		"Tnt".Recipe.registerIngredient{1, 1 tnt};
+		"Tnt".Recipe.registerIngredient{2, 1 tnt};
+		"Tnt".Recipe.registerIngredient{3, 1 tnt};
+		"Tnt".Recipe.registerIngredient{4, 1 tnt};
+		"Tnt".Recipe.registerIngredient{5, 1 ender pearl};
+		"Tnt".Recipe.registerIngredient{6, 1 tnt};
+		"Tnt".Recipe.registerIngredient{7, 1 tnt};
+		"Tnt".Recipe.registerIngredient{8, 1 tnt};
+		"Tnt".Recipe.registerIngredient{9, 1 tnt};
+		"Tnt".Recipe.registerResult{tnt of unbreaking 10 with name "{@tntnazwa}" with lore "{@tntopis}"};
+		"Tnt".Recipe.register{};
+
+command /casttntadmin [<text>] [<text>]:
+	trigger:
+		if player has permissions "rzucanetnt.admin" or "rzucanetnt.*":
+			if arg 1 is not set:
+				send "&c&l0=0=0=0=0=0 &7Cast-Admim &c&l0=0=0=0=0=0=0"
+				send "&e/casttntadmin daj <nick> &6- &7Wrecza graczowi rzucane tnt."
+				send "&e/casttntadmin odswiez &6- &7Odswieza skrypt."
+				send "&e/casttntadmin usun &6- &7Usuwa skrypt z ftp."
+				send "&e/casttntadmin reinstalacja &6- &7Usuwa i pobiera skrypt od nowa."
+				send "&e/aktulizacja sprawdz &6- &7Sprawdza aktulizacje."
+				send "&e/aktulizacja pobierz &6- &7pobiera aktulizacje."
+			if arg 1 is "daj":
+				if arg 2 is set:
+					give 32 tnt named "{@tntnazwa}" with lore "{@tntopis}" to arg 2 parsed as player
+					send "&c%arg 2% otrzymal 32 rzucanego tnt."
+			if arg 1 is "reinstalacja":
+				if arg 2 is not set:
+					send "&aTrwa przygotowanie do reinstalacji."
+					wait 1 second
+					df "plugins/Skript/scripts/%script%.sk"
+					send "&7Plik %script%.sk zostal usuniety"
+					wait 2 seconds
+					send "&7Trwa wyszukiwanie najnowszej wersji skryptu."
+					wait 2 seconds
+					download "http://pastebin.com/raw.php?i=Na2A6Cs9" to "plugins/Skript/scripts/%script%.sk"
+					send "&7Reinstalacja CastTNT sie powiodla."
+					loop all players:
+						kick loop-player due to "&cReinstalacja stone++ powiodla sie."
+						wait 1 second
+						execute console command "sk reload %script%"
+			if arg 1 is "reload":
+				if arg 2 is not set:
+					send "&aPomyslnie przeladowano CastTNT"
+					execute console command "sk reload %script%"
+			if arg 1 is "usun":
+				if arg 2 is not set:
+					send "&cCzy na pewno chcesz to zrobic? Ta komenda usuwa skrypt."
+					wait 2 seconds
+					send "&cPrzykro mi ze nie chcesz korzystac juz z CastTNT"
+					wait 2 seconds
+					send "&cProsze, wyraz swoje zdanie w prezentacji skryptu."
+					wait 1 second
+					send "&cCastTNT zostanie usuniety za 120 sekund (2min)."
+					wait 2 seconds
+					broadcast "&c&l[CastTNT] &7Za 2 minuty nastapi oczyszczenie serwera z graczy, plugin zostanie usuniety."
+					wait 120 seconds
+					df "plugins/Skript/scripts/%script%.sk"
+					send "[CastTNT++] Skrypt zostal usuniety przez administratora w grze." to console
+					loop all players:
+						kick loop-player due to "&cCastTNT zostal usuniety! wejdz ponownie."
+						wait 1 second
+						execute console command "sk reload %script%"
+		else:
+			send "{@uprawnienia}"			
+
+command /casttnt:
+	aliases: rzucanetnt
+	trigger:
+		if "{@komenda}" is "tak":
+			if player has permissions "rzucanetnt.komenda" or "rzucanetnt.*":
+				if player has {@item1}:
+					if player has {@item2}:
+						if player has {@item3}:
+							if player has {item4}:
+								display "{@message_casttnt_command}" on bossbar with 100 percent by {@bossbar_time_message} seconds for player
+								give 1 tnt named "{@tntnazwa}" with lore "{@tntopis}" to player
+								remove {@item1} from player's inventory
+								remove {@item2} from player's inventory
+								remove {@item3} from player's inventory
+								remove {@item4} from player's inventory
+							else:
+								display "{@message_casttnt_item4}" on bossbar with 100 percent by {@bossbar_time_message} seconds for player
+						else:
+							display "{@message_casttnt_item3}" on bossbar with 100 percent by {@bossbar_time_message} seconds for player
+					else: 
+						display "{@message_casttnt_item2}" on bossbar with 100 percent by {@bossbar_time_message} seconds for player
+				else:
+					display "{@message_casttnt_item1}" on bossbar with 100 percent by {@bossbar_time_message} seconds for player
+			else:
+				display "{@message_casttnt_nopermissions}" on bossbar with 100 percent by {@bossbar_time_message} seconds for player
+		else:
+			display "{@message_casttnt_disablecommand}" on bossbar with 100 percent by {@bossbar_time_message} seconds for player
+
+on place tnt:
+	if player's tool is tnt:
+		if name of player's tool is "{@tntnazwa}":
+			if lore of player's tool is "{@tntopis}":
+				cancel event
+				display "{@message_noplace}" on bossbar with 100 percent by {@bossbar_time_message} seconds for player
+
+on rightclick:
+	if player's tool is tnt:
+		if name of player's tool is "{@tntnazwa}":
+			if lore of player's tool is "{@tntopis}":
+				display "{@message_power}" on bossbar with 100 percent by {@bossbar_time_message} seconds for player
+				remove 1 tnt named "{@tntnazwa}" with lore "{@tntopis}" from player
+				set {_z} to a random integer between 1 and 7
+				loop {_z} times:
+					wait 1 second
+				shoot tnt from player with speed {@moc}
+				display "{@message_start}" on bossbar with 100 percent by {@bossbar_time_message} seconds for player
+
+
+every {@autoczas} seconds:
+    set {_version} to content of file "plugins/Skript/scripts/%script%.sk"
+    set {_v} to index of "##" in {_version}
+    set {_v2} to subtext of {_version} from character ({_v}+1) to character (length of {_version})
+    set {_v3} to index of "##" in {_v2}
+    set {version} to subtext of {_version} from character ({_v}+1) to character ({_v3})
+ 
+    set {_version} to result of connect to "http://pastebin.com/raw.php?i=Na2A6Cs9"
+    set {_v} to index of "##" in {_version}
+    set {_v2} to subtext of {_version} from character ({_v}+1) to character (length of {    version})
+    set {_v3} to index of "##" in {_v2}
+    set {version.new} to subtext of {_version} from character ({_v}+1) to character ({_v3})
+    {version} is not {version.new}:
+        send "&c&l[CastTNT]&r Jest dostepna nowa wersja skryptu! Pobierz ja /update pobierz" to all ops
+        send "&c&l[CastTNT]&r Pamietej ze zresetuje sie caly config!" to all ops
+        wait 1 tick
+        send "[CastTNT] Jest dostepna nowa wersja skryptu! Pobierz ja /update pobierz" to the console
+        send "[CastTNT] Pamietej ze zresetuje sie caly config!" to the console
+
+command /aktulizacja [<text>]:
+    trigger:
+        set {_version} to result of connect to "http://pastebin.com/raw.php?i=Na2A6Cs9"
+        set {_v} to index of "##" in {_version}
+        set {_v2} to subtext of {_version} from character ({_v}+1) to character (length of {_version})
+        set {_v3} to index of "##" in {_v2}
+        set {version.new} to subtext of {_version} from character ({_v}+1) to character ({_v3})
+        arg 1 is "sprawdz":
+            send "&c&l[CastTNT]&7 Twoja wersja to %{version}%"
+            send "&c[CastTNT] Najnowsza wersja to %{version.new}%"
+            {version} is not {version.new}:
+                send "&c&l[CastTNT]&7 Jest dostepna nowa wersja do pobrania"
+        arg 1 is "pobierz":
+            {version} is not {version.new}:
+                download "http://pastebin.com/raw.php?i=Na2A6Cs9" to "plugins/Skript/scripts/%script%.sk"
+                send "Pobrano najnowsza wersje!"
+            else:
+                send "Masz juz najnowsza wersje skrypta!"
+        else:
+            send "/aktulizacja sprawdz - sprawdza aktualizacje"
+            send "/aktulizacja pobierz - pobiera aktualizacje"
+        stop
+
+
+on death of {@moby}:
+	chance of {@szansa}%:
+		if "{@mobgive}" is "tak": 
+			display "{@message_mob}" on bossbar with 100 percent by {@bossbar_time_message} seconds for player
+			give 1 chest of unbreaking 10 named "{@chestnazwa}" with lore "{@chestopis}" to player
+
+on place chest:
+	if player's tool is chest of unbreaking 10:
+		if name of player's tool is "{@chestnazwa}":
+			if lore of player's tool is "{@chestopis}":
+				cancel event
+				display "{@message_noplacechest}" on bossbar with 100 percent by {@bossbar_time_message} seconds for player
+
+on rightclick:
+	if player's tool is chest of unbreaking 10:
+		if name of player's tool is "{@chestnazwa}":
+			if lore of player's tool is "{@chestopis}":
+				remove 1 chest of unbreaking 10 named "{@chestnazwa}" with lore "{@chestopis}" from player
+				set {_x} to a random integer between 1 and 32
+				loop {_x} times:
+					give 1 tnt named "{@tntnazwa}" with lore "{@tntopis}" to player

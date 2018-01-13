@@ -1,0 +1,12 @@
+╠═══════════════════════════════════════════════════════════════════════════════════
+╠═► TWÓRCA: Zabujca997 Firma: ExtremeGames © 
+╠══► ZAKAZ KOPIOWANIA BEZ MOJEJ ZGODY
+╠═══► POZWALAM KONFIGUROWAĆ TAG 
+╠════► ANTYBOT
+╠══════════════════════════════════════════════════════════════════════════════════
+
+on connect:
+    if {gracz::%player%} is set:
+        stop
+    kick player due to "&7[&c&lExtremeGames&7] &6Werfikacja zakonczona! Wejdz ponownie na serwer!"
+    set {gracz::%player%} to now

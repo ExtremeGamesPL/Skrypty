@@ -1,0 +1,132 @@
+#====================================================================
+#	          █  Plugin  : Zglos                        █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+
+options:
+	p: zgloszenie.zglos
+	perm: &cBlad: &4Brak uprawnien! 
+	dom: Nie słuchanie sie Administracji
+	
+# --------------------------------- #
+# ========== SPRAWDZANIE ========== #
+# --------------------------------- #
+
+command /sprawdzanie:
+	trigger:
+		if player has permission "sprawdzanie.*":
+			send "&8----------------&b&lPOMOC&8----------------"
+			send "&6* &2/sprawdz <nick> &0- &2Sprawdza gracza"
+			send "&6* &2/spr &0- &2Ustawia miejsce sprawdzania"
+			send "&6* &2/czysty <nick> &0- &2Oczyszczenie gracza z zarzutow"
+			send "&6* &2/cheater <nick> &0- &2Wiadomosc ze gracz ma cheaty"
+			send "&6* &2/przyznal <nick> &0- &2Wiadomosc iz gracz sie przyznal"
+			send "&8----------------&b&lPOMOC&8----------------"
+		else:
+			send "&4Nie masz dostepu do tej komendy."
+                
+command /sprawdz [<offlineplayer>]:
+	trigger:
+		if player has permission "sprawdzanie.*":
+			argument-offlineplayer is set:
+				argument-offlineplayer is online:
+					broadcast "&8&m========== &4&lSPRAWDZANIE &8&m=========="
+					broadcast "&cAdministrator: &e%player%"
+					broadcast ""
+					broadcast "&cSprawdza: &e%argument-offlineplayer%"
+					broadcast "&8&m========== &4&lSPRAWDZANIE &8&m=========="
+					wait 1 second
+					set {miejsce.%argument-offlineplayer%} to location of argument-offlineplayer
+					teleport argument-offlineplayer to {sprawdzanie}
+					set {cheater.%argument-offlineplayer%} to true
+					wait 1 second
+					send "&8[&4SPRAWDZANIE&8] &6Jestes sprawdzany w celu wykrycia wspomagaczy!" to argument-offlineplayer
+					wait 2 second
+					send "&8[&4SPRAWDZANIE&8] &6Wejdz na skype i zaproś admina który poda ci skype &6, inaczej zostaniesz zbanowany za brak wspolpracy!" to argument-offlineplayer
+					wait 2 second
+					send "&8[&4SPRAWDZANIE&8] &6Mozesz sie rowniez przyznac od razu na &4/helpop &6, wtedy ban bedzie na 30 dni" to argument-offlineplayer
+					wait 2 second
+					send "&8[&4SPRAWDZANIE&8] &6Masz 3 minut" to argument-offlineplayer
+					send "&8[&4SPRAWDZANIE&8] &6Masz 1 minute" to argument-offlineplayer
+					wait 2 second
+					send "&8[&4SPRAWDZANIE&8] &cJesli nie posiadasz skype, napisz o tym na &4/helpop&c masz 5 min!" to argument-offlineplayer
+					wait 5 minutes
+					send "&cCZAS MINOŁ!!"
+				else:
+					send "&cPodany gracz jest offline!"
+			else:
+				send "&cPrzyklad: /sprawdz <nick>"
+		else:
+			send "&4Nie masz dostepu do tej komendy."
+
+                 
+on quit:
+	if {cheater.%argument-offlineplayer%} is true:
+		set {cheater.%argument-offlineplayer%} to false
+		broadcast "&8[&4SPRAWDZANIE&8] &7%argument-offlineplayer% &6wylogowal sie podczas sprawdzania wspomagaczy!"
+		execute console command "/tempban %argument-offlineplayer% 30d Log podczas sprawdzania."
+
+command /spr:
+	trigger:
+		if player has permission "sprawdzanie.*":
+			set {sprawdzanie} to location of the player
+			send "&aMiejsce sprawdzania ustawiono na: %{sprawdzanie}%"
+		else:
+			send "&cNie masz dostepu do tej komendy!"
+
+
+command /czysty [<offlineplayer>]:
+	trigger:
+		if player has permission "sprawdzanie.*":
+			if argument-offlineplayer is set:
+				if argument-offlineplayer is online:
+					if {cheater.%argument-offlineplayer%} is true:
+						set {cheater.%argument-offlineplayer%} to false
+						teleport argument-offlineplayer to {miejsce.%argument-offlineplayer%}
+						broadcast "&8[&4SPRAWDZANIE&8] &6Gracz &7%argument-offlineplayer% &6zostal oczyszczony z podejrzen o cheaty"
+					else:
+						send "&cGracz nie jest podejrzany o cheaty!"
+				else:
+					send "&cNie ma takiego gracza na serwerze!"
+			else:
+				send "&cPodaj gracza!"
+				
+command /cheater [<offlineplayer>]:
+	trigger:
+		if player has permission "sprawdzanie.*":
+			if argument-offlineplayer is set:
+				if argument-offlineplayer is online:
+					if {cheater.%argument-offlineplayer%} is true:
+						set {cheater.%argument-offlineplayer%} to false
+						teleport argument-offlineplayer to {miejce.%argument-offlineplayer%}
+						broadcast "&8[&4SPRAWDZANIE&8] &7Gracz &c%argument-offlineplayer% &7ma cheaty. Otrzymuje bana."
+						execute console command "/ban %argument-offlineplayer% Cheaty REGULAMIN ZŁAMANY forum extremeGames.cba.pl"
+					else:
+						send "&cGracz nie jest podejrzany o cheaty!"
+				else:
+					send "&cNie ma takiego gracza na serwerze!"
+			else:
+				send "&cPodaj gracza!"
+								
+command /przyznal [<offlineplayer>]:
+	trigger:
+		if player has permission "sprawdzanie.*":
+			if argument-offlineplayer is set:
+				if argument-offlineplayer is online:
+					if {cheater.%argument-offlineplayer%} is true:
+						set {cheater.%argument-offlineplayer%} to false
+						teleport argument-offlineplayer to {miejsce.%argument-offlineplayer%}
+						broadcast "&8[&4SPRAWDZANIE&8] &7Gracz &c%argument-offlineplayer% &7przyznal sie, iz ma cheaty. Otrzymuje bana na 30 dni."
+						execute console command "/tempban %argument-offlineplayer% 30d Cheaty"
+					else:
+						send "&cGracz nie jest podejrzany o cheaty!"
+				else:
+					send "&cNie ma takiego gracza na serwerze!"
+			else:
+				send "&cPodaj gracza!"
+				
+			

@@ -1,0 +1,94 @@
+#====================================================================
+#	          █  Plugin: CobbleX                        █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.2                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+variables:
+    (cobblex.%player%) = 1
+options:
+    nazwa: CobbleX
+    tag: &a&l-&7CobbleX&a&l-
+on load:
+        new Recipe "CobbleX";
+        "CobbleX".Recipe.registerIngredient{1, 64 cobblestone};
+        "CobbleX".Recipe.registerIngredient{2, 64 cobblestone};
+        "CobbleX".Recipe.registerIngredient{3, 64 cobblestone};
+        "CobbleX".Recipe.registerIngredient{4, 64 cobblestone};
+        "CobbleX".Recipe.registerIngredient{5, 64 cobblestone};
+        "CobbleX".Recipe.registerIngredient{6, 64 cobblestone};
+        "CobbleX".Recipe.registerIngredient{7, 64 cobblestone};
+        "CobbleX".Recipe.registerIngredient{8, 64 cobblestone};
+        "CobbleX".Recipe.registerIngredient{9, 64 cobblestone};
+        "CobbleX".Recipe.registerResult{1 48 of unbreaking 10 named "&9CobbleX"};
+        "CobbleX".Recipe.register{};
+
+
+on place mossy cobblestone:
+    if name of player's tool is "&9Cobblex":
+        cancel event
+        wait a tick
+        remove 1 mossy cobblestone of unbreaking 10 named "&9CobbbleX" from player's inventory
+        chance of 35%:
+             broadcast "{@tag} &7Gracz &c&l%player% &7Wylosowal &c&lZbroje Vip'a!"
+             drop 1 diamond helmet of unbreaking 2 and protection 2 and thorns 1 named "&e&lSet Vip'a" at block
+             drop 1 diamond chestplate of unbreaking 2 and protection 2 and thorns 1 named "&e&lSet Vip'a" at block
+             drop 1 diamond leggings of unbreaking 2 and protection 2 and thorns 1 named "&e&lSet Vip'a" at block
+             drop 1 diamond helmet of unbreaking 2 and protection 2 and thorns 1 named "&e&lSet Vip'a" at block
+        chance of 5%:
+             drop 64 emerald block at block
+             broadcast "{@tag} &7Gracz &c&l%player% &7Wylosowal &c&l 64x Blocki Emeralda!"
+        chance of 2%:
+             drop 64 diamond block at block
+             broadcast "{@tag} &7Gracz &c&l%player% &7Wylosowal &c&l 64x Blocki Diamenta!"
+        chance of 75%:
+             broadcast "{@tag} &7Gracz &c&l%player% &7Wylosowal &c&l 2x Perły!"
+             drop 2 ender pearl named "&7>> &cPerełka Gracza %player%" at block
+        chance of 45%:
+             broadcast "{@tag} &7Gracz &c&l%player% &7Wylosowal &c&l Mieczyk Dresa!"
+             drop 1 diamond sword of sharpness 6 and unbreaking 6 named "&7>> &cMieczyk Dresa %player%" at block
+        chance of 34%:
+             broadcast "{@tag} &7Gracz &c&l%player% &7Wylosowal &c&l 5 Creeperkow!"
+             spawn 5 creeper at block
+        chance of 21%:
+             broadcast "{@tag} &7Gracz &c&l%player% &7Wylosowal &c&l Plage Zombiaczkow!"
+             spawn 9 zombie at block
+        chance of 72%:
+             broadcast "{@tag} &7Gracz &c&l%player% &7Wylosowal &c&l Pustke!"
+        chance of 62%:
+             broadcast "{@tag} &7Gracz &c&l%player% &7Wylosowal &c&l Kilof Hiperfella!"
+             drop 1 stone pickaxe of unbreaking 10 and efficiency 10 named "&7>> &cKilof Hiperfella %player%" at block
+        chance of 25%:
+             broadcast "{@tag} &7Gracz &c&l%player% &7Wylosowal &c&l 32x TNT!"
+             drop 32 tnt at block
+       
+             
+command /cobblex [<text>]:
+    aliases: cx
+    trigger:
+        if arg 1 is not set:
+            wait 1 tick
+            teleport player to player
+            open chest with 5 rows named "&7Informacje o: &6COBBLEX" to player
+            format slot 18 of player with 64 of cobblestone named "&7COBBLESTONE" to be unstealable
+            format slot 19 of player with 64 of cobblestone named "&7COBBLESTONE" to be unstealable
+            format slot 20 of player with 64 of cobblestone named "&7COBBLESTONE" to be unstealable
+            format slot 27 of player with 64 of cobblestone named "&7COBBLESTONE" to be unstealable
+            format slot 28 of player with 64 of cobblestone named "&7COBBLESTONE" to be unstealable
+            format slot 29 of player with 64 of cobblestone named "&7COBBLESTONE" to be unstealable
+            format slot 36 of player with 64 of cobblestone named "&7COBBLESTONE" to be unstealable
+            format slot 37 of player with 64 of cobblestone named "&7COBBLESTONE" to be unstealable
+            format slot 38 of player with 64 of cobblestone named "&7COBBLESTONE" to be unstealable
+            format slot 31 of player with 1 of crafting table named "&eSzybki crafting &7(Kliknij)" to run [make player execute command "cobblex craft"]
+        if arg 1 is "craft":
+            if player has 576 cobblestone:
+                remove 576 cobblestone from player's inventory
+                wait a tick
+                give 1 mossy cobblestone of unbreaking 10 named "&9CobbleX" to player
+                send "&7Utworzyles: &eCOBBLEX"
+            else:
+                send "&4BLAD: &cNie posiadasz 64x9 stackow cobbla!
+          
+                         

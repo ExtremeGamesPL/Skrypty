@@ -1,0 +1,56 @@
+﻿#====================================================================
+#	          █  Plugin: MOTD                           █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+variables:
+                {odwiedziny.%player%} = 0
+                {odwiedziny} = 0
+on join:
+                add 1 to {odwiedziny.%player%}
+on first join:
+                add 1 to {odwiedziny}
+on join:
+                wait 1 tick
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send " "
+                send "&8&l######## &e&lE&6&lxtreme&e&lGames &8&l########"
+                send " &8&l>> &7Witaj, &3%player%&7. &8&l<<"
+                send " &8&l>> &7Odwiedzilo nas juz &c%{odwiedziny}%&7 &8&l<<"
+                send " &8&l>> &7Menu serwera &c/menu! &8&l<<"
+                send " &8&l>> &7Wszystkie potrzebne komendy: &c/pomoc &8&l<<"
+                send "&8&l######## &e&lE&6&lxtreme&e&lGames &8&l########"

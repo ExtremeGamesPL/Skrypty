@@ -1,0 +1,18 @@
+#====================================================================
+#	          █  Plugin  : TS3                          █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+command /wezwij [<player>]:
+        usage: /wezwij <Gracz>
+        permission: wzywanie.wezwij
+        permission message: &4&lNie masz uprawnien do uzywania tej komendy!
+        executable by: players and console
+        trigger:
+                if arg 1 is not set:
+                        send "&c&lPodaj nazwe gracza!"
+                if arg 1 is set:
+                        broadcast "&r[&6TS3&r] &4&l%arg 1% &azapraszamy na ts. Aby porozmawiać. &eIP: &e&lExtremeGames.gclan.pl"

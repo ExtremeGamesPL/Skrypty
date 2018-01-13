@@ -1,0 +1,16 @@
+#====================================================================
+#	          █  Plugin  : EXP                          █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+command /wymienexp:
+	trigger:
+		if player's level is greater or equal to 30:
+			give 1 322:1 to player
+			reduce the player's level by 30
+		else:
+			send "&7Musisz miec &630 Poziom Doswiadczenia &7aby to wykonac"
+			stop

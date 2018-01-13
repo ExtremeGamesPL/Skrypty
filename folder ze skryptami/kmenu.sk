@@ -1,0 +1,191 @@
+#====================================================================
+#	          █  Plugin: MenuAdma                       █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+command /adminpanel:
+  permission: serwer.admin.kMenu
+  permission message: &c&lBlad: &4&lNie masz dostepu do tej komendy 
+  trigger:
+    play raw sound "note.hat" at player with pitch 1 volume 50
+    wait 1 tick
+    open chest with 6 rows named "&4&lMENU ADMINA - &5&L<SERWER>" to player
+    wait 1 tick
+    format slot 0 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 1 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 9 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 18 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 27 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 36 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 45 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 46 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 7 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 8 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 17 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 26 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 35 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 44 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 53 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 52 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 11 of player with 1 of light blue wool named "&1&lZMIANA POGODY - &E&LSLONECZNA" with lore "&5&o&lZmienia pogode na sloneczna||&5&l&o w swiecie w ktorym jestes" to close then run "sudo %player% weather clear"
+    format slot 12 of player with 1 of blue wool named "&1&lZMIANA POGODY - &9&LBURZA" with lore "&5&o&lZmienia pogode na burzowa w swiecie w ktorym jestes" to close then run "sudo %player% weather storm"
+    format slot 13 of player with 1 of orange wool named "&b&lZMIANA CZASU - &E&LWSCHOD SLONCA" with lore "&5&o&lZmienia czas na wschod slonca||&5&l&o w swiecie w ktorym jestes" to close then run "sudo %player% time set 0"
+    format slot 14 of player with 1 of yellow wool named "&b&lZMIANA CZASU - &E&LPOLUDNIE" with lore "&5&o&lZmienia czas na poludnie w swiecie w ktorym jestes" to close then run "sudo %player% time set 6000"
+    format slot 15 of player with 1 of orange wool named "&b&lZMIANA CZASU - &E&LZACHOD SLONCA" with lore "&5&o&lZmienia czas na zachod slonca||&5&l&o w swiecie w ktorym jestes" to close then run "sudo %player% time set 12000"
+    format slot 20 of player with 1 of blue wool named "&b&lZMIANA CZASU - &E&LPOLNOC" with lore "&5&o&lZmienia czas na polnoc w swiecie w ktorym jestes" to close then run "sudo %player% time set 18000"
+    format slot 21 of player with 1 of green wool named "&3&lZMIANA WLASCIWOSCI - &E&LSTOPLAG" with lore "&5&o&lWylacza wszystkie niepotrzebe rzeczy w||&5&l&o serwerze np: grawitacja itp.||&5&l&o Ratuje serwer od lagow|| &5&l&oWymagane pluginy: WorldGuard" to close then run "stoplag"
+    format slot 22 of player with 1 of light green wool named "&3&lZMIANA WLASCIWOSCI - &E&LSTARTLAG" with lore "&5&o&lWlacza wszystkie niepotrzebe rzeczy w||&5&l&o serwerze np: grawitacja itp.||&5&l&oWymagane pluginy: WorldGuard" to close then run "halt-activity -c"
+    format slot 23 of player with 1 of red wool named "&c&lDUZA INGERACJA W SERWER - &E&LSTOP SERWERA" with lore "&5&o&lWylacza SERWER" to close then run "stop"
+    format slot 24 of player with 1 of light gray wool named "&c&lDUZA INGERACJA W SERWER - &E&lPRZELADUJ" with lore "&5&l&oPrzeladowuje serwer" to close then run "reload"
+    format slot 29 of player with 1 of magenta wool named "&2&lDLA CIEBIE - &E&LTELEPORTY" with lore "&5&o&lPokazuje liste teleportow||&5&l&oWymaga pluginu: Essentials" to close then run "sudo %player% adminwarpy"
+    format slot 30 of player with 1 of wool named "&f&lMAPA - &e&lZABIJ MOBY" with lore "&5&l&oZabija wszystkie moby||&5&l&oWymagane pluginy: Essentials" to close then run "sudo %player% killall all"
+    format slot 31 of player with 1 of orange wool named "&2&lDLA CIEBIE - &e&lZNIKNIJ" with lore "&5&l&oWlacza ci niewidzialnosc" to close then run "effect %player% invisibility 100000 255"
+    format slot 32 of player with 1 of light gray wool named "&2&lDLA CIEBIE - &e&lUSUN WSZYSTKIE EFEKTY" with lore "&5&l&oWylacza ci wszystkie efekty lacznie z efektem||&5&l&oznikniecia" to close then run "effect %player% clear"
+    format slot 33 of player with 1 of light green wool named "&a&lSKRYPT - &e&lPRZELADUJ" with lore "&5&l&oPrzeladowuje skrypt" to close then run "sudo %player% sk reload all"
+    format slot 38 of player with 1 of red wool named "&4&lCHAT - &e&lWYCZYSC" with lore "&5&l&oCzysci chat" to close then run "sudo %player% wyczyscchat"
+    format slot 42 of player with 1 of book named "&a&lSKRYPT BY ZABUJCA997 - &e&lZAMKNIJ MENU" with lore "&5&l&oZamyka menu" to close
+# NIE SKONCZONE
+# format slot 29 of player with 1 of magneta wool named "&2&lDLA CIEBIE - &E&LTELEPORTY" with lore "&5&o&lPokazuje liste teleportow" to close then run "sudo %player% adminwarpy"
+command /adminwarpy:
+  permission: serwer.admin.kMenu.TP
+  permission message: &c&lBlad: &4&lNie masz dostepu do tej komendy 
+  trigger:
+    play raw sound "note.hat" at player with pitch 1 volume 50
+    wait 1 tick
+    open chest with 3 rows named "&4&lMENU ADMINA - &5&LTELEPORTY" to player
+    wait 1 tick
+    format slot 0 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 1 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 2 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 3 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 4 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 5 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 6 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 7 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 8 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 18 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 19 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 20 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 21 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 22 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 23 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 24 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 25 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 26 of player with 1 of blue glass named "&f" with lore "&f" to be unstealable
+    format slot 17 of player with 1 of book named "&4&lZAMKNIJ" with lore "&5&l&oZamyka menu" to close
+    format slot 9 of player with 1 of book named "&4&lPOWROT" with lore "&5&l&oPowraca do menu admina" to close then run "sudo %player% kmenu"
+    format slot 10 of player with 1 of glass pane named "&1&lSPAWN" with lore "&5&l&oTeleportuje na spawn" to close then run "sudo %player% spawn"
+# TUTAJ KONFIGURUJESZ
+    format slot 11 of player with 1 of glass pane named "&1&lTELEPORT" with lore "&5&l&oTeleportuje do listy Adminów" to close then run "sudo %player% Administracja"
+    format slot 12 of player with 1 of glass pane named "&1&lTELEPORT" with lore "&5&l&oTeleportuje do Enchantu" to close then run "sudo %player% enchant"
+    format slot 13 of player with 1 of glass pane named "&1&lTELEPORT" with lore "&5&l&oTeleportuje do wymieniarki" to close then run "sudo %player% wymieniarki"
+    format slot 14 of player with 1 of glass pane named "&1&lTELEPORT" with lore "&5&l&oTeleportuje do Sklepu" to close then run "sudo %player% sklep"
+    format slot 15 of player with 1 of glass pane named "&1&lTELEPORT" with lore "&5&l&oTeleportuje do Więzienia" to close then run "sudo %player% Wiezenie"
+    format slot 16 of player with 1 of glass pane named "&1&lTELEPORT" with lore "&5&l&oTeleportuje do OX" to close then run "sudo %player% OX"
+
+
+command /wyczyscchat:
+  permission: kmenu.wyczyscchat
+  trigger:
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&6" to all players
+    send "&4&lCHAT ZOSTAL WYCZYSCZONY PRZEZ %player%"

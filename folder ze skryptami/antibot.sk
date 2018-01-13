@@ -1,0 +1,43 @@
+#====================================================================
+#	          █  Plugin: AntiBot                        █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997. All rights reserved.
+#====================================================================
+variables:
+	{1.%player%}=0
+    {2.%player%}=0
+    {3.%player%}=0
+on first join:
+	{1.%player%} is 0:
+		kick player due to "&e[&c&lExtremeGames&e]&a Twoje konto zostalo skonfigurowane!"
+    	stop
+    {1.%player%} is 1:
+  	 	stop	
+on join:
+	set {2.%player%} to 1
+   	set {3.%player%} to 0
+    wait 15 second
+    {3.%player%} is 0:
+    	kick player due to "&e[&c&lExtremeGames&e]&a Nie AFK'cz!"
+        stop
+    {3.%player%} is 1:
+    	stop  
+on connect:
+	{2.%player%} is 1:
+    	kick player due to "&e[&c&lExtremeGames&e]&a Wejdz ponownie na serwer za 5 sekund!"
+        wait 5 second
+        set {2.%player%} to 0
+        stop
+    {2.%player%} is 0:
+    	stop
+on any move:
+	{3.%player%} is 0:
+    	set {3.%player%} to 1
+        stop
+    {3.%player%} is 1:
+    	stop
+on quit:
+	set {3.%player%} to 0

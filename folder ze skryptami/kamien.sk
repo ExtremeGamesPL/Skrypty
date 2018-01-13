@@ -1,0 +1,39 @@
+#====================================================================
+#	          █  Plugin: Nagrodakopania                 █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+variables:
+    {stone.%player%} = 0
+options:
+    tag: &7[&eSTONE&7]
+    drop: 5 diamond
+    drop1: 10 diamond
+    drop2: 15 diamond
+    drop3: 20 diamond
+    drop4: 25 diamond
+on mine of stone:
+    add 1 to {stone.%player%}
+    if {stone.%player%} is 100:
+        add {@drop} to player
+        send "{@tag} &eOtrzymales nagrode za wykopanie 100 stone!" to player
+    if {stone.%player%} is 200:
+        add {@drop1} to player
+        send "{@tag} &eOtrzymales nagrode za wykopanie 200 stone!" to player
+    if {stone.%player%} is 300:
+        add {@drop2} to player
+        send "{@tag} &eOtrzymales nagrode za wykopanie 300 stone!" to player
+    if {stone.%player%} is 400:
+        add {@drop3} to player
+        send "{@tag} &eOtrzymales nagrode za wykopanie 400 stone!" to player
+    if {stone.%player%} is 500:
+        add {@drop4} to player
+        send "{@tag} &eOtrzymales nagrode za wykopanie 500 stone! to limit nagród" to player
+command /kamien:
+    trigger:
+        send "=========={@tag}=========="
+        send " {@tag} &eWykopales juz %{stone.%player%}% stone!" to player
+        send "=========={@tag}=========="

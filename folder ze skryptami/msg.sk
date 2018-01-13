@@ -1,0 +1,36 @@
+#====================================================================
+#	          █  Plugin: MSG                            █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+command /msg [<offlineplayer>] [<text>]:
+	aliases: w, msg, tell
+	trigger:
+		if arg 1 is set:
+			if arg 2 is set:
+				send "&2[&7%player% &3❱ &7Ty&2] &6%arg 2%" to arg 1
+				send "&2[&7Ty &3❱ &7%arg 1%&2] &6%arg 2%"
+				set {ess::%player's uuid%::reply} to arg 1
+				set {ess::%uuid of arg 1%::reply} to player
+			else:
+				send "&7Uzycie komendy: &6/w <nick> <wiadomosc>"
+		else:
+			send "&7Uzycie komendy: &6/w <nick> <wiadomosc>"
+
+command /reply [<text>]:
+	aliases: r
+	trigger:
+		if arg 1 is set:
+			if {ess::%player's uuid%::reply} is set:
+				if {ess::%player's uuid%::reply} is online:
+					send "&2[&7%player% &3❱ &7Ty&2] &6%arg 1%" to {ess::%player's uuid%::reply}
+					send "&2[&7Ty &3❱ &7%{ess::%player's uuid%::reply}%&2] &6%arg 1%"
+				else:
+					send "&cGracz jest offline"
+			else:
+				send "&cNie masz do nikogo odpowiedziec"
+		else:
+			send "&7Uzycie komendy: &6/r <wiadomosc>"

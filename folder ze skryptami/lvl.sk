@@ -1,0 +1,606 @@
+#=========================================================#   #=========================================================# 
+#              Skrypt stworzony przez Zabujca997          #   #               WIĘCEJ SKRYPTÓW ZNAJDZIESZ NA:            #
+#                 Nazwa: SopherMineLevel                  #   #                   GitHub LUB SKRIPT.PL                  #
+#                       Wersja: 1.0                       #   #                   Prawa zastrzeżone                    #
+#                      Skript: 2.0.2                      #   #                                                         #
+#=========================================================#   #=========================================================#
+
+#=========================================================#   #=========================================================#
+#                Specjalnie dla SKRIPT.pl                 #   #            Chcesz sprawdzic jak dziala skrypt w         #
+#            Pierwsze polskie centrum Skripta             #   #                    trudnych warunkach?                  #
+#=========================================================#   #             WYSTARCZY, ZE WEJDZIESZ NA SERWER           #
+#             Znajdziesz tam wiele skryptów,              #   #                IP:  ExtremeGames.Maxc.pl                #
+#         poradników, a także pomoc techniczna!           #   #               TS3: ExtremeGames.gclan.pl                #
+#=========================================================#   #=========================================================#
+
+#=======================================================================================================================#
+#                                                        LICENCJA                                                       #
+#=======================================================================================================================#
+#                                                         ZAKAZ:                                                        #
+#                                            * Modyfikowania treści skryptu                                             #
+#                                       * Przywłaszczania sobie autorstwa skryptu                                       #
+#                                              * Zarabiania na skrypcie                                                 #
+#                                 * Udostepniania skryptu w swoich paczkach serwerowych                                 #
+#                                 * Usuwania tresci zawierajacych informacje o autorze                                  #
+#                                            * Podszywania sie pod autora                                               #
+#=======================================================================================================================#
+#                                                      POZWOLENIA:                                                      #
+#                                 * Modyfikowanie wiadomości skryptu na wlasne potrzeby                                 #
+#=======================================================================================================================#
+#                               Mylnie odczytana licencja nie zwalnia z przestrzegania jej.                             #
+#=======================================================================================================================#
+
+#-----------------------------------------------------------------------------------------------------------------------#
+#                                                                                                                       #
+#                                                                                                                       #
+#                                                                                                                       #
+#                                                     PERMISSIONS                                                       #
+#                                                                                                                       #
+#                                                                                                                       #
+#                                                                                                                       #
+#-----------------------------------------------------------------------------------------------------------------------#
+#	sopher.minelevel.* - mozliwosc uzywania wszystkich funkcji skryptu                                                  #
+#	sopher.minelevel.wydobywanie - mozliwosc zdobywania punktow kopania                                                 #
+#   sopher.minelevel.komenda.pomoc - sprawdzanie wszystkich komend skryptu (/ml pomoc)                                  #
+#	sopher.minelevel.komenda.sprawdz - sprawdzanie swoich statystyk kopania (/ml)                                       #
+#	sopher.minelevel.komenda.sprawdz.mod - sprawdzanie statystyk innego gracza (/ml sprawdz <gracz>)                    #
+#	sopher.minelevel.komenda.top - sprawdzanie top 10 kopaczy (/ml top)                                                 #
+#	sopher.minelevel.komenda.info - zarzadzanie wiadomosciami informujacymi o zdobytych punktach kopania (/ml info)     #
+#	sopher.minelevel.komenda.grandreset - mozliwosc zresetowania swoich statystyk za 1 gabke (nagroda) (/ml grandreset) #
+#	sopher.minelevel.komenda.wlacz - wlaczenie skryptu (/ml wlacz)                                                      #
+#	sopher.minelevel.komenda.wylacz - wylaczenie skryptu (/ml wylacz)                                                   #
+#	sopher.minelevel.komenda.status - sprawdzanie statusu skryptu (/ml status)                                          #
+#	sopher.minelevel.komenda.resetuj - resetowanie swoich statystyk (/ml resetuj)                                       #
+#	sopher.minelevel.komenda.awans - wymuszenie awansu na sobie/ graczu (/ml awans [gracz])                             #
+#-----------------------------------------------------------------------------------------------------------------------#
+
+#-----------------------------------------------------------------------------------------------------------------------#
+#                                                                                                                       #
+#                                                                                                                       #
+#                                                                                                                       #
+#                                                    KONFIGURACJA                                                       #
+#                                                                                                                       #
+#                                                                                                                       #
+#                                                                                                                       #
+#-----------------------------------------------------------------------------------------------------------------------#
+
+# +-----------------------------------------------+ #
+#                                                   #
+# |                   USTAWIENIA                  | #
+#                                                   #
+# +-----------------------------------------------+ #
+#                Ustawienia generalne               #
+# +-----------------------------------------------+ #
+options:
+	# TAG (1) - uzywany przy waznych informacjach, ogloszeniach.
+	tag: &f[&aML&f]
+	
+	# TAG (2) - uzywany przy bezposrednich informacjach do gracza.
+	tag2: &f[&6ML&f]
+	
+	# TAG (3) - uzywany przy informacjach o bledach.
+	tag3: &f[&eML&f]
+	
+	# MSG (1) - wiadomosc pojawiajaca sie przy uzyciu nieprawidlowej komendy.
+	cmd: &cUzyles nieprawidlowej komendy, prawidlowa komenda to&e/
+	
+	# MSG (2) - wiadomosc pojawiajaca sie przy braku uprawnien.
+	prms: &cNie masz uprawnien, aby to wykonac!
+	
+	# WERSJA SKRYPTU
+	wersja: 1.0
+
+# +-----------------------------------------------+ #
+#            Ustawienia zdobywania punktow          #
+# +-----------------------------------------------+ #
+	
+	# Blok(i), z ktorego(ych) bedzie mozliwosc zdobycia punktow kopania.
+	# Przyklady: stone || cobblestone or log or dirt or iron ore
+	blok: stone or cobblestone
+	
+	# Maksymalny poziom kopania.
+	max: 50
+	
+	# Szansa, dzieki ktorej mozemy zdobyc punkty kopania.
+	szansa: 1.1
+	
+# +-----------------------------------------------+ #
+#         Wymiana poziomu kopania na nagrody        #
+# +-----------------------------------------------+ #
+
+# ABY DODAĆ MOŻLIWOŚĆ WYMIANY POZIOMU KOPANIA NA NAGRODY NALEŻY ZROBIĆ TAKĄ TABLICZKE:
+#
+# LINIJKA 1:[MineLevel]
+# LINIJKA 2: WYMIANA
+# LINIJKA 3: <jedna z opcji poniżej, np. w1>
+#
+	
+	# Wymagany poziom, aby wymienic poziom kopania na nagrode oraz punkty xp.
+	w1: 5
+	w2: 10
+	w3: 20
+	
+	# Nagrody za wymiane poziomu kopania.
+	w1_n1: diamond and 20 dirt
+	w2_n2: 5 diamonds
+	w3_n3: 10 diamonds
+	
+	# Punkty XP za wymiane poziomu kopania.
+	w1_e1: 200
+	w2_e2: 300
+	w3_e3: 500
+
+
+# +-----------------------------------------------+ #
+#     Wymagane punkty do zdobycia nowego poziomu    #
+# +-----------------------------------------------+ #
+
+# !! NAJLEPIEJ TEGO NIE RUSZAC, WSZYSTKO JEST DOBRZE DOSTOSOWANE : ) !! #
+
+# POZIOM 1-10
+	poziom1: 50
+	poziom2: 75
+	poziom3: 90
+	poziom4: 110
+	poziom5: 115
+	poziom6: 125
+	poziom7: 150
+	poziom8: 160
+	poziom9: 180
+	poziom10: 200
+# POZIOM 11-20
+	poziom11: 250
+	poziom12: 275
+	poziom13: 290
+	poziom14: 310
+	poziom15: 315
+	poziom16: 325
+	poziom17: 350
+	poziom18: 360
+	poziom19: 380
+	poziom20: 400
+# POZIOM 21-30
+	poziom21: 450
+	poziom22: 475
+	poziom23: 490
+	poziom24: 510
+	poziom25: 515
+	poziom26: 525
+	poziom27: 550
+	poziom28: 560
+	poziom29: 580
+	poziom30: 600
+# POZIOM 31-40
+	poziom31: 650
+	poziom32: 675
+	poziom33: 690
+	poziom34: 710
+	poziom35: 715
+	poziom36: 725
+	poziom37: 750
+	poziom38: 760
+	poziom39: 780
+	poziom40: 800
+# POZIOM 41-49
+	poziom41: 850
+	poziom42: 875
+	poziom43: 890
+	poziom44: 910
+	poziom45: 915
+	poziom46: 925
+	poziom47: 950
+	poziom48: 960
+	poziom49: 980
+	poziom50: 1000
+
+	
+# +-----------------------------------------------+ #
+#                                                   #
+# |                    ZMIENNE                    | #
+#                                                   #
+# +-----------------------------------------------+ #
+
+# !! NAJLEPIEJ TEGO NIE RUSZAC, WSZYSTKO JEST DOBRZE SKONFIGUROWANE !! #
+variables:
+	{test.%player%} = 1
+# [_1_] ||| Status globalny skryptu.
+	{sopher.minelevel.zarzadzanie.globalny.status} = true
+# [_2_] ||| Poziom globalny gracza.
+	{sopher.minelevel.gracz.globalny::%player%} = 0
+# [_3_] ||| Naliczanie punktow kopania.
+	{sopher.minelevel.gracz.tymczasowe::%player%} = 0
+# [_4_] ||| Ogolne statystyki gracza.
+	{sopher.minelevel.gracz.ogolne::%player%} = 0
+# [_5_] |||	Grand reset gracza.
+	{sopher.minelevel.gracz.grandreset::%player%} = 0
+# [_6_] |||	Wiadomosci przy zdobywaniu punktow kopania.
+	{sopher.minelevel.gracz.wiadomosci::%player%} = true
+	
+#-----------------------------------------------------------------------------------------------------------------------#
+#                                                                                                                       #
+#                                                                                                                       #
+#                                                                                                                       #
+#                                                        SKRYPT                                                         #
+#                                                                                                                       #
+#                                                                                                                       #
+#                                                                                                                       #
+#-----------------------------------------------------------------------------------------------------------------------#
+
+# +-----------------------------------------------+ #
+#                                                   #
+# |                  WYDOBYWANIE                  | #
+#                                                   #
+# +-----------------------------------------------+ #
+on mine {@blok}:
+	if player has permission "sopher.minelevel.*" or "sopher.minelevel.wydobywanie":
+		if {sopher.minelevel.zarzadzanie.globalny.status} is true:
+			chance of {@szansa}%:
+				if {sopher.minelevel.gracz.wiadomosci::%player%} is true:
+					send "{@tag2} &7Gratulacje! Zdobyles punkt kopania."
+				add 1 to {sopher.minelevel.gracz.ogolne::%player%}
+				add 1 to {sopher.minelevel.gracz.tymaczasowe::%player%}
+				if {sopher.minelevel.gracz.globalny::%player%} isn't {@max}:
+					if {sopher.minelevel.gracz.tymaczasowe::%player%} is greater than {sopher.minelevel.poziom.%{test.%player%}%}:
+						set {sopher.minelevel.gracz.tymaczasowe::%player%} to 0
+						add 1 to {test.%player%}
+						add 1 to {sopher.minelevel.gracz.globalny::%player%}
+						broadcast "{@tag} &9%player% &7osiagnal &9%{sopher.minelevel.gracz.globalny::%player%}% &7poziom kopania! Gratulacje."
+						stop
+		else:
+			stop
+	else:
+		stop
+
+
+# +-----------------------------------------------+ #
+#                                                   #
+# |                    KOMENDY                    | #
+#                                                   #
+# +-----------------------------------------------+ #
+command /minelevel [<text>] [<text>]:
+	aliases: ml
+	trigger:
+		if arg 1 is not set:
+			if player has permission "sopher.minelevel.*" or "sopher.minelevel.komenda.sprawdz":
+				send "{@tag} &eTwoje Statystyki:"
+				send "&aPoziom: &f%{sopher.minelevel.gracz.globalny::%player%}%"
+				send "&aPunkty: &f%{sopher.minelevel.gracz.tymaczasowe::%player%}% / %{sopher.minelevel.poziom.%{test.%player%}%}%"
+				send "&aOgolem: &f%{sopher.minelevel.gracz.ogolne::%player%}%"
+				send "&aGrad Reset: &f%{sopher.minelevel.gracz.grandreset::%player%}%"
+				if player has permission "sopher.minelevel.*" or "sopher.minelevel.komenda.pomoc":
+					send "&6Wszystkie komendy: &e/ml pomoc"
+				stop
+			else:
+				send "{@tag3} {@prms}"
+				stop
+		if arg 1 is "info" or "wiadomosci" or "msg":
+			if player has permission "sopher.minelevel.*" or "sopher.minelevel.komenda.wiadomosci":
+				if {sopher.minelevel.gracz.wiadomosci::%player%} is true:
+					send "{@tag2} &7Wylaczyles wiadomosci przy zdobyciu punktu kopania."
+					set {sopher.minelevel.gracz.wiadomosci::%player%} to false
+					stop
+				if {sopher.minelevel.gracz.wiadomosci::%player%} is false:
+					send "{@tag2} &7Wlaczyles wiadomosci przy zdobyciu punktu kopania."
+					set {sopher.minelevel.gracz.wiadomosci::%player%} to true
+					stop
+			else:
+				send "{@tag3} {@prms}"
+				stop
+		if arg 1 is "top" or "ranking":
+			if player has permission "sopher.minelevel.*" or "sopher.minelevel.komenda.top":
+				send "{@tag}: &eTOP 10" to player
+				set {_num} to size of {sopher.minelevel.gracz.globalny::*}
+				loop {_num} times:
+					loop {sopher.minelevel.gracz.globalny::*}:
+						if {_topscore.%loop-number%} is not set:
+							set {_topscore.%loop-number%} to loop-value
+							set {_topplayer.%loop-number%} to loop-index
+						else if loop-value is greater than {_topscore.%loop-number%}:
+							set {_topscore.%loop-number%} to loop-value
+							set {_topplayer.%loop-number%} to loop-index
+					remove {_topscore.%loop-number%} from {sopher.minelevel.gracz.globalny::*}
+				loop {_num} times:
+					if loop-number is less than or equal to 10:
+						send "&6&l[%loop-number%]&e %{_topplayer.%loop-number%}% &f- (%{_topscore.%loop-number%}%)" to player
+						set {sopher.minelevel.gracz.globalny::%{_topplayer.%loop-number%}%} to {_topscore.%loop-number%}
+				stop
+		if arg 1 is "wlacz" or "on":
+			if player has permission "sopher.minelevel.*" or "sopher.minelevel.komenda.wlacz":
+				if {sopher.minelevel.zarzadzanie.globalny.status} is false:
+					set {sopher.minelevel.zarzadzanie.globalny.status} to true
+					send "{@tag2} &7Wlaczyles SopherMineLevel!"
+					stop
+				else:
+					send "{@tag3} &7SopherMineLevel jest juz wlaczone!"
+					stop
+			else:
+				send "{@tag3} {@prms}"
+				stop
+		if arg 1 is "wylacz" or "off":
+			if player has permission "sopher.minelevel.*" or "sopher.minelevel.komenda.wylacz":
+				if {sopher.minelevel.zarzadzanie.globalny.status} is true:
+					set {sopher.minelevel.zarzadzanie.globalny.status} to false
+					send "{@tag2} &7Wylaczyles SopherMineLevel!"
+					stop
+				else:
+					send "{@tag3} &7SopherMineLevel jest juz wylaczone!"
+					stop
+			else:
+				send "{@tag3} {@prms}"
+				stop
+		if arg 1 is "status":
+			if player has permission "sopher.minelevel.*" or "sopher.minelevel.komenda.status":
+				if {sopher.minelevel.zarzadzanie.globalny.status} is true:
+					send "{@tag2} &7SopherMineLevel jest wlaczone!"
+					stop
+				else:
+					send "{@tag2} &7SopherMineLevel jest wylaczone!"
+					stop
+			else:
+				send "{@tag3} {@prms}"
+				stop
+		if arg 1 is "awans":
+			if player has permission "sopher.minelevel.*" or "sopher.minelevel.komenda.awans":
+				if arg 2 is set:
+					set {sopher.minelevel.gracz.tymaczasowe::%arg 2%} to 0
+					add 1 to {test.%arg 2%}
+					add 1 to {sopher.minelevel.gracz.globalny::%arg 2%}
+					broadcast "{@tag} &7Gracz &9%arg 2% &7osiagnal &9%{sopher.minelevel.gracz.globalny::%arg 2%}% &7poziom kopania! Gratulacje."
+					send "{@tag2} Awansowales gracza %arg 2% na poziom %{sopher.minelevel.gracz.globalny::%arg 2%}% kopania."
+					stop
+				else:
+					set {sopher.minelevel.gracz.tymaczasowe::%player%} to 0
+					add 1 to {test.%player%}
+					add 1 to {sopher.minelevel.gracz.globalny::%player%}
+					broadcast "{@tag} &7Gracz &9%player% &7osiagnal &9%{sopher.minelevel.gracz.globalny::%player%}% &7poziom kopania! Gratulacje."
+					stop
+			else:
+				send "{@tag3} {@prms}"
+				stop
+		if arg 1 is "resetuj":
+			if player has permission "sopher.minelevel.*" or "sopher.minelevel.komenda.resetuj":
+				if arg 2 is set:
+					set {sopher.minelevel.gracz.tymaczasowe::%arg 2%} to 0
+					set {sopher.minelevel.gracz.ogolne::%arg 2%} to 0
+					set {sopher.minelevel.gracz.globalny::%arg 2%} to 1
+					set {test.%arg 2%} to 1
+					send "{@tag2} &7Zresetowales statystyki kopania graczowi &e%arg 2%"
+					stop
+				else:
+					send "{@tag3} {@cmd}ml resetuj <gracz>"
+					stop
+			else:
+				send "{@tag2} {@prms}"
+				stop
+		if arg 1 is "sprawdz":
+			if player has permission "sopher.minelevel.*" or "sopher.minelevel.komenda.sprawdz.mod":
+				if arg 2 is set:
+					send "{@tag} &fStatystyki gracza &a%arg 2%&f:"
+					send "&aPoziom: &f%{sopher.minelevel.gracz.globalny::%arg 2%}%"
+					send "&aPunkty: &f%{sopher.minelevel.gracz.tymaczasowe::%arg 2%}% / %{sopher.minelevel.poziom.%{test.%arg 2%}%}%"
+					send "&aOgolem: &f%{sopher.minelevel.gracz.ogolne::%arg 2%}%"
+					send "&aGrad ReseT: &f%{sopher.minelevel.gracz.grandreset::%arg 2%}%"
+				else:
+					send "{@tag3} {@cmd}ml sprawdz <gracz>"
+					stop
+			else:
+				send "{@tag2} {@prms}"
+				stop
+		if arg 1 is "grandreset" or "gr":
+			if player has permission "sopher.minelevel.*" or "sopher.minelevel.komenda.grandreset":
+				if {sopher.minelevel.gracz.globalny::%player%} is {@max}:
+					set {test.%player%} to 1
+					set {sopher.minelevel.gracz.ogolny::%player%} to 0
+					set {sopher.minelevel.gracz.tymaczasowe::%player%} to 0
+					set {sopher.minelevel.gracz.globalne::%player%} to 0	
+					add 1 to {sopher.minelevel.gracz.grandreset::%player%}
+					broadcast "{@tag} &cGracz %player% zresetowal swoj poziom kopania, w zamian za 1 GR"
+					wait 1 second
+					send "{@tag2} &7Za 5 sekund dostaniesz &egabke &7ktora, bedziesz mogl wymienic na nagrody!"
+					wait 5 seconds
+					give sponge to the player
+					send "{@tag2} &eGabke &7mozesz wymienic na spawnie!"
+					stop
+				else:
+					send "{@tag3} &7Nie masz 50 poziomu kopania!"
+					stop
+			else:
+				send "{@tag3} {@prms}"
+				stop
+		if arg 1 is "pomoc" or "help" or "?":
+			if player has permissions "sopher.minelevel.*" or "sopher.minelevel.komenda.pomoc":
+				send "{@tag} &ePOMOC:"
+				if player has permission "sopher.minelevel.komenda.sprawdz" or "sopher.minelevel.*":
+					send "&6/ml &7- sprawdzanie swoich statystyk kopania."
+				if player has permission "sopher.minelevel.komenda.top" or "sopher.minelevel.*":
+					send "&6/ml top &7- sprawdzanie top 10 kopaczy."
+				if player has permission "sopher.minelevel.komenda.info" or "sopher.minelevel.*":
+					send "&6/ml info &7- zarzadzanie wiadomosciami informujacymi o zdobytych punktach kopania."
+				if player has permission "sopher.minelevel.komenda.sprawdz.mod" or "sopher.minelevel.*":
+					send "&6/ml sprawdz <gracz> &7- sprawdzanie statystyk gracza."
+				if player has permission "sopher.minelevel.komenda.grandreset" or "sopher.minelevel.*":
+					send "&6/ml grandreset &7- globalny reset swoich statystyk kopania."
+				if player has permission "sopher.minelevel.komenda.wlacz" or "sopher.minelevel.*":
+					send "&6/ml wlacz &7- wlaczanie skryptu SopherMineLevel."
+				if player has permission "sopher.minelevel.komenda.wylacz" or "sopher.minelevel.*":
+					send "&6/ml wylacz &7- wylaczanie skryptu SopherMineLevel."
+				if player has permission "sopher.minelevel.komenda.status" or "sopher.minelevel.*":
+					send "&6/ml status &7- sprawdzanie statusu skryptu SopherMineLevel."
+				if player has permission "sopher.minelevel.komenda.resetuj" or "sopher.minelevel.*":
+					send "&6/ml resetuj <gracz> &7- resetowanie statystyk graczowi."
+				if player has permission "sopher.minelevel.komenda.awans" or "sopher.minelevel.*":
+					send "&6/ml awans [<gracz>] &7- awansowanie siebie/ gracza na wyzszy poziom."
+				stop
+			else:
+				send "{@tag3} {@prms}"
+				stop
+
+# +-----------------------------------------------+ #
+#                                                   #
+# |                 WYMIANA - GABKA               | #
+#                                                   #
+# +-----------------------------------------------+ #				
+on rightclick on sign:
+	if line 1 is "[&aGRANRESET&0]":
+		if player is holding sponge:
+			remove sponge from player
+			broadcast "{@tag} &7Gracz %player% wymienil gabke na losowe nagrody!"
+			send "{@tag2} &7Zaczynam losowanie nagrody..."
+			wait 5 seconds
+			chance of 60%:
+				give 10 diamonds to player
+			chance of 60%:
+				give 1 diamond sword of sharpness 5 and fire aspect 2 to player
+			chance of 40%:
+				give 1 diamond helmet of protection 4 to player
+			chance of 40%:
+				give 1 diamond chestplate of protection 4 to player
+			chance of 40%:
+				give 1 diamond leggings of protection 4 to player
+			chance of 40%:
+				give 1 diamond boots of protection 4 to player
+			execute console command "give %player% 293 1 name:&d&lCreeperLauncherE"
+			send "{@tag2} &7Nagrody masz w swoim ekwipunku!"
+			stop
+		else:
+			send "{@tag3} &cMusisz trzymac gabke w rece!"
+			stop
+	else:
+		stop
+		
+# +-----------------------------------------------+ #
+#                                                   #
+# |                    PREFIX                     | #
+#                                                   #
+# +-----------------------------------------------+ #
+
+# Aby poprawnie dzialalo nie mozesz miec wgranego zadnego pluginu, ktory edytuje chat (np. EssentialsChat)
+on join:
+	set the player's display name to "&f[&b%{sopher.minelevel.gracz.globalny::%player%}%&f] %name of player%"
+	
+	
+# +-----------------------------------------------+ #
+#                                                   #
+# |                   NAGRODY                     | #
+#                                                   #
+# +-----------------------------------------------+ #
+
+on rightclick on sign:
+	if line 1 is "[MineLevel]":
+		if line 2 is "WYMIANA":
+			set {_x} to "%line 3%"
+			if {_x} is "w1":
+				set line 1 to "&b&l[ML]"
+				set line 2 to "&f&lWYMIANA"
+				set line 3 to "POZIOM: {@w1}"	
+				set line 4 to "&aAKTYWOWANO!"
+				wait 5 seconds
+				set line 4 to "{_x}"
+				stop
+			if {_x} is "w2":
+				set line 1 to "&b&l[ML]"
+				set line 2 to "&f&lWYMIANA"
+				set line 3 to "POZIOM: {@w2}"	
+				set line 4 to "&aAKTYWOWANO!"
+				wait 5 seconds
+				set line 4 to "{_x}"
+				stop
+			if {_x} is "w3":
+				set line 1 to "&b&l[ML]"
+				set line 2 to "&f&lWYMIANA"
+				set line 3 to "POZIOM: {@w3}"	
+				set line 4 to "&aAKTYWOWANO!"
+				wait 5 seconds
+				set line 4 to "{_x}"
+				stop
+				
+on rightclick on sign:
+	if line 1 is "&b&l[ML]":
+		if line 2 is "&f&lWYMIANA":
+			if {sopher.minelevel.gracz.globalny::%player%} is greater than {@w1}:
+				set {_x} to {@w1}
+				remove {_x} from {sopher.minelevel.gracz.globalny::%player%}
+				give {@w1_n1} to player
+				execute console command "/xp give {@w1_e1} %player%"
+				send "{@tag2} &7Wymieniles swoj poziom kopania na nagrode!"
+				stop
+			if {sopher.minelevel.gracz.globalny::%player%} is greater than {@w2}:
+				set {_x} to {@w2}
+				remove {_x} from {sopher.minelevel.gracz.globalny::%player%}
+				give {@w2_n2} to player
+				execute console command "/xp give {@w2_e2} %player%"
+				send "{@tag2} &7Wymieniles swoj poziom kopania na nagrode!"
+				stop
+			if {sopher.minelevel.gracz.globalny::%player%} is greater than {@w3}:
+				set {_x} to {@w3}
+				remove {_x} from {sopher.minelevel.gracz.globalny::%player%}
+				give {@w3_n3} to player
+				execute console command "/xp give {@w3_e3} %player%"
+				send "{@tag2} &7Wymieniles swoj poziom kopania na nagrode!"
+				stop
+			
+			
+# +-----------------------------------------------+ #
+#                                                   #
+# |                LADOWANIE SKRYPTU              | #
+#                                                   #
+# +-----------------------------------------------+ #						
+on script load:
+	send " +-----------------------------------------------+ " to console
+	send "                  SopherMineLevel                  " to console
+	send " |               Wersja: {@wersja}               | " to console
+	send "              Autor: skript.pl/sopher              " to console
+	send " +-----------------------------------------------+ " to console
+	set {sopher.minelevel.poziom.1} to {@poziom1}
+	set {sopher.minelevel.poziom.2} to {@poziom2}
+	set {sopher.minelevel.poziom.3} to {@poziom3}
+	set {sopher.minelevel.poziom.4} to {@poziom4}
+	set {sopher.minelevel.poziom.5} to {@poziom5}
+	set {sopher.minelevel.poziom.6} to {@poziom6}
+	set {sopher.minelevel.poziom.7} to {@poziom7}
+	set {sopher.minelevel.poziom.8} to {@poziom8}
+	set {sopher.minelevel.poziom.9} to {@poziom9}
+	set {sopher.minelevel.poziom.10} to {@poziom10}
+	set {sopher.minelevel.poziom.11} to {@poziom11}
+	set {sopher.minelevel.poziom.12} to {@poziom12}
+	set {sopher.minelevel.poziom.13} to {@poziom13}
+	set {sopher.minelevel.poziom.14} to {@poziom14}
+	set {sopher.minelevel.poziom.15} to {@poziom15}
+	set {sopher.minelevel.poziom.16} to {@poziom16}
+	set {sopher.minelevel.poziom.17} to {@poziom17}
+	set {sopher.minelevel.poziom.18} to {@poziom18}
+	set {sopher.minelevel.poziom.19} to {@poziom19}
+	set {sopher.minelevel.poziom.20} to {@poziom20}
+	set {sopher.minelevel.poziom.21} to {@poziom21}
+	set {sopher.minelevel.poziom.22} to {@poziom22}
+	set {sopher.minelevel.poziom.23} to {@poziom23}
+	set {sopher.minelevel.poziom.24} to {@poziom24}
+	set {sopher.minelevel.poziom.25} to {@poziom25}
+	set {sopher.minelevel.poziom.26} to {@poziom26}
+	set {sopher.minelevel.poziom.27} to {@poziom27}
+	set {sopher.minelevel.poziom.28} to {@poziom28}
+	set {sopher.minelevel.poziom.29} to {@poziom29}
+	set {sopher.minelevel.poziom.30} to {@poziom30}
+	set {sopher.minelevel.poziom.31} to {@poziom31}
+	set {sopher.minelevel.poziom.32} to {@poziom32}
+	set {sopher.minelevel.poziom.33} to {@poziom33}
+	set {sopher.minelevel.poziom.34} to {@poziom34}
+	set {sopher.minelevel.poziom.35} to {@poziom35}
+	set {sopher.minelevel.poziom.36} to {@poziom36}
+	set {sopher.minelevel.poziom.37} to {@poziom37}
+	set {sopher.minelevel.poziom.38} to {@poziom38}
+	set {sopher.minelevel.poziom.39} to {@poziom39}
+	set {sopher.minelevel.poziom.40} to {@poziom40}
+	set {sopher.minelevel.poziom.41} to {@poziom41}
+	set {sopher.minelevel.poziom.42} to {@poziom42}
+	set {sopher.minelevel.poziom.43} to {@poziom43}
+	set {sopher.minelevel.poziom.44} to {@poziom44}
+	set {sopher.minelevel.poziom.45} to {@poziom45}
+	set {sopher.minelevel.poziom.46} to {@poziom46}
+	set {sopher.minelevel.poziom.47} to {@poziom47}
+	set {sopher.minelevel.poziom.48} to {@poziom48}
+	set {sopher.minelevel.poziom.49} to {@poziom49}
+
+	
+#-------------------------------------------------- Koniec skryptu --------------------------------------------------#
+#--------------------------------------- © by Sopher - Strona: www.Skript.pl ----------------------------------------#

@@ -1,0 +1,38 @@
+#=====================================================#
+# CONFIGURATION YOUTUBELINK                           #
+#=====================================================#
+ranks:
+    
+    # DO NOT REMOVE THIS RANK
+  default:
+    name: noob
+    min-subs: 0
+    min-views: 0
+    min-videos: 0
+    live-alert: true
+    cmd-at-rank: manuremove <player> youtuber ||| manuremove <player> noob-ytb 
+
+  youtuber: # Name
+    name: Youtuber # Display name
+    min-subs: 100 # Minimum subscribers
+    min-views: 1000 # Minimum views
+    min-videos: 3 # Minimum videos
+    live-alert: true # enable or not broadcast when player is livestreaming
+    cmd-at-rank: cmd1 ||| cmd2 # commands to execute at linking. If you add a permission or rank plugin, I recommend you to add commands to remove the ranks from the other ytb's rank to avoid multiple ranks?
+
+  famous-youtuber:
+    name: Famous
+    min-subs: 20
+    min-views: 1000
+    min-videos: 7
+    live-alert: true
+    cmd-at-rank: cmd1
+
+  awesome-youtuber:
+    name: Awesome
+    min-subs: 100
+    min-views: 100000
+    min-videos: 50
+    live-alert: true
+    cmd-at-rank: cmd1 ||| cmd2 ||| cmd3
+

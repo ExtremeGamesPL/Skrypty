@@ -1,0 +1,11 @@
+#====================================================================
+#	          █  Plugin  : RangaPEX                     █
+#	          █  Made by : Zabujca997, Mateuszanierusza █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+command /ranga <player> <text>:
+    trigger:
+        execute player command "pex user %arg 1% group set %arg 2%"

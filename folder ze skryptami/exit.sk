@@ -1,0 +1,46 @@
+#====================================================================
+#	          █  Plugin: FakeExit                       █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+ 
+command exit [<text>]:
+    permission: exit.*
+    permission message: &cBrak dostepu.
+    trigger:
+        if arg 1 is not set:
+            send "&eUzyj: &c/exit help"
+        if arg 1 is "test":
+            send "&7[&4-&7] %player%"
+        if arg 1 is "all":
+            broadcast "&7[&4-&7] %player%"
+#
+#
+#
+        if arg 1 is "help":
+            send "&e------ &cFakeExit &e------"
+            send "&cKomendy:"
+            send ""
+            send "&c/exit test &b<< Tylko ty widzisz, ze wyszedles"
+            send ""
+            send "&c/exit all &b<< Wszyscy widza, ze wyszedles"
+            send ""
+            send "&2/exit pomoc &b<< Pomoc dot. skryptu"
+            send "   &c&lSkrypt by: &dZabujca997"
+#
+        if arg 1 is "pomoc":
+            send "&e------ Pomoc -------"
+            send ""
+            send "&cNarazie istnieje tylko jedna permisja &4exit.*"
+            send "&cW nastepnych update'ach dodam wiecej permisji typu:"
+            send ""
+            send "&bexit.help"
+            send "&bexit.test"
+            send "&bexit.all"
+            send ""
+            send "&2Gracz nie ma dostepu do zadnej komendy, czyli"
+            send "&2jesli ktos widzi &eUzyj: &c/exit help &2to znaczy, ze"
+            send "&2ma do tego uprawnienia."

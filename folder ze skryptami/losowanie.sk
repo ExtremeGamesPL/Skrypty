@@ -1,0 +1,52 @@
+#====================================================================
+#	          █  Plugin: Losowanie                      █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+options:
+	tag: <yellow>[<aqua><bold>Losowanie<yellow>]
+	Minutes: 160
+command /losowanie [<text>] [<item>]:
+	description: Losuje itemy.
+	usage: /losowanie
+	permission: losowanie.use
+	permission message: Nie masz uprawnien do uzywania tej komendy!
+	trigger:
+		if argument 1 is "start":
+			if argument 2 is not set:
+				broadcast "<aqua><bold>Losowanie<yellow><bold> rozpocznie sie za..."
+				wait 1 second
+				broadcast "<aqua><bold>3<yellow>..."
+				wait 1 second
+				broadcast "<aqua><bold>2<yellow>..."
+				wait 1 second
+				broadcast "<aqua><bold>1<yellow>..."
+				wait 1 second
+				set {_player} to a random player out of all players
+				give a random item of {Losowanie::*} to {_player}
+				broadcast "{@tag}<green><bold> Gracz <red><bold>%{_player}%<green><bold> otrzymal nagrode<aqua><bold><green><bold>, kolejne losowanie za 60 minut!"
+		if argument 1 is "add":
+			if argument 2 is not set:
+				send "{@tag}&7Musisz wpisac nazwe przedmiotu!"
+			else:
+				if argument 2 is item:
+					add arg 2 to {Losowanie::*}
+					send "{@tag}&7&lPomyslnie dodano &c&l%arg 2% &7&ldo Losowania!"
+				else:
+					send "{@tag}&9Musisz wpisac nazwe przedmiotu, ktory chcesz dodac!"
+		if argument 1 is "remove":
+			if argument 2 is not set:
+				send "{@tag}&7Musisz wpisac nazwe przedmiotu!"
+			else:
+				if argument 2 is set:
+					remove arg 2 from {Losowanie::*}
+					send "{@tag}&7Pomyslnie usunieto &c&l&arg 2%&7&lz Losowania!"
+				else:
+					send "{@tag}&9Musisz wpisac nazwe przedmiotu, ktory chcesz usunac!"
+		if argument 1 is "list":
+			send "{@tag} %{Losowanie::*}%"
+every {@Minutes} minutes:
+	execute console command "/losowanie start"

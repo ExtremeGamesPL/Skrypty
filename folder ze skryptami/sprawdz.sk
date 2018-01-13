@@ -1,0 +1,92 @@
+﻿#====================================================================
+#	          █  Plugin  : Sprawdz                      █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+variables:
+        {pokoj.coord} = 0
+        {pokoj.cord} = 0
+ 
+ 
+command /sprawdz [<text>] [<player>]:
+        trigger:
+                if arg 1 is "gracz":
+                        if arg 2 is set:
+                                if player has permission "sprawdz.gracz" or "sprawdz.*":
+                                        teleport argument 2 to {pokoj.coord}
+                                        broadcast " "
+                                        broadcast "     &8&l#### &3&l[Sprawdzanie]&8&l####"
+                                        broadcast "&8» &3Gracz &3%arg 2% &3jest podejrzany o &ccheaty"
+                                        broadcast "&8» &3Wejdz na skype i Zapros Admina do skype który ci poda go"
+                                        broadcast "&8» &3Na wejscie na skype i dodanie go masz &c5 minuty"
+                                        broadcast "&8» &3Za wylogowanie sie jest &cBan"
+                                        broadcast "     &8&l#### &3&l[Sprawdzanie]&8&l####"
+                                        broadcast " "
+                                else:
+                                        send " &8» &3Nie masz do tego uprawnień"
+                                        stop
+                        else:
+                                send " &8» &3Poprawne uzycie /sprawdz gracz Nick"
+                                stop
+                if arg 1 is "cheater":
+                        if arg 2 is set:
+                                if player has permission "sprawdz.cheater" or "sprawdz.*":
+                                        execute server command "ban %arg 2%  &7» &cZostałeś zbanowany za Cheaty"
+                                        broadcast " "
+                                        broadcast "      &8&l#### &3&l[Sprawdzanie]&8&l####"
+                                        broadcast "&8» &7Gracz &3%arg 2% &7został zbanowany za &3cheaty"
+                                        broadcast "      &8&l#### &3&l[Sprawdzanie]&8&l####"
+                                        broadcast " "
+                                else:
+                                        send " &8» &3Nie masz do tego uprawnień"
+                                        stop
+                        else:
+                                send " &c» &3Poprawne uzycie /sprawdz cheater Nick"
+                                stop
+                if arg 1 is "czysty":
+                        if arg 2 is set:
+                                if player has permission "sprawdz.czysty" or "sprawdz.*":
+                                        teleport argument 2 to {pokoj.cord}
+                                        broadcast " "
+                                        broadcast "     &8&l#### &3&l[Sprawdzanie]&8&l####"
+                                        broadcast "&8» &7Gracz &3%arg 2% &7jest &3czysty"
+                                        broadcast "     &8&l#### &3&l[Sprawdzanie]&8&l####"
+                                        broadcast " "
+                                else:
+                                        send " &c» &3Nie masz do tego uprawnień"
+                                        stop
+                        else:
+                                send " &c» &3Poprawne uzycie /sprawdz czysty Nick"
+                                stop
+                else:
+                        send "     &8[&3&lSprawdzanie&8]"
+                        send "&8» &3/sprawdz gracz Nick &8- &7Sprawdza gracza"
+                        send "&8» &3/sprawdz czysty Nick &8- &7Czysci gracza z zazutow"
+                        send "&8» &3/sprawdz cheater Nick &8- &7Daje bana graczowi z cheatami"
+                        send "&8» &3/setczysty &8- &7Ustawia miejsce spawnu graczy po sprawdzeniu"
+                        send "&8»  &8[&3&lSprawdzanie&8]"
+                        stop
+                       
+ 
+       
+command /setsprawdz:
+        trigger:
+                if player has permission "sprawdz.setsprawdz" or "sprawdz.*":
+                        set {pokoj.coord} to location of player
+                        send " &7» &cUstawiono miejsce teleportowania graczy przy sprawdzeniu."
+                        stop
+                else:
+                        send " &7» &cNie masz do tego uprawnień"
+                        stop
+command /setczysty:
+        trigger:
+                if player has permission "sprawdz.setczysty" or "sprawdz.*":
+                        set {pokoj.cord} to location of player
+                        send " &7» &cUstawiono miejsce teleportowania graczy po sprawdzeniu."
+                        stop
+                else:
+                        send " &7» &cNie masz do tego uprawnień"
+                        stop

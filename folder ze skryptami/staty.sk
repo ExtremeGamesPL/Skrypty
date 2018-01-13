@@ -1,0 +1,51 @@
+#====================================================================
+#	          █  Plugin  : Statystyki2                  █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 2.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+ 
+ 
+# ZMIENNE
+variables:
+        {wykopany.stone.%player%} = 0
+        {wykopany.obsydian.%player%} = 0
+        {zjedzone.koxy.%player%} = 0
+        {zjedzone.refile.%player%} = 0
+        {postawione.bloki.%player%} = 0
+        {dedy.sk.%player%} = 0
+        {wykopane.zloto.%player%} = 0
+        {kile.sk.%player%} = 0
+       
+ 
+ 
+# KOD
+ 
+on mine of stone:
+        add 1 to {wykopany.stone.%player%}
+on mine of obsidian:
+        add 1 to {wykopany.obsydian.%player%}
+on eat of enchanted golden apple:
+        add 1 to {zjedzone.koxy.%player%}
+on eat of golden apple:
+        add 1 to {zjedzone.refile.%player%}
+on place:
+        add 1 to {postawione.bloki.%player%}
+on death:
+        add 1 to {dedy.sk.%player%}
+on death of player:
+        add 1 to {kile.sk.%player%}
+       
+command /staty [<text>]:
+        trigger:
+                open chest with 1 rows named "&6&lStatystyki Gracza" to player
+                wait 3 tick
+                format slot 0 of player with 1 of Stone named "&7&lWykopany Stone" with lore "&4>> &6%{wykopany.stone.%player%}% " to close
+                format slot 1 of player with 1 of Obsidian named "&9&lWykopany Obsydian" with lore "&4>> &6%{wykopany.obsydian.%player%}% " to close
+                format slot 2 of player with 1 of Golden Apple named "&b&lZjedzone refile" with lore "&4>> &6%{zjedzone.refile.%player%}% " to close
+                format slot 3 of player with 1 of Enchanted Golden apple named "&b&lZjedzone koxy" with lore "&4>> &6%{zjedzone.koxy.%player%}% " to close
+                format slot 4 of player with 1 of Dirt named "&b&lPostawione bloki" with lore "&4>> &6%{postawione.bloki.%player%}% " to close
+                format slot 5 of player with 1 of Player head named "&b&lDedy" with lore "&4>> &6%{dedy.sk.%player%}% " to close
+                format slot 6 of player with 1 of diamond sword named "&b&lZabici gracze" with lore "&4>> &6%{kile.sk.%player%}% " to close

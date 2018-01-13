@@ -1,0 +1,44 @@
+#====================================================================
+#	          █  Plugin: Q&A Bot                        █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.1                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997. All rights reserved.
+#====================================================================
+options:
+	itemshop: https: https://itemshop.pl/671928.html #link do itemshopu
+	koszt_vip: 8.07 zł #cena vipa
+	strona: https://Onlyskill.pl #link do strony
+	sklepwarp: sklep #ustawiasz warp taki jaki masz np. sklep czyli wywola komendę /warp sklep
+	
+on chat:
+	if message contains "gdzie kupic vipa" or "gdzie kupić vipa" or "jak kupic vipa" or "jak kupic rangę" or "gdzie kupie vipa" "gdzie kupie vipa?" or "gdzie dostać vipa": #Tu może być tego multum :D
+		send "&8| &cBot Onlyskill &8|&a %player% &7Rangę zakupisz w naszym itemshopie: &c{@itemshop}"
+		cancel event	
+	if message contains "Ile kosztuje vip" or "Ile kosztuje vip?" or "ile koszutje vip??" or "ile kosztuje vip" or "ile kosztuje svip?":
+		send "&8| &cBot Onlyskill &8|&a %player% &7ranga vip kosztuję: &c{@koszt_vip}"
+		cancel event
+	if message contains "Czy Jest admin?" or "Jest admin?":
+		loop all players:
+			if loop-player doesn't have permission "bot.admin":
+				send "&8| &cBot Onlyskill &8| &a%player% &7aktualnie nikt z administracji nie jest online."			
+			else:
+				if loop-player has permission "bot.admin":
+					add 1 to {_iloscadmin}
+				send "&8| &cBot Onlyskill &8| &a%player% &7aktualnie online jest &c%{_iloscadmin}% &7administratorów."
+		cancel event
+	if message contains "Da ktoś link do strony" or "Da ktoś link do strony?" or "jakie jest forum?" or "gdzie jest forum":
+		send "&8| &cBot Onlyskill &8| &a%player% &7oto twój link: &c{@strona}."
+		cancel event		
+	if message contains "Gdzie jest sklep?" or "Gdzie jest sklep":
+		send "&8| &cBot Onlyskill &8| &a%player% &7przeniosę cie tam, ale następnym razem użyj komendy &a/warp {@sklepwarp}"
+		wait 2 second
+		execute player command "warp sklep"
+
+		
+		
+
+
+		
+		
