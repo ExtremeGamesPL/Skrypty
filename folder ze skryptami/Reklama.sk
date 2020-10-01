@@ -1,11 +1,13 @@
-#====================================================================
-#	          █  Plugin  : Reklama                      █
-#	          █  Made by : Zabujca997                   █
-#	          █  Version : 1.0                          █
-#			  █  Ts3     : ExtremeGames.gclan.pl        █
-#====================================================================
-# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
-#====================================================================
+====================================================================
+	        █  Skrypty : Reklama                     █
+	        █  Made by : Zabujca997 / Max White      █
+	        █  Forum   : ExtremeOnly.net.pl          █
+	        █  Ts3     : ExtremeOnly                 █
+	        █  WWW     : ExtremeOnly.net.pl/www      █
+====================================================================
+ Copyright © 2020 Text Skripts Zabujca997 and ExtremeOnly.net.pl All rights reserved.
+====================================================================
+
 on script load:
 	if file "plugins/Skript/scripts/niReklama/config.yml" doesn't exists:
 		set yaml value "wyswietlenia" from file "niReklama/config.yml" to "30"
