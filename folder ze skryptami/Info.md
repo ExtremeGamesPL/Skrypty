@@ -1,6 +1,8 @@
 # Informacje:
 Są to stare skrypty z 3 lat które nie są aktualne 
 
+- [x] Nie są aktualne
+
 # Prawa:
 ```
 ====================================================================
