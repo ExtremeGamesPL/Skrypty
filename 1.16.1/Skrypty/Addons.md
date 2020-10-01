@@ -1,5 +1,5 @@
 # MC ![Logo](https://img.shields.io/discord/708763412670447694?color=blue&label=Discord&logo=Discord) ![Ver](https://img.shields.io/github/v/release/ExtremeOnly/MC?color=darkgreen&label=Ver&logo=Github) ![Serwer](https://img.shields.io/uptimerobot/status/m783941685-9cf0d370ad4beaa5bb4bb1a9?logo=microsoft&logoColor=blue)
-Jest to paczka plików serwera ExtremeOnly Minecraft która jest dla przykładu oraz backupu
+Paczka zawiera orginalnych autorów skryptów
 
 # Prawa
 Ten tryb gry musi zostać wydany na licencji CC BY-NC 4.0 co prowadzi do tego iż: 
