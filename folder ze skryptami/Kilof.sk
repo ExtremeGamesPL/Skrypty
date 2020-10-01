@@ -1,11 +1,13 @@
-#====================================================================
-#	          █  Plugin: MegaKilof                      █
-#	          █  Made by : Zabujca997                   █
-#	          █  Version : 1.0                          █
-#			  █  Ts3     : ExtremeGames.gclan.pl        █
-#====================================================================
-# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
-#====================================================================
+====================================================================
+	        █  Skrypty : ExtremeOnly                 █
+	        █  Made by : Zabujca997 / Max White      █
+	        █  Forum   : ExtremeOnly.net.pl          █
+	        █  Ts3     : ExtremeOnly                 █
+	        █  WWW     : ExtremeOnly.net.pl/www      █
+====================================================================
+ Copyright © 2020 Text Skripts Zabujca997 and ExtremeOnly.net.pl All rights reserved.
+====================================================================
+
 on script load:
         register new shaped recipe for diamond pickaxe of efficiency 10 and fortune 5 and unbreaking 10 named "&a&lMEGA &f&lKILOF" with lore "Kilof Zostal Stworzony przez Zabujca997" using diamond block, diamond block, diamond block, air, stick, air, air, stick, air
 
