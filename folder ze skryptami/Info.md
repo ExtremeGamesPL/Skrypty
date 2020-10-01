@@ -4,7 +4,6 @@ Są to stare skrypty z 3 lat które nie są aktualne
 - [x] Nie są aktualne
 
 Aktualne Skrypty: https://github.com/ExtremeOnly/MC/tree/master/1.16.1/Skrypty
-Autor GitHuba: @Zabujca997
 
 # Prawa: 
 
