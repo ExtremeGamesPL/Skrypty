@@ -1,4 +1,4 @@
-# MC ![Logo](https://img.shields.io/discord/708763412670447694?color=blue&label=Discord&logo=Discord) ![Ver](https://img.shields.io/github/v/release/ExtremeOnly/MC?color=darkgreen&label=Ver&logo=Github) ![Serwer](https://img.shields.io/uptimerobot/status/m783941685-9cf0d370ad4beaa5bb4bb1a9?logo=microsoft&logoColor=blue)
+# MC ![Logo](https://img.shields.io/discord/708763412670447694?color=blue&label=Discord&logo=Discord) ![Ver](https://img.shields.io/github/v/release/ExtremeOnly/MC?color=darkgreen&label=Ver&logo=Github) ![Serwer](https://img.shields.io/uptimerobot/status/m783941685-9cf0d370ad4beaa5bb4bb1a9?logo=microsoft&logoColor=blue) ![EN](https://img.shields.io/static/v1?label=EN&message=Readme&color=blue?link=https://github.com/ExtremeOnly/MC/blob/master/README.en.md?style=flat&logo=github)
 Jest to paczka plików serwera ExtremeOnly Minecraft która jest dla przykładu oraz backupu
 
 # Prawa
