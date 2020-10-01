@@ -1,0 +1,116 @@
+# Skrypt by wiktoor123
+#     wersja: 1.0
+options:
+    czas: 120 #ustaw co ile sekund może odbyć się głosowanie
+    wyswietlanie: procenty #ustaw "procenty" jeżeli wynik ma być widoczny w procentach lub "ilosc" jeżeli ma być wyświetlana tylko ilosc glosów
+    infoilosc: tak #ustaw nie, jeżeli po ogłoszeniu wyniku nie ma być widocznej informacji o ilościu głosów (dostepne tylko przy wyświetlaniu procentowym wyników)
+
+on load:
+    set {last.glosowanie.czas} to unix timestamp of now
+    set {wikscript.czas.error.name} to ""
+    if {wikscript.czas.error} is set:
+        delete {wikscript.czas.error}
+    if {@czas} is not integer:
+        set {wikscript.czas.error} to true
+        set {wikscript.czas.error.name} to "&4czas"
+    if "{@wyswietlanie}" is not "procenty" or "ilosc":
+        set {wikscript.czas.error} to true
+        set {wikscript.czas.error.name} to "%{wikscript.czas.error.name}% &4wyswietlanie"
+    if "{@infoilosc}" is not "tak" or "nie":
+        set {wikscript.czas.error} to true
+        set {wikscript.czas.error.name} to "%{wikscript.czas.error.name}% &4infoilosc"
+    if {wikscript.czas.error} is true:
+        send "&7» &cSkrypt &9TimeVote &czostał źle skonfigurowany!" to all players
+        send "&7» &cBłędnie skonfigurowane sekcje: %{wikscript.czas.error.name}%" to all players
+    delete {glosowanie::czas::*}
+    delete {glosowanie::ilczas::*}
+    delete {glosowanie.czas}
+
+command /WikSkrip:czas [<text>] [<text>]:
+    aliases: czas, timevote
+    trigger:
+        if arg 1 is "info":
+            send "&7» &aInformacje o autorze &9TimeVote"
+            send "&7» &aNick: &ewiktoor123"
+            send "&7» &aPortfolio: &e<url:http://skript.wiktoor123.pl>skript.wiktoor123.pl"
+        else if {wikscript.czas.error} is true:
+            send "&7» Skrypt został źle skonfigurowany!"
+            send "&7» &4Źle skonfigurowane sekcje: %{wikscript.czas.error.name}%"
+            stop
+        else if {last.glosowanie.czas} is smaller than unix timestamp of now:
+            if {glosowanie.czas} is not set:
+                set {glosowanie.czas} to true
+                delete {glosowanie::czas::*}
+                send "&7» &7Gracz &e%player%&7 wywoł głosowanie o zmiane czasu!" to all players
+                send "                   <tooltip:&eKliknij tu aby zagłosować na dzień!>&6<run command:/czas glos dzien>[Dzień]<reset>        <tooltip:&eKliknij tu aby zagłosować na noc!>&9<run command:/czas glos noc>[Noc]<reset>" to all players
+                send "&7» Głosowanie trwa &e15 sekund&7..." to all players
+                set {glosowanie::ilczas::dzien} to 0
+                set {glosowanie::ilczas::noc} to 0
+                set {glosowanie::ilczas::all} to 0
+                wait 15 seconds
+                delete {glosowanie.czas}
+                send "&7» Głosowanie zakończone!" to all players
+                send "&7» &eWyniki:" to all players
+                if "{@wyswietlanie}" is "procenty":
+                    if {glosowanie::ilczas::all} is not 0:
+                        set {_glodzien} to "%100/{glosowanie::ilczas::all}*{glosowanie::ilczas::dzien}%&e%%"
+                        set {_glonoc} to "%100/{glosowanie::ilczas::all}*{glosowanie::ilczas::noc}%&e%%"
+                    else:
+                        set {_glodzien} to "0%%"
+                        set {_glonoc} to "0%%"
+                else:
+                    set {_glodzien} to "%{glosowanie::ilczas::dzien}% &egłosów"
+                    set {_glonoc} to "%{glosowanie::ilczas::noc}% &egłosów"
+                send "&7»   &6Dzień: &e%{_glodzien}%" to all players
+                send "&7»   &9Noc: &e%{_glonoc}%" to all players
+                if {glosowanie::ilczas::noc} is {glosowanie::ilczas::dzien}:
+                    send "&7» &cRówna ilość głosów nie zmieniono czasu" to all players
+                    if "{@infoilosc}" is "tak":
+                        if "{@wyswietlanie}" is "procenty":
+                            send "&7» &aW głosowaniu wzieło udział %{glosowanie::ilczas::all}% &agraczy" to all players
+                else:
+                    if {glosowanie::ilczas::noc} is bigger than {glosowanie::ilczas::dzien}:
+                        send "&7» &aUstawiono &9noc" to all players
+                        if "{@infoilosc}" is "tak":
+                            if "{@wyswietlanie}" is "procenty":
+                                if {glosowanie::ilczas::noc} is 1:
+                                    send "&7» &aMiała 1 głos" to all players
+                                else:
+                                    send "&7» &aMiała %{glosowanie::ilczas::noc}% &agłosów" to all players
+                        set time to night
+                    else:
+                        send "&7» &aUstawiono &edzień" to all players
+                        if "{@infoilosc}" is "tak":
+                            if "{@wyswietlanie}" is "procenty":
+                                if {glosowanie::ilczas::dzien} is 1:
+                                    send "&7» &aOpcja miała 1 głos" to all players
+                                else:
+                                    send "&7» &aOpcja miała %{glosowanie::ilczas::dzien}% &agłosów" to all players
+                        set time to day
+                delete {glosowanie::ilczas::*}
+                set {last.glosowanie.czas} to unix timestamp of now
+                add {@czas} to {last.glosowanie.czas}
+            else:
+                if arg 1 is "glos":
+                    if arg 2 is "dzien":
+                        if {glosowanie::czas::%player%} is not set:
+                            add 1 to {glosowanie::ilczas::dzien}
+                            set {glosowanie::czas::%player%} to true
+                            add 1 to {glosowanie::ilczas::all}
+                            send "&7» &aZagłosowano na &edzień&a!"
+                        else:
+                            send "&7» &cMożesz oddać tylko jeden głos!"
+                    else if arg 2 is "noc":
+                        if {glosowanie::czas::%player%} is not set:
+                            add 1 to {glosowanie::ilczas::noc}
+                            set {glosowanie::czas::%player%} to true
+                            add 1 to {glosowanie::ilczas::all}
+                            send "&7» &aZagłosowano na &9noc&a!"
+                        else:
+                            send "&7» &cMożesz oddać tylko jeden głos!"
+                    else:
+                        send "&7» &cGłosowanie dotyczące zmiany czasu już trwa!"
+                else:
+                    send "&7» &cGłosowanie dotyczące zmiany czasu już trwa!"
+        else:
+            send "&7» &cGłosowanie o zmiane czasu można wykonywać co &c{@czas} &csekund!"

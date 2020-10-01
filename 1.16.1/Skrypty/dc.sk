@@ -1,0 +1,145 @@
+#  _____  _                       _  _____ _  __
+# |  __ \(_)                     | |/ ____| |/ /
+# | |  | |_ ___  ___ ___  _ __ __| | (___ | ' / 
+# | |  | | / __|/ __/ _ \| '__/ _` |\___ \|  <  
+# | |__| | \__ \ (__ (_) | | | (_| |____) | . \ 
+# |_____/|_|___/\___\___/|_|  \__,_|_____/|_|\_\
+# Autor: krytyYT
+# Wszelkie edycje dozwolone!
+
+options:
+    #Token z strony discordapp.com/developers
+    token: NjgwNDU1ODgwNjY3NDMwOTM0.XlAJ7A.liJMNL02EDUBuLypGGP4gBZlFyQ
+    #Nazwa bota z discordapp.com/developers
+    nazwa: ETO-Minecraft
+    #ID Bota
+    botid: 680455880667430934
+    #Nazwa serwera
+    nazwasv: ETO Minecraft
+    #Chat na kanale
+    chat: true
+    #ID Kanału na którym mają być wysyłane wiadomości chatu z serwera minecraft
+    chatid: 710118656180224011
+    #Łączenie konta minecraft z kontem na discord
+    link: true
+    #ID roli bo udanym połączeniu konta z kontem minecraft
+    roleid: 708763412871512093
+    #Konsola na kanale discord
+    console: true
+    #Kanał do konsoli
+    consoleid: 710122711116021760
+    #Logi
+    logs: true
+    #Kanał logów
+    logsid: 710122921913352242
+    #Prefix bota
+    prefix: /bot
+    #Wersja (Prosze, nie zmieniaj)
+    version: 0.2
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# Eventy
+on load:
+    if "{@nazwa}" parsed as bot is not set: 
+        login to "{@token}" with name "{@nazwa}"
+    set status of "{@nazwa}" to online
+    mark "{@nazwa}" as playing "{@nazwasv}"
+    set {_current_version} to "{@version}" parsed as number
+    set {_import_new_version} to text from url "https://code.skript.pl/WzNuhsNb/raw"
+    set {_import_new_version} to {_import_new_version} parsed as number
+    if {_current_version} is smaller than {_import_new_version}:
+        send "&c&l[DiscordSK] &cNie używasz najnowszej wersji! Pobierz nową z https://bit.ly/2owkcQs" to all ops
+        send "&c&l[DiscordSK] &cNie używasz najnowszej wersji! Pobierz nową z https://bit.ly/2owkcQs" to all ops
+        send "&c&l[DiscordSK] &cNie używasz najnowszej wersji! Pobierz nową z https://bit.ly/2owkcQs" to all ops
+    else:
+        send "&2&l[DiscordSK] &aWersja aktualna!" to all ops
+on chat:
+    set {check} to "{@chat}"
+    if {check} is "true":
+        send "**%player%**: %message%" to channel with id "{@chatid}" with {@nazwa}
+guild message receive seen by "{@nazwa}":
+    set {check} to "{@chat}"
+    if {check} is "true":
+        if discord id of event-user is not "{@botid}":
+            if discord id of event-channel is "{@chatid}":
+                broadcast "&8[&6Discord&8] &b%event-user%: &f%event-message%"
+guild message receive seen by "{@nazwa}":
+    set {check} to "{@console}"
+    if {check} is "true":
+        if discord id of event-user is not "{@botid}":
+            if discord id of event-channel is "{@consoleid}":
+                execute console command "%event-message%"
+                add reaction "white_check_mark" to reactions of event-message
+on first join:
+    set {check} to "{@chat}"
+    if {check} is "true":
+        send "**%player% dołączył do nas po raz pierwszy!**" to channel with id "{@chatid}" with {@nazwa}
+on join:
+    set {check} to "{@chat}"
+    if {check} is "true":
+        send "**%player% dołączył na serwer!**" to channel with id "{@chatid}" with {@nazwa}
+on quit:
+    set {check} to "{@chat}"
+    if {check} is "true":
+        send "**%player% wyszedł/a z serwera...**" to channel with id "{@chatid}" with {@nazwa}
+on member join guild:
+    broadcast "&8[&6Discord&8] &6%event-user% &bdolaczyl na serwer discord!"
+on member leave guild:
+    broadcast "&8[&6Discord&8] &6%event-user% &bwyszedl z serwera discord!"
+# Komendy
+command /link [<text>]:
+    trigger:
+        set {check} to "{@link}"
+        if {check} is "true":
+            if {linked::%player%} is "true":
+                send "&cTwoje konto jest już połączone!"
+            else:
+                set {_e} to random 6 char string from charset `0-9`
+                set {code::%{_e}%} to player
+                message "&c&l{@nazwasv} >> &6Twój kod to: &b%{_e}%"
+                message "&c&l{@nazwasv} >> &6Użyj teraz komendy {@prefix}link <twojkod> !"
+                log "%player%: Wygenerował kod: %{_e}%" to "dsklink.log"
+                set {check2} to "{@logs}"
+                if {check2} is "true":
+                    send "**%player%**: Wygenerował kod: %{_e}%" to channel with id "{@logsid}" with {@nazwa}
+        else:
+            send "&cKomenda wyłączona!"
+command /unlink [<text>]:
+    trigger:
+        set {linked::%player%} to "false"
+        send "&a&lTwoje konto zostało odłączone!"
+discord command link [<text>]:
+    prefixes: {@prefix}
+    trigger:
+        set {check} to "{@link}"
+        if {check} is "true":
+            if arg 1 is not set:
+                reply with "Prosze podaj mi swoj kod weryfikacji! Jeżeli go nie masz użyj komendy `/link` w grze!"
+            else if {code::%arg 1%} is not set:
+                reply with "Wygląda na to że nie masz kodu weryfikacji! Użyj komendy `/link` w grze!"
+            else if {code::%arg 1%} is set:
+                set {discord::%discord id of event-member%::player} to {code::%arg-1%}
+                set {discord::%discord id of event-member%} to discord id of event-member
+                if {linked::%{code::%arg-1%}%} is "true":
+                    reply with "Twoje konto jest już połączone!"
+                else:
+                    set {linked::%{code::%arg-1%}%} to "true"
+                    reply with "Twoje konto minecraft: %{code::%arg-1%}% zostało połączone z kontem discord!"
+                    log "%{code::%arg-1%}%: Połączył swoje konto z kontem discord (%{discord::%discord id of event-member%}%)" to "dsklink.log"
+                    set {check2} to "{@logs}"
+                    if {check2} is "true":
+                        send "**%{code::%arg-1%}%**: Połączył swoje konto z kontem discord (%{discord::%discord id of event-member%}%)" to channel with id "{@logsid}" with {@nazwa}
+                    add role with id "{@roleid}" to roles of event-user in event-guild
+                    delete {code::%arg-1%}
+        else:
+            reply with "Komenda wyłączona!"

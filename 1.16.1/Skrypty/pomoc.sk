@@ -1,0 +1,68 @@
+command /pomoc:
+    trigger:
+        send " "
+        send "&8&l------------» &9&lPomoc&8&l »------------"
+        send " "
+        send "&8» &b/randomtp gui&7 Menu teleportu."
+        send "&8» &b/esklep&7 Sklep gdzie kupisz vip, svip."
+        send "&8» &6&l/vip&7 Informacja o Vipie."
+        send "&8» &6&l/svip&7 Informacja o sVipie."
+        send "&8» &6&l/sponsor&7 Informacja o sponsorze."
+        send "&8» &b/aa list&7 Lista Osiągnięć."
+        send "&8» &b/YT&7 Informacje o randze YouTuber."
+        send "&8» &b/rp&7 Informacje o Działkach."
+        send " "
+        send "&8&l---------------------------------"
+        send "&8» &7Kontakt z Administracją"
+        send "&8» &7Email&8:&b Administrator@ExtremeOnly.net.pl"
+        send "&8» &7Zgłoś błąd:&b https//ExtremeOnly.net.pl/bug"
+        send "&8» &7© Powered by ExtremeOnly"
+        send " "
+command /esklep:
+    trigger:
+        send " "
+        send "&0----------------------&8>&8[&2SKLEP&8]<&0---------------------"
+        send "&7Chcesz zakupić range? Śmiało masz wiele możliwości"
+        send "&7Obecnie jest: &bVIP&7 = 9, &bSVIP&7 = 14, &bUnBan = 30"
+        send "&7Link: &b https://www.tip4stream.pl/wplata/extremeonly"
+        send "&0----------------------&8>&8[&2SKLEP&8]<&0---------------------"
+        send " "
+command /yt:
+    trigger:
+        send " "
+        send "&0----------------------&8>&4Y&fT&8<&0---------------------"
+        send "&7Ranga &4Y&fT &7od 100 Subskrypcji oraz nagrania reklamy"
+        send "&7Ma dostęp do &b/kit yt&7, &b/heal&7, &b/feed&7, &b/craft&7, &b/enderchest&7, &b/fly&7,"
+        send "&bkolorowe pisanie&7, &7prefix na chat: &8[&4Y&FT&8]"
+        send "&0---------------------&8>&4Y&fT&8<&0----------------------"
+        send " "
+command /sponsor:
+    trigger:
+        send " "
+        send "&4------------&8>&9Sponsor&8<&4------------"
+        send "&7Ranga &9Sponsor &7Jest za wsparcie nas na Patreonie."
+        send "&7Ma dostęp do &b/kit Sponsor&7, &b/heal&7, &b/feed, &b/craft&7, &b/enderchest&7, &b/fly&7,"
+        send "&bKolorowe pisanie&7, prefix na chat: &8[&9Sponsor&8]"
+        send "&bLink:&7 https://www.patreon.com/ExtremeOnly"
+        send "&4------------&8>&9Sponsor&8<&4------------"
+        send " "
+command /vip:
+    trigger:
+        send " "
+        send "&2------------------&8>&e&lVIP&8<&2------------------"
+        send "&7Rangę &e&lVIP &7można kupić za 9 zł na 30 dni"
+        send "&7Ma dostęp do &b/kit &e&lVIP&0&7, &b/heal&7, &b/feed&7, &b/craft&7, &b/enderchest"
+        send "&7Może pisać na kolorowo, prefix na chat: &8[&e&lVIP&8]"
+        send "&7Kup go szybciej: https://www.tip4stream.pl/wplata/extremeonly"
+        send "&2------------------&8>&e&lVIP&8<&2------------------"
+        send " "
+command /svip:
+    trigger:
+        send " "
+        send "&1------------------&8>&6&ls&e&lVIP&8<&1-----------------"
+        send "&7Rangę &6&ls&e&lVIP &7można kupić za 19.68 zł na 30 dni"
+        send "&7Ma dostęp do &b/kit &6&ls&e&lVIP &b/heal&7, &b/feed&7, &b/craft&7, &b/enderchest&7, &b/fly"
+        send "&7Może pisac na kolorowo, prefix na chat: &8[&6&ls&e&lVIP&8]"
+        send "&7Kup go szybciej: https://www.tip4stream.pl/wplata/extremeonly"
+        send "&1------------------&8>&6&ls&e&lVIP&8<&1-----------------"
+        send " "

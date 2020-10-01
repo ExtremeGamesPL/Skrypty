@@ -1,0 +1,159 @@
+command /crafting:
+	aliases: cra
+	trigger:
+		wait 3 tick
+		open chest with 3 row named "&8※ &6CRAFTINGI&8 ※" to player
+		format slot 0 of player with 1 of gray glass named " " to close
+		format slot 1 of player with 1 of gray glass named " " to close
+		format slot 2 of player with 1 of gray glass named " " to close
+		format slot 3 of player with 1 of gray glass named " " to close
+		format slot 4 of player with 1 of gray glass named " " to close
+		format slot 5 of player with 1 of gray glass named " " to close
+		format slot 6 of player with 1 of gray glass named " " to close
+		format slot 7 of player with 1 of gray glass named " " to close
+		format slot 8 of player with 1 of gray glass named " " to close
+		format slot 9 of player with 1 of end stone named "&8※ &6Stoniarka&8 ※" with lore "&8» &eKLIKNIJ MNIE!" to close then run [make player execute command "/cstoniarka"]
+		format slot 10 of player with 1 of ender chest named "&8※ &6EnderChest&8 ※" with lore "&8» &eKLIKNIJ MNIE!" to close then run [make player execute command "/cender"]
+		format slot 11 of player with 1 of obsidian named "&8※ &6BoyFarmer&8 ※" with lore "&8» &eKLIKNIJ MNIE!" to close then run [make player execute command "/cboy"]
+		format slot 13 of player with 1 of gray glass named " " to close
+		format slot 12 of player with 1 of stone named "&8※ &6Kopacz Fosy&8 ※" with lore "&8[&eKliknij mnie&8!]" to close then run [make player execute command "/cfosa"]
+		format slot 19 of player with 1 of gray glass named " " to close
+		format slot 14 of player with 1 of gray glass named " " to close
+		format slot 17 of player with 1 of book named "&8※ &6POWROT&8 ※" with lore "&8→ &ePOMOC" to close then run [make player execute command "/pomoc"]
+		format slot 18 of player with 1 of gray glass named " " to close
+		format slot 20 of player with 1 of gray glass named " " to close
+		format slot 21 of player with 1 of gray glass named " " to close
+		format slot 22 of player with 1 of gray glass named " " to close
+		format slot 23 of player with 1 of gray glass named " " to close
+		format slot 24 of player with 1 of gray glass named " " to close
+		format slot 25 of player with 1 of gray glass named " " to close
+		format slot 26 of player with 1 of gray glass named " " to close
+		format slot 15 of player with 1 of gray glass named " " to close
+		format slot 16 of player with 1 of gray glass named " " to close
+		
+		
+command /cstoniarka:
+	trigger:
+		wait 3 tick
+		open chest with 3 row named "&8※ &6STONIARKA&8 ※" to player
+		format slot 0 of player with 1 of redstone named " " to close
+		format slot 2 of player with 1 of redstone named " " to close
+		format slot 20 of player with 1 of redstone named " " to close
+		format slot 18 of player with 1 of redstone named " " to close
+		format slot 1 of player with 1 of iron ingot  named " " to close
+		format slot 9 of player with 1 of iron ingot named " " to close
+		format slot 11 of player with 1 of iron ingot named " " to close
+		format slot 19 of player with 1 of piston named " " to close
+		format slot 10 of player with 1 of stone named " " to close
+		format slot 13 of player with 1 of nether star named "&8»" to close
+		format slot 15 of player with 1 of end stone named "&2Stoniarka" with lore "&aGenerator kamienia" to close
+		format slot 26 of player with 1 of nether portal named "&8※ &6POWROT&8 ※" with lore "&8→ &eMenu Craftingow" to close then run [make player execute command "/crafting"]
+		format slot 17 of player with 1 of paper named "&8※ &6INFO &8: &6 STONIARKA &8 ※" with lore "&eGenerator Kamienia!" to close
+
+command /cender:
+	trigger:
+		wait 3 tick
+		open chest with 3 row named "&8※ &6ENDERCHEST&8 ※" to player
+		format slot 0 of player with 1 of obsidian named " " to close
+		format slot 2 of player with 1 of obsidian named " " to close
+		format slot 20 of player with 1 of obsidian named " " to close
+		format slot 18 of player with 1 of obsidian named " " to close
+		format slot 1 of player with 1 of obsidian named " " to close
+		format slot 9 of player with 1 of obsidian named " " to close
+		format slot 11 of player with 1 of obsidian named " " to close
+		format slot 19 of player with 1 of obsidian named " " to close
+		format slot 10 of player with 1 of ender pearl named " " to close
+		format slot 13 of player with 1 of nether star named "&8»" to close
+		format slot 15 of player with 1 of ender chest named "&8[&eEnderchest&8]" to close
+		format slot 26 of player with 1 of nether portal named "&8※ &6POWROT&8 ※" with lore "&8→ &eMenu Craftingow" to close then run [make player execute command "/crafting"]
+		format slot 17 of player with 1 of paper named "&8※ &6INFO &8: &6 ENDERCHEST &8 ※" with lore "&6Chyba kazdy to zna??" to close
+
+command /cboy:
+	trigger:
+		wait 3 tick
+		open chest with 3 row named "&8※ &6BOY FARMER&8 ※" to player
+		format slot 0 of player with 1 of obsidian named " " to close
+		format slot 2 of player with 1 of obsidian named " " to close
+		format slot 20 of player with 1 of obsidian named " " to close
+		format slot 18 of player with 1 of obsidian named " " to close
+		format slot 1 of player with 1 of obsidian named " " to close
+		format slot 9 of player with 1 of obsidian named " " to close
+		format slot 11 of player with 1 of obsidian named " " to close
+		format slot 19 of player with 1 of obsidian named " " to close
+		format slot 10 of player with 1 of golden apple named " " to close
+		format slot 13 of player with 1 of nether star named "&8»" to close
+		format slot 15 of player with 1 of obsidian named "&8※ &6BoyFarmer&8 ※" to close
+		format slot 26 of player with 1 of nether portal named "&8※ &6POWROT&8 ※" with lore "&8→ &eMenu Craftingow" to close then run [make player execute command "/crafting"]
+		format slot 17 of player with 1 of paper named "&8※ &6INFO &8: &6 BOYFARMER &8 ※" with lore "&6Tworzy obsydian do bedrocka!" to close
+
+command /csand:
+	trigger:
+		wait 3 tick
+		open chest with 3 row named "&8※ &6SAND FARMER&8 ※" to player
+		format slot 0 of player with 1 of sand named " " to close
+		format slot 2 of player with 1 of sand named " " to close
+		format slot 20 of player with 1 of sand named " " to close
+		format slot 18 of player with 1 of sand named " " to close
+		format slot 1 of player with 1 of sand named " " to close
+		format slot 9 of player with 1 of sand named " " to close
+		format slot 11 of player with 1 of sand named " " to close
+		format slot 19 of player with 1 of sand named " " to close
+		format slot 10 of player with 1 of golden apple named " " to close
+		format slot 13 of player with 1 of nether star named "&8»" to close
+		format slot 15 of player with 1 of sandstone named "&8※ &6SandFarmer&8 ※" to close
+		format slot 26 of player with 1 of nether portal named "&8※ &6POWROT&8 ※" with lore "&8→ &eMenu Craftingow" to close then run [make player execute command "/crafting"]
+		format slot 17 of player with 1 of paper named "&8※ &6INFO &8: &6 SANDFARMER &8 ※" with lore "&8※ &6Tworzy piasek do bedrocka!&8 ※" to close
+
+command /cfosa:
+	trigger:
+		wait 3 tick
+		open chest with 3 row named "&8※ &6KOPACZ FOSY&8 ※" to player
+		format slot 0 of player with 1 of stone named " " to close
+		format slot 2 of player with 1 of stone named " " to close
+		format slot 20 of player with 1 of stone named " " to close
+		format slot 18 of player with 1 of stone named " " to close
+		format slot 1 of player with 1 of stone named " " to close
+		format slot 9 of player with 1 of stone named " " to close
+		format slot 11 of player with 1 of stone named " " to close
+		format slot 19 of player with 1 of stone named " " to close
+		format slot 10 of player with 1 of piston named " " to close
+		format slot 13 of player with 1 of nether star named "&8»" to close
+		format slot 15 of player with 1 of enchantment table named "&8※ &6Kopacz Fosy&8 ※" to close
+		format slot 26 of player with 1 of nether portal named "&8※ &6POWROT&8 ※" with lore "&8→ &eMenu Craftingow" to close then run [make player execute command "/crafting"]
+		format slot 17 of player with 1 of paper named "&8※ &6INFO &8: &6 KOPACZ FOSY &8 ※" with lore "&8※ &6Tworzy dziure do bedrocka!&8 ※" to close
+
+command /ctnt:
+	trigger:
+		wait 3 tick
+		open chest with 3 row named "&8※ &6RZUCANE TNT&8 ※" to player
+		format slot 0 of player with 1 of gold block named " " to close
+		format slot 2 of player with 1 of gold block named " " to close
+		format slot 20 of player with 1 of gold block named " " to close
+		format slot 18 of player with 1 of gold block named " " to close
+		format slot 1 of player with 1 of gold block named " " to close
+		format slot 9 of player with 1 of gold block named " " to close
+		format slot 11 of player with 1 of gold block named " " to close
+		format slot 19 of player with 1 of gold block named " " to close
+		format slot 10 of player with 1 of tnt named " " to close
+		format slot 13 of player with 1 of nether star named "&8»" to close
+		format slot 15 of player with 1 of tnt named "&8※ &6Rzucane TNT&8 ※" to close
+		format slot 26 of player with 1 of nether portal named "&8※ &6POWROT&8 ※" with lore "&8→ &eMenu Craftingow" to close then run [make player execute command "/crafting"]
+		format slot 17 of player with 1 of paper named "&8※ &6INFO &8: &6 RZUCANE TNT &8 ※" with lore "&8※ &6PPM odpalasz TNT! &8 ※" to close
+
+command /cmiesko:
+	trigger:
+		wait 3 tick
+		open chest with 3 row named "&8※ &6NIESKONCZONE MIESKO&8 ※" to player
+		format slot 0 of player with 1 of emerald named " " to close
+		format slot 2 of player with 1 of emerald named " " to close
+		format slot 20 of player with 1 of emerald named " " to close
+		format slot 18 of player with 1 of emerald named " " to close
+		format slot 1 of player with 1 of emerald named " " to close
+		format slot 9 of player with 1 of emerald named " " to close
+		format slot 11 of player with 1 of emerald named " " to close
+		format slot 19 of player with 1 of emerald named " " to close
+		format slot 10 of player with 1 of cooked porkchop named " " to close
+		format slot 13 of player with 1 of nether star named "&8»" to close
+		format slot 15 of player with 1 of cooked porkchop named "&8※ &6Nieskonczone Miesko &8 ※" to close
+		format slot 26 of player with 1 of nether portal named "&8※ &6POWROT&8 ※" with lore "&8→ &eMenu Craftingow" to close then run [make player execute command "/crafting"]
+		format slot 17 of player with 1 of paper named "&8※ &6INFO &8: &6 Nieskonczone Miesko &8 ※" with lore "&8※ Jedz bez konca!&8 ※" to close

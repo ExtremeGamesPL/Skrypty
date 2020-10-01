@@ -1,0 +1,54 @@
+variables:
+        {cobblex.%player%} = 1
+command /cobblex:
+        permission: cobblex.use
+        trigger:
+                player has 576 cobblestone:
+                        remove 576 cobblestone from player
+                        clear {cobblex.%player%}
+                        wait a tick
+                        set {cobblex.%player%} to a random integer from 1 to 3
+                        if {cobblex.%player%} is 1:
+                                send "&aDostales 1 cobblex!"
+                                give a 129 of sharpness 5 named "&2CobbleX" to the player
+                        if {cobblex.%player%} is 2:
+                                send "&aDostales 2 cobblex!"
+                                give a 129 of sharpness 5 named "&2CobbleX" to the player
+                        if {cobblex.%player%} is 3:
+                                send "&aDostales 3 cobblex!"
+                                give a 129 of sharpness 5 named "&2CobbleX" to the player
+                                give a 129 of sharpness 5 named "&2CobbleX" to the player
+                                give a 129 of sharpness 5 named "&2CobbleX" to the player
+                else:
+                        send "&4Blad:&cNie posiadasz 9 stakow cobblestone!."
+on rightclick:
+        player is holding a emerald ore named "&2CobbleX":
+                give a random item of {cobblelose::*} to player
+                send "&aDostales przedmiot!"
+                wait a tick
+                remove 1 129 of sharpness 5 named "&2CobbleX" from player
+command /cobblea [<text="help">] [<items>]:
+        permission: cobble.admin
+        trigger:
+                argument 1 is not "help", "add" or "remove":
+                        send "&4Blad:&cNieznana komenda,lub zla nazwa item'a !"
+                        stop
+                argument 1 is "help":
+                        send "&c ==---( &4CobbleX Admin )&c---==="
+                        send "&4/cobblea add < Item > -&cDodanie nowego item'a do losowania."
+                        send "&4/cobblea remove < Item > -&cUsuwanie item'a z losowania"
+                        send "&4Lista item'ow z losowania:&c %{cobblelose::*}%"
+                        send "&4Pamietaj ze aby dodac item musi byc po angielsku!."
+                        send "&4Skript by *RadIoActiVe"
+                argument 1 is "add":
+                        if argument 2 is not set:
+                                send "&4Blad:&cMusisz wpisac nazwe przedmiotu!"
+                        else:
+                                add argument 2 to {cobblelose::*}
+                                send "&aDodano ' %arg 2% ' do cobblex"
+                argument 1 is "remove":
+                        if argument 2 is not set:
+                                send "&4Blad:&cMusisz wpisac nazwe przedmiotu!"
+                        else:
+                                remove argument 2 from {cobblelose::*}
+                                send "&cUsunieto ' %arg 2% ' z cobblex"
