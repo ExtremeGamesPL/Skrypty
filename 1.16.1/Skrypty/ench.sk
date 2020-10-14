@@ -12,6 +12,7 @@ On rightclick on enchantment table:
 	cancel event
 	if player is holding pickaxe or sword or chestplate or leggings or helmet or boots or axe or shovel or bow or crossbow:
 		send "&aOtwarto menu enchantingu!"
+		execute console command "playsound minecraft:block.enchantment_table.use player @s"
 		execute console command "pr addplayerperm %player% ench.t"
 		if player is holding pickaxe or axe or shovel:
 			open chest with 6 rows named "&9>> &3&lMagiczny enchant &9<<" to player
