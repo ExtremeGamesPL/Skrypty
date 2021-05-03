@@ -1,0 +1,15 @@
+function odswiez_tryb():
+	if amount of all players <= 3:
+		set the difficulty of all worlds to peaceful
+		stop
+	if amount of all players <= 5:
+		set the difficulty of all worlds to easy
+		stop
+	if amount of all players <= 12:
+		set the difficulty of all worlds to normal
+		stop
+	set the difficulty of all worlds to hard
+on join:
+	odswiez_tryb()
+on disconnect:
+	odswiez_tryb()

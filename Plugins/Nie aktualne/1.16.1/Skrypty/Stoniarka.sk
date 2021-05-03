@@ -1,0 +1,42 @@
+on script load:
+    register new shaped recipe for end stone named "&aStoniarka" with lore "&7Postaw, aby stworzyc generator kamienia." using redstone, iron ingot, redstone, iron ingot, stone, iron ingot, redstone, piston, redstone
+
+on place:
+    if player's tool is end stone named "&aStoniarka":
+        send " &8» &aGenerator kamienia zostal stworzony."
+        set block above event-location to stone
+
+on break:
+    if block at event-location is end stone named "&aStoniarka":
+        cancel event
+        set event-block to air
+        send " &8» &cGenerator kamienia zostal usuniety."
+        drop 1 end stone named "&aStoniarka" with lore "&7Postaw, aby stworzyc generator kamienia."
+
+on break of stone:
+    set {_loc.%event-location%} to event-location
+    wait 1.6 seconds
+    if block under {_loc.%event-location%} is end stone:
+        set block at {_loc.%event-location%} to stone
+
+
+on script load:
+        register new shaped recipe for note block named "&aKopacz Fosy" using stone, stone, stone, stone, piston, stone, stone, stone, stone
+on place:      
+        if player's tool is note block named "&aKopacz Fosy":
+                loop blocks under event-block:
+                        loop-block is bedrock:
+                                stop loop
+                        else:
+                                set loop-block to air
+
+
+on script load:
+        register new shaped recipe for Obsidian named "&a&lBoyFarmer" using Obsidian, Obsidian, Obsidian, Obsidian, golden apple, Obsidian, Obsidian, Obsidian, Obsidian
+on place:      
+        if player's tool is Obsidian named "&a&lBoyFarmer":
+                loop blocks under event-block:
+                        loop-block is bedrock:
+                                stop loop
+                        else:
+                                set loop-block to Obsidian

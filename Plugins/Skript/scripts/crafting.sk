@@ -1,0 +1,161 @@
+# # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Autor: _dAnieLs_                                  #
+# Skript Name: DHCrafting                           #
+# Version: 2.0                                      #
+# Zezwalam na:                                      #
+# - Zmienianie opcji na wlasne potrzeby             #
+# - Zmienianie wiadmosci na wlasne potrzeby         #
+# - Publikowanie skryptu razem z linkiem autora!    #
+# Nie zezwalam na:                                  #
+# - Podszywanie sie pod Autora                      #
+# - Publikowanie skryptu na swoich kanalach/forach  #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+command /c1:
+    trigger:
+        open chest with 6 rows named "&6&lAUTOMATYCZNY BOYFARMER" to player
+        wait 2 tick
+        format slot 10 of player with 1 of obsidian to be unstealable
+        format slot 11 of player with 1 of obsidian to be unstealable
+        format slot 12 of player with 1 of obsidian to be unstealable
+        format slot 19 of player with 1 of obsidian to be unstealable
+        format slot 20 of player with 1 of redstone blocks to be unstealable
+        format slot 21 of player with 1 of obsidian to be unstealable
+        format slot 28 of player with 1 of obsidian to be unstealable
+        format slot 29 of player with 1 of obsidian to be unstealable
+        format slot 30 of player with 1 of obsidian to be unstealable
+        format slot 23 of player with 1 of obsidian named "&6&lBOYFAMER" to be unstealable
+        format slot 53 of player with 1 of wooden button named "&6&lPOWROT DO MENU" to run [execute player command "/crafting"]
+command /c2:
+    trigger:
+        open chest with 6 rows named "&6&lAUTOMATYCZNY SANDFARMER" to player
+        wait 2 tick
+        format slot 10 of player with 1 of sand to be unstealable
+        format slot 11 of player with 1 of sand to be unstealable
+        format slot 12 of player with 1 of sand to be unstealable
+        format slot 19 of player with 1 of sand to be unstealable
+        format slot 20 of player with 1 of diamond to be unstealable
+        format slot 21 of player with 1 of sand to be unstealable
+        format slot 28 of player with 1 of sand to be unstealable
+        format slot 29 of player with 1 of sand to be unstealable
+        format slot 30 of player with 1 of sand to be unstealable
+        format slot 23 of player with 1 of end stone named "&6&lSANDFARMER" to be unstealable
+        format slot 53 of player with 1 of wooden button named "&6&lPOWROT DO MENU" to run [execute player command "/crafting"]
+command /c3:
+    trigger:
+        open chest with 6 rows named "&6&lAUTOMATYCZNY KOPACZ FOSY" to player
+        wait 2 tick
+        format slot 10 of player with 1 of stone to be unstealable
+        format slot 11 of player with 1 of stone to be unstealable
+        format slot 12 of player with 1 of stone to be unstealable
+        format slot 19 of player with 1 of stone to be unstealable
+        format slot 20 of player with 1 of golden apple to be unstealable
+        format slot 21 of player with 1 of stone to be unstealable
+        format slot 28 of player with 1 of stone to be unstealable
+        format slot 29 of player with 1 of stone to be unstealable
+        format slot 30 of player with 1 of stone to be unstealable
+        format slot 23 of player with 1 of note block named "&6&lKOPACZ FOSY" to be unstealable
+        format slot 53 of player with 1 of wooden button named "&6&lPOWROT DO MENU" to run [execute player command "/crafting"]
+command /c4:
+    trigger:
+        open chest with 6 rows named "&6&lENDERCHEST" to player
+        wait 2 tick
+        format slot 10 of player with 1 of obsidian to be unstealable
+        format slot 11 of player with 1 of obsidian to be unstealable
+        format slot 12 of player with 1 of obsidian to be unstealable
+        format slot 19 of player with 1 of obsidian to be unstealable
+        format slot 20 of player with 1 of ender pearl to be unstealable
+        format slot 21 of player with 1 of obsidian to be unstealable
+        format slot 28 of player with 1 of obsidian to be unstealable
+        format slot 29 of player with 1 of obsidian to be unstealable
+        format slot 30 of player with 1 of obsidian to be unstealable
+        format slot 23 of player with 1 of ender chest named "&6&lENDERCHEST" to be unstealable
+        format slot 53 of player with 1 of wooden button named "&6&lPOWROT DO MENU" to run [execute player command "/crafting"]
+command /c5:
+    trigger:
+        open chest with 6 rows named "&6&lSTONIARKA" to player
+        wait 2 tick
+        format slot 10 of player with 1 of redstone to be unstealable
+        format slot 11 of player with 1 of iron ingot to be unstealable
+        format slot 12 of player with 1 of redstone to be unstealable
+        format slot 19 of player with 1 of iron ingot to be unstealable
+        format slot 20 of player with 1 of stone to be unstealable
+        format slot 21 of player with 1 of iron ingot to be unstealable
+        format slot 28 of player with 1 of redstone to be unstealable
+        format slot 29 of player with 1 of piston to be unstealable
+        format slot 30 of player with 1 of redstone to be unstealable
+        format slot 23 of player with 1 of end stone named "&6&lSTONIARKA" to be unstealable
+        format slot 53 of player with 1 of wooden button named "&6&lPOWROT DO MENU" to run [execute player command "/crafting"]
+command /c6:
+    trigger:
+        open chest with 6 rows named "&6&lBEACON" to player
+        wait 2 tick
+        format slot 10 of player with 1 of glass to be unstealable
+        format slot 11 of player with 1 of glass to be unstealable
+        format slot 12 of player with 1 of glass to be unstealable
+        format slot 19 of player with 1 of glass to be unstealable
+        format slot 20 of player with 1 of nether star to be unstealable
+        format slot 21 of player with 1 of glass to be unstealable
+        format slot 28 of player with 1 of obsidian to be unstealable
+        format slot 29 of player with 1 of obsidian to be unstealable
+        format slot 30 of player with 1 of obsidian to be unstealable
+        format slot 23 of player with 1 of beacon named "&6&lBEACON" to be unstealable
+        format slot 53 of player with 1 of wooden button named "&6&lPOWROT DO MENU" to run [execute player command "/crafting"]
+command /c7:
+    trigger:
+        open chest with 6 rows named "&6&lBIBLIOTECZKI" to player
+        wait 2 tick
+        format slot 10 of player with 1 of oak wood planks to be unstealable
+        format slot 11 of player with 1 of oak wood planks to be unstealable
+        format slot 12 of player with 1 of oak wood planks to be unstealable
+        format slot 19 of player with 1 of book to be unstealable
+        format slot 20 of player with 1 of book to be unstealable
+        format slot 21 of player with 1 of book to be unstealable
+        format slot 28 of player with 1 of oak wood planks to be unstealable
+        format slot 29 of player with 1 of oak wood planks to be unstealable
+        format slot 30 of player with 1 of oak wood planks to be unstealable
+        format slot 23 of player with 1 of bookshelf named "&6&lBIBLIOTECZKA" to be unstealable
+        format slot 53 of player with 1 of wooden button named "&6&lPOWROT DO MENU" to run [execute player command "/crafting"]
+command /c9:
+    trigger:
+        open chest with 6 rows named "&6&lPISTON" to player
+        wait 2 tick
+        format slot 10 of player with 1 of oak wood planks to be unstealable
+        format slot 11 of player with 1 of oak wood planks to be unstealable
+        format slot 12 of player with 1 of oak wood planks to be unstealable
+        format slot 19 of player with 1 of cobblestone to be unstealable
+        format slot 20 of player with 1 of iron ingot to be unstealable
+        format slot 21 of player with 1 of cobblestone to be unstealable
+        format slot 28 of player with 1 of cobblestone to be unstealable
+        format slot 29 of player with 1 of redstone to be unstealable
+        format slot 30 of player with 1 of cobblestone to be unstealable
+        format slot 23 of player with 1 of piston named "&6&lPISTON" to be unstealable
+        format slot 53 of player with 1 of wooden button named "&6&lPOWROT DO MENU" to run [execute player command "/crafting"]
+command /c8:
+    trigger:
+        open chest with 6 rows named "&6&lENCHANT" to player
+        wait 2 tick
+        format slot 11 of player with 1 of book to be unstealable
+        format slot 19 of player with 1 of diamond to be unstealable
+        format slot 20 of player with 1 of obsidian to be unstealable
+        format slot 21 of player with 1 of diamond to be unstealable
+        format slot 28 of player with 1 of obsidian to be unstealable
+        format slot 29 of player with 1 of obsidian to be unstealable
+        format slot 30 of player with 1 of obsidian to be unstealable
+        format slot 23 of player with 1 of enchantment table named "&6&lENCHANT" to be unstealable
+        format slot 53 of player with 1 of wooden button named "&6&lPOWROT DO MENU" to run [execute player command "/crafting"]
+command /crafting:
+    trigger:
+        open chest with 1 row named "&6&lCrafting przemiotow" to player
+        wait 2 tick
+        format slot 0 of player with 1 of obsidian named "&6&lBOYFARMER" to run [execute player command "/c1"]
+        format slot 1 of player with 1 of note block named "&6&lKOPACZ FOSY" to run [execute player command "/c3"]
+        format slot 2 of player with 1 of ender chest named "&6&lENDERCHEST" to run [execute player command "/c4"]
+        format slot 3 of player with 1 of end stone named "&6&lSTONIARKA" to run [execute player command "/c5"]
+        format slot 4 of player with 1 of beacon named "&6&lBEACON" to run [execute player command "/c6"]
+        format slot 5 of player with 1 of bookshelf named "&6&lBIBLIOTECZKA" to run [execute player command "/c7"]
+        format slot 6 of player with 1 of enchantment table named "&6&lENCHANT" to run [execute player command "/c8"]
+        format slot 7 of player with 1 of piston named "&6&lPISTONE" to run [execute player command "/c9"]
+
+#Autor: _dAnieLs_
+#Skript.pl

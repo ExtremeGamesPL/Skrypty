@@ -1,0 +1,119 @@
+#Skrypt by knugi
+every 1 seconds:
+	loop all players:
+		if {czas::%loop-player%} is not set:
+			set {czas::%loop-player%} to 0
+			set {czas::%loop-player%::sekundy} to 0
+			set {czas::%loop-player%::minuty} to 0
+			set {czas::%loop-player%::godziny} to 0
+			set {czas::%loop-player%::dni} to 0
+		add 1 to {czas::%loop-player%}
+		add 1 to {czas::%loop-player%::sekundy}
+		if {czas::%loop-player%::sekundy} is larger than or equal to 60:
+			add 1 to {czas::%loop-player%::minuty}
+			set {czas::%loop-player%::sekundy} to 0
+		if {czas::%loop-player%::minuty} is larger than or equal to 60:
+			add 1 to {czas::%loop-player%::godziny}
+			set {czas::%loop-player%::minuty} to 0
+		if {czas::%loop-player%::godziny} is larger than or equal to 24:
+			add 1 to {czas::%loop-player%::dni}
+			set {czas::%loop-player%::godziny} to 0
+ 
+command /czas [<text="%player%">] [<text>]:
+	trigger:
+		if arg 1 is "help":
+			send "&cCzas online &cby Knugi"
+			send "&a/czas <nick> &8- &7pokazuje czas online danego gracza."
+			send "&a/czas top <nr> &8- &7pokazuje topke"
+			if sender has permission "admin":
+				send "&a/czas remove <nick/all> &8- &7restartuje czas dla danego gracza/wszystkich graczy"
+			stop
+		if arg 1 is "remove":
+			if sender has permission "admin":
+				if arg 2 is not set:
+					send "&cPoprawne uzycie: &f/czas remove <nick/all>"
+				if arg 2 is "all":
+					loop {czas::*}:
+						clear {czas::%loop-index%::sekundy}
+						clear {czas::%loop-index%::minuty}
+						clear {czas::%loop-index%::godziny}
+						clear {czas::%loop-index%::dni}
+						clear {czas::%loop-index%}
+					broadcast "&6Zrestartowano czas online dla wszystkich."
+					stop
+				if {czas::%arg 2%} is set:
+					clear {czas::%arg 2%::sekundy}
+					clear {czas::%arg 2%::minuty}
+					clear {czas::%arg 2%::godziny}
+					clear {czas::%arg 2%::dni}
+					clear {czas::%arg 2%}
+					send "&6Twoj czas online zostal zrestartowany" to arg 2 parsed as offlineplayer
+					send "&6Zrestartowales czas online dla &3%arg 2%"
+					stop
+				send "&6Nie znaleziono gracza &3%arg 2%"
+				stop
+		if arg 1 is "top":
+			if arg 2 is not set:
+				set {_arg} to 1
+			if arg 2 is set:
+				set {_arg} to arg 2
+				set {_arg} to {_arg} parsed as integer
+				if {_arg} is not integer:
+					set {_arg} to 1
+			set {_strony} to rounded up (size of {czas::*} / 5)
+			if {_arg} is between 1 and {_strony}:
+				send "&cRanking czasu online:"
+				loop {czas::*}:
+					set {_lista::%loop-index%} to loop-value
+				set {_num} to size of {_lista::*}
+				set {_max} to {_arg} * 5
+				set {_min} to {_max} - 4
+				loop {_max} times:
+					loop {_lista::*}:
+						if {_wartosc.%loop-number%} is not set:
+							set {_wartosc.%loop-number%} to loop-value
+							set {_nazwa.%loop-number%} to loop-index
+						loop-value is more than {_wartosc.%loop-number%}:
+							set {_wartosc.%loop-number%} to loop-value
+							set {_nazwa.%loop-number%} to loop-index
+					delete {_lista::%{_nazwa.%loop-number%}%}
+				loop {_max} times:				
+					loop-number is between {_min} and {_max}
+					if loop-number <= {_num}:
+						set {_s} to ""
+						if {czas::%{_nazwa.%loop-number%}%::sekundy} is 1:
+							set {_s} to "a"
+						if {czas::%{_nazwa.%loop-number%}%::sekundy} is 2 or 3 or 4:
+							set {_s} to "y"
+ 
+						set {_m} to ""
+						if {czas::%{_nazwa.%loop-number%}%::minuty} is 1:
+							set {_m} to "a"
+						if {czas::%{_nazwa.%loop-number%}%::minuty} is 2 or 3 or 4:
+							set {_m} to "y"
+ 
+						set {_g} to ""
+						if {czas::%{_nazwa.%loop-number%}%::godziny} is 1:
+							set {_g} to "a"
+						if {czas::%{_nazwa.%loop-number%}%::godziny} is 2 or 3 or 4:
+							set {_g} to "y"
+ 
+						set {_d} to "ni"
+						if {czas::%{_nazwa.%loop-number%}%::dni} is 1:
+							set {_g} to "zien"
+						send "&4%loop-number%. &c%{_nazwa.%loop-number%}% &8(&7%{czas::%{_nazwa.%loop-number%}%::dni}% d%{_d}% %{czas::%{_nazwa.%loop-number%}%::godziny}% godzin%{_g}% %{czas::%{_nazwa.%loop-number%}%::minuty}% minut%{_m}% %{czas::%{_nazwa.%loop-number%}%::sekundy}% sekund%{_s}%&8)"
+				send "&fStrona: &3%{_arg}% &fz &3%{_strony}%"
+			stop
+		if {czas::%arg 1%} is set:
+			if "%player%" is "%arg 1%":
+				send "==========================================="
+				send "&6Wiecej komend znajdziesz pod &3/czas help"
+			send "&7Czas spedzony na serwerze: &c%arg 1%"
+			send "&2Dni: &a%{czas::%arg 1%::dni}%"
+			send "&2Godzin: &a%{czas::%arg 1%::godziny}%"
+			send "&2Minut: &a%{czas::%arg 1%::minuty}%"
+			send "&2Sekund: &a%{czas::%arg 1%::sekundy}%"
+			send "==========================================="
+			stop
+		send "&6Nie znaleziono gracza w bazie danych."
+		stop

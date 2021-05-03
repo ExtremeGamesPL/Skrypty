@@ -1,0 +1,314 @@
+#==========================================================================================================#
+# -------------------------------------------------------------------------------------------------------- #
+#                                                   OPTIONS                                                #
+# -------------------------------------------------------------------------------------------------------- #
+#==========================================================================================================#
+
+options:
+
+	# DEV OPTIONS- Do not change
+	prefix: &4&l[YouTube]&r
+	path: plugins/Skript/scripts/youtubelink.yml
+	version: 1.0-BETA
+
+	# Changeable if you want but useless lol
+	wait: 10
+
+#==========================================================================================================#
+# -------------------------------------------------------------------------------------------------------- #
+#                                                   FUNCTIONS                                              #
+# -------------------------------------------------------------------------------------------------------- #
+#==========================================================================================================#
+
+function nearestNumber(n1: number, n2: number, compared: number) :: number:
+	do [set {_r1} to {_compared} - {_n1}]->[set {_r2} to {_compared} - {_n2}]
+	if {_r1} is less than {_r2}:
+		return {_n1}
+	else: 
+		return {_n2}
+
+function getChannelStatistics(data: text, channel: text) :: text:
+	set {_original} to {_channel}
+	do [replace all "https://www.youtube.com/channel/" with "" in {_channel}]->[replace all "https://www.youtube.com/user/" with "" in {_channel}]->[replace all "/videos" with "" in {_channel}]
+	if {_original} contains "youtube.com/channel/":
+		set {_url} to uncolored "https://www.googleapis.com/youtube/v3/channels?part=statistics&id=%{_channel}%&&kkey=AIzaSyABRfjWQHfhlTzQFNRYwpI3P8xjGshkcSw"
+	else:
+		set {_url} to uncolored "https://www.googleapis.com/youtube/v3/channels?part=statistics&&fforUsername=%{_channel}%&&kkey=AIzaSyABRfjWQHfhlTzQFNRYwpI3P8xjGshkcSw"
+	do [set {_json} to text from "%{_url}%"]->[set {_split1::*} to {_json} split at """%{_data}%"": """ ]->[set {_split2::*} to {_split1::2} split at """"]
+	return {_split2::1}
+
+function isLiving(channel: text) :: boolean:
+	set {_original} to {_channel}
+	do [replace all "https://www.youtube.com/channel/" with "" in {_channel}]->[replace all "https://www.youtube.com/user/" with "" in {_channel}]->[replace all "/videos" with "" in {_channel}]
+	if {_original} contains "youtube.com/channel/":
+		set {_url} to uncolored "https://www.googleapis.com/youtube/v3/search?part=id&&cchannelId=%{_channel}%&type=video&&eeventType=live&&kkey=AIzaSyABRfjWQHfhlTzQFNRYwpI3P8xjGshkcSw"
+	else:
+		set {_ytb.user} to getChannelStatistics("id", {_original})
+		set {_url} to uncolored "https://www.googleapis.com/youtube/v3/search?part=id&&cchannelId=%{_ytb.user}%&type=video&&eeventType=live&&kkey=AIzaSyABRfjWQHfhlTzQFNRYwpI3P8xjGshkcSw"
+	do [set {_json} to text from "%{_url}%"]->[set {_split1::*} to {_json} split at """totalResults"": " ]->[set {_split2::*} to {_split1::2} split at ","]
+	if {_split2::1} is "1":
+		return true
+	else:
+		return false
+
+function getChannelInfo(data: text, channel: text) :: text:
+	set {_original} to {_channel}
+	do [replace all "https://www.youtube.com/channel/" with "" in {_channel}]->[replace all "https://www.youtube.com/user/" with "" in {_channel}]->[replace all "/videos" with "" in {_channel}]
+
+	if {_original} contains "youtube.com/channel/":
+		set {_url} to uncolored "https://www.googleapis.com/youtube/v3/channels?part=snippet&id=%{_channel}%&&kkey=AIzaSyABRfjWQHfhlTzQFNRYwpI3P8xjGshkcSw"
+	else:
+		set {_url} to uncolored "https://www.googleapis.com/youtube/v3/channels?part=snippet&&fforUsername=%{_channel}%&&kkey=AIzaSyABRfjWQHfhlTzQFNRYwpI3P8xjGshkcSw"
+
+	do [set {_json} to text from "%{_url}%"]->[set {_split1::*} to {_json} split at """%{_data}%"": """ ]->[set {_split2::*} to {_split1::2} split at ""","]
+	return {_split2::1}	
+
+function selectRank(rank: text, p: player):
+	set {youtube.rank.%{_p}%} to "%{_rank}%"
+	send "{@prefix} You're now ranked as &c%{_rank}%&r !" to {_p}
+	set {_cmd::*} to {youtube.ranks.%{_rank}%.cmd} split at " ||| "
+	loop {_cmd::*}:
+		set {_c} to loop-value
+		if {_c} contains "<player>":
+			replace all "<player>" with "%{_p}%" in {_c}
+		make console execute command "%{_c}%"
+
+function setRank(channel: text, p: player) :: number:
+	loop {youtube.ranks::*}:
+		add {youtube.ranks.%loop-value%.subs} parsed as number to {_subs::*}
+		add {youtube.ranks.%loop-value%.views} parsed as number to {_views::*}
+		add {youtube.ranks.%loop-value%.videos} parsed as number to {_videos::*}
+	do [set {_actualsubs} to getChannelStatistics("subscriberCount", {_channel})]->[add {_actualsubs} parsed as number to {_subs::*}]->[set {_s::*} to sorted {_subs::*}]
+	do [set {_actualviews} to getChannelStatistics("viewCount", {_channel})]->[add {_actualviews} parsed as number to {_views::*}]->[set {_s2::*} to sorted {_views::*}]
+	do [set {_actualvideos} to getChannelStatistics("videoCount", {_channel})]->[add {_actualvideos} parsed as number to {_videos::*}]->[set {_s3::*} to sorted {_videos::*}]
+
+	loop {_s::*}:
+		if "%loop-value%" is "%{_actualsubs}%":
+			set {_needed.subs.%{_p}%} to {_s::%loop-index parsed as number - 1%}
+	loop {_s2::*}:
+		if "%loop-value%" is "%{_actualviews}%":
+			set {_needed.views.%{_p}%} to {_s2::%loop-index parsed as number - 1%}
+	loop {_s3::*}:
+		if "%loop-value%" is "%{_actualvideos}%":
+			set {_needed.videos.%{_p}%} to {_s3::%loop-index parsed as number - 1%}
+	loop {youtube.ranks::*}:
+		if {_needed.subs.%{_p}%} is {youtube.ranks.%loop-value%.subs}:
+			if {_needed.views.%{_p}%} is {youtube.ranks.%loop-value%.views}:
+				if {_needed.videos.%{_p}%} is not {youtube.ranks.%loop-value%.videos}:
+					loop {_s::*}:
+						if "%loop-value-2%" is "%{_actualsubs}%":
+							set {_needed.subs.%{_p}%} to {_s::%loop-index-2 parsed as number - 2%}
+					loop {_s2::*}:
+						if "%loop-value-2%" is "%{_actualviews}%":
+							set {_needed.views.%{_p}%} to {_s2::%loop-index-2 parsed as number - 2%}
+					loop {_s3::*}:
+						if "%loop-value-2%" is "%{_actualvideos}%":
+							set {_needed.videos.%{_p}%} to {_s3::%loop-index-2 parsed as number - 2%}
+					loop {youtube.ranks::*}:
+						if {_needed.subs.%{_p}%} is {youtube.ranks.%loop-value-2%.subs}:
+							if {_needed.views.%{_p}%} is {youtube.ranks.%loop-value-2%.views}:
+								if {_needed.videos.%{_p}%} is {youtube.ranks.%loop-value-2%.videos}:
+									broadcast "%loop-value-2%"
+				loop {_s::*}:
+					if "%loop-value-2%" is "%{_actualsubs}%":
+						set {_needed.subs.%{_p}%} to {_s::%loop-index-2 parsed as number - 3%}
+				loop {_s2::*}:
+					if "%loop-value-2%" is "%{_actualviews}%":
+						set {_needed.views.%{_p}%} to {_s2::%loop-index-2 parsed as number - 3%}
+				loop {_s3::*}:
+					if "%loop-value-2%" is "%{_actualvideos}%":
+						set {_needed.videos.%{_p}%} to {_s3::%loop-index-2 parsed as number - 3%}
+
+	loop {youtube.ranks::*}:
+		if "%{_needed.subs.%{_p}%}%" is "%{youtube.ranks.%loop-value%.subs}%": 
+			if "%{_needed.views.%{_p}%}%" is "%{youtube.ranks.%loop-value%.views}%":
+				if "%{_needed.videos.%{_p}%}%" is "%{youtube.ranks.%loop-value%.videos}%":
+					if loop-value is "default":
+						send "{@prefix} Sorry, your channel does not correspond to the minmum statistics." to {_p}
+						stop 
+					else:
+						selectRank(loop-value, {_p})
+
+function openProfilGUI(channel: text, p: player):
+	do [set {_username} to getChannelInfo("title", {_channel})]->[set {_views} to getChannelStatistics("viewCount", {_channel})]->[set {_subs} to getChannelStatistics("subscriberCount", {_channel})]->[set {_videos} to getChannelStatistics("videoCount", {_channel})]->[set {_desc} to getChannelInfo("description", {_channel})]
+	open chest with 1 rows named "&4Youtube: &r %{youtube.playerWithChannel.%{_channel}%}%" to {_p}
+	wait 2 ticks
+	format slot 0 of {_p} with item frame named "&4&l%{_username}%" with lore "&f%{youtube.url.%{youtube.playerWithChannel.%{_channel}%}%}%" to be unstealable
+	format slot 3 of {_p} with eye of ender named "&4&lViews" with lore "&f%{_views}% vues" to be unstealable
+	format slot 4 of {_p} with painting named "&4&lSubscribers" with lore "&f%{_subs}% abonnés" to be unstealable
+	format slot 5 of {_p} with painting named "&4&lNumber of videos" with lore "&f%{_videos}% vidéos" to be unstealable
+	format slot 8 of {_p} with book named "&4&lDescription" with lore "&f%{_desc}%" to be unstealable
+
+
+#==========================================================================================================#
+# -------------------------------------------------------------------------------------------------------- #
+#                                                   EVENTS                                                 #
+# -------------------------------------------------------------------------------------------------------- #
+#==========================================================================================================#
+
+on load:
+	set {youtube.ranks::*} to configuration section "ranks" get of "{@path}"
+	loop {youtube.ranks::*}:
+		set {youtube.ranks.%loop-value%.name} to single value "ranks.%loop-value%.name" get of "{@path}"
+		set {youtube.ranks.%loop-value%.subs} to single value "ranks.%loop-value%.min-subs" get of "{@path}"
+		set {youtube.ranks.%loop-value%.views} to single value "ranks.%loop-value%.min-views" get of "{@path}"
+		set {youtube.ranks.%loop-value%.videos} to single value "ranks.%loop-value%.min-videos" get of "{@path}"
+		set {youtube.ranks.%loop-value%.livealert} to single value "ranks.%loop-value%.live-alert" get of "{@path}"
+		set {youtube.ranks.%loop-value%.cmd} to single value "ranks.%loop-value%.cmd-at-rank" get of "{@path}"
+	send "{@prefix}&f &c&lYoutubeLink&r&f is now loaded. Version &c&o{@version}" to console
+	send "{@prefix}&f &c&lINFO:&r&f There will be many updates coming soon, don't forget to check until there is an auto-updater." to console
+
+
+#==========================================================================================================#
+# -------------------------------------------------------------------------------------------------------- #
+#                                                   COMMANDES                                              #
+# -------------------------------------------------------------------------------------------------------- #
+#==========================================================================================================#
+
+command /youtube [<text>] [<text>] [<text>] [<text>]:
+	aliases: ytb, yt
+	trigger:
+		# Youtube Link
+		if arg 1 is "link":
+			if arg 2 is set:
+				if {youtube.isConfirmed.%player%} is "false":
+					check [arg 2 contains "http://" or "https://"]->[arg 2 contains "youtube.com/"]
+					if {youtube.blacklist.channels::*} does not contain arg 2:
+						set {_username} to getChannelInfo("title", arg 2)
+						send "{@prefix} To confirm &4&l%{_username}%&r, add &c'sk-%player%&r to your description, and then enter the command &c/youtube confirm"
+						do [set {youtube.isConfirmed.%player%} to "pending"]->[set {youtube.linking.url.%player%} to arg 2]->[set {youtube.linking.toWrite.%player%} to "sk-%player%"]
+						wait 5 minutes
+						if {youtube.isConfirmed.%player%} is not "true":
+							send "{@prefix} The confirmation process for &c%{_username}%&r has been reset."
+							do [set {youtube.isConfirmed.%player%} to "false"]->[delete {youtube.linking.url.%player%}]->[delete {youtube.linking.toWrite.%player%}]
+						else:
+							stop trigger
+					else:
+						send "{@prefix} This channel is on the blacklist."
+				else:
+					send "{@prefix} Your channel is already confirmed."
+					stop trigger
+
+		# Youtube Confirm
+		if arg 1 is "confirm":
+			if arg 2 is not set:
+				if {youtube.isConfirmed.%player%} is "pending":
+					if getChannelInfo("description", {youtube.linking.url.%player%}) contains "%{youtube.linking.toWrite.%player%}%":
+						do [set {youtube.isConfirmed.%player%} to "true"]->[set {youtube.url.%player%} to {youtube.linking.url.%player%}]->[delete {youtube.linking.toWrite.%player%}]->[add "%{youtube.url.%player%}%" to {youtube.url.list::*}]->[add "%player%" to {youtube.players.list::*}]->[set {youtube.playerWithChannel.%{youtube.url.%player%}%} to player]
+						setRank({youtube.url.%player%}, player)
+						send "{@prefix} Your Youtube channel is now confirmed !"
+						stop trigger
+					else:
+						send "{@prefix} There is no &c'%{youtube.linking.toWrite.%player%}%'&r in your description. The confirmation process has been reset."
+						do [set {youtube.isConfirmed.%player%} to "false"]->[delete {youtube.linking.url.%player%}]->[delete {youtube.linking.toWrite.%player%}]
+				if {youtube.isConfirmed.%player%} is "true":
+					send "{@prefix} Your channel is already confirmed."
+					stop trigger
+				if {youtube.isConfirmed.%player%} is "false":
+					send "{@prefix} There is no pending confirmation."
+					stop trigger
+
+		# Youtube Reset
+		if arg 1 is "reset": 
+			if arg 2 is not set:
+				if {youtube.isConfirmed.%player%} is "true":
+					do [set {youtube.isConfirmed.%player%} to "false"]->[remove {youtube.url.%player%} from {youtube.list::*}]->[delete {youtube.linking.url.%player%}]->[delete {youtube.linking.toWrite.%player%}]->[remove "%{youtube.url.%player%}%" from {youtube.url.list::*}]->[delete {youtube.url.%player%}]->[delete {youtube.rank.%player%}]->[remove "%player%" from {youtube.players.list::*}]
+					send "{@prefix} Your Youtube channel has been reset."
+					selectRank("default", player)
+			if arg 2 is set:
+				if player has permission "ytb.admin":
+					if {youtube.isConfirmed.%arg 2 parsed as player%} is "true":
+						do [set {youtube.isConfirmed.%arg 2 parsed as player%} to "false"]->[remove {youtube.url.%arg 2 parsed as player%} from {youtube.list::*}]->[delete {youtube.linking.url.%arg 2 parsed as player%}]->[delete {youtube.linking.toWrite.%arg 2 parsed as player%}]->[remove "%{youtube.url.%arg 2 parsed as player%}%" from {youtube.url.list::*}]->[delete {youtube.url.%arg 2 parsed as player%}]->[delete {youtube.rank.%arg 2 parsed as player%}]->[remove "%arg 2%" from {youtube.players.list::*}]
+						selectRank("default", player)
+
+		# Youtube Stop
+		if arg 1 is "stop":
+			if {youtube.isConfirmed.%player%} is "pending":
+				do [set {youtube.isConfirmed.%player%} to "false"]->[delete {youtube.linking.url.%player%}]->[delete {youtube.linking.toWrite.%player%}]
+				send "{@prefix} The confirmation process has been canceled."
+
+		# Ranks
+		if arg 1 is "ranks" or "rank" or "grades":
+			do [set {_rows} to round up (size of {youtube.ranks::*} / 9)]->[set {_count} to 0]
+			{_rows} < 1:
+				set {_rows} to 1
+			open chest with {_rows} rows named "&c&lYoutube&r's ranks" to player
+			wait 1 tick
+			loop {youtube.ranks::*}:
+				if {youtube.rank.%player%} is loop-value:
+					format slot {_count} of player with light green stained glass pane named "&2&l%{youtube.ranks.%loop-value%.name}% &a- Actual rank" with lore "&aIf you want to rankup, ||type &2/youtube reset&a and then &2/youtube link [channel]||||&aSubscribers: &r%{youtube.ranks.%loop-value%.subs}%||&aViews: &r%{youtube.ranks.%loop-value%.views}%||&aNumber of videos: &r%{youtube.ranks.%loop-value%.videos}%||&aAlert on live: &r%{youtube.ranks.%loop-value%.livealert}%" to be unstealable
+				else:
+					format slot {_count} of player with red stained glass pane named "&4&l%{youtube.ranks.%loop-value%.name}% &c- Requirements:" with lore "&cSubscribers: &r%{youtube.ranks.%loop-value%.subs}%||&cViews: &r%{youtube.ranks.%loop-value%.views}%||&cNumber of videos: &r%{youtube.ranks.%loop-value%.videos}%||&cAlert on live: &r%{youtube.ranks.%loop-value%.livealert}%" to be unstealable
+				add 1 to {_count}
+
+		# No arg
+		if arg 1 is not set:
+			if {youtube.isConfirmed.%player%} is not "true":
+				make player execute command "youtube ranks"
+			else:
+				openProfilGUI({youtube.url.%player%}, player)
+
+		# Info
+		if arg 1 is "info":
+			if arg 2 is set:
+				set {_p} to arg 2 parsed as player
+				if {youtube.isConfirmed.%{_p}%} is "true":
+					openProfilGUI({youtube.url.%{_p}%}, {_p})
+				else:
+					send "{@prefix} This player is not linked to a Youtube channel."
+
+		# Help
+		if arg 1 is "help":
+			if arg 2 is not set:
+				send ""
+				send "&4[=================[ &4&lYoutube&f&lLink&r&4 ]=================]"
+				send ""
+				send "&c&lAliases:&r /youtube, /ytb, yt"
+				send "&c&l[ ] = optional"
+				send ""
+				send "&4&l/youtube link <lien>:&r Link a channel with your MC account"
+				send "&4&l/youtube confirm:&r Confirm your channel after /youtube link"
+				send "&4&l/youtube ranks|rank|grades:&r See all available Youtube's ranks"
+				send "&4&l/youtube reset [joueur]:&r Reset your Youtube channel"
+				send "&4&l/youtube [info <joueur>]:&r Open a Youtube profil about the player if he's linked"
+				send "&4&l/youtube admin blacklist add|remove|see|list [lien]:&r Add, remove a channel to the blacklist or display it"
+				send "&4&l/youtube list|all:&r Display all linked channels"
+
+		if arg 1 is "admin":
+			if player has permission "ytb.admin":
+				# Blacklist
+				if arg 2 is "blacklist":
+					set {_nickname} to getChannelInfo("title", arg 4)
+					if arg 3 is "add":
+						if arg 4 is set:
+							check [arg 4 contains "https://www.youtube.com/user/" or "https://www.youtube.com/channel/"]
+							add arg 4 to {youtube.blacklist.channels::*}
+							send "{@prefix} The following channel has been added to the blacklist: %{_nickname}%"
+					else if arg 3 is "remove":
+						if {youtube.blacklist.channels::*} contains arg 4:
+							remove arg 4 from {youtube.blacklist.channels::*}
+							send "{@prefix} The following channel has been removed from the blacklist: %{_nickname}%"
+					else if arg 3 is "see" or "list":
+						loop {youtube.blacklist.channels::*}:
+							set {_n} to getChannelInfo("title", loop-value)
+							set {_blacklist} to concatenate {_blacklist} and "&c%{_n}%&f, "
+						send "&4&lBlacklisted channels:%nl%%{_blacklist}%"
+
+		if arg 1 is "all" or "list":
+			loop {youtube.url.list::*}:
+				set {_n} to getChannelInfo("title", loop-value)
+				set {_list} to concatenate {_list} and "&c%{_n}%&f, "
+			send "&4&lLinked channels:%nl%%{_list}%"
+
+# live check
+every {@wait} minutes:
+	loop {youtube.players.list::*}:
+		if {youtube.ranks.%{youtube.rank.%loop-value%}%.livealert} is true or "true":
+			if {alert.%loop-value%} is not true:
+				if isLiving(loop-value) is true:
+					json("@a", "&9&l[&4&l•&9&l]&r&9 The Youtuber ||&c&o&l%loop-value%&r&9||url:http://www.google.com/||&r&9 is now streaming ! Click here to open his channel.")
+					set {alert.%loop-value%} to true
+		else:
+			if {alert.%loop-value%} is true:
+				set {alert.%loop-value%} to false
+

@@ -1,0 +1,58 @@
+# # # # # # # # # # # # # # # # # # #
+#         SmartStone 1.0            #
+#          by _Kacpross             #
+# Nie zezwalam na podszywanie sie!  #
+#       Zezwalam na edycje!         #
+# # # # # # # # # # # # # # # # # # #
+ 
+ # Crafting stoniarki
+ 
+options:
+    craft1: redstone
+    craft2: iron ingot
+    craft3: redstone
+    craft4: iron ingot
+    craft5: stone
+    craft6: iron ingot
+    craft7: redstone
+    craft8: piston
+    craft9: redstone
+ 
+ # Wytlumaczenie craftingu
+ 
+    # # # # # # #  # # # # # # #
+    #        |        |        #
+    # craft1 | craft2 | craft3 #
+    #________|________|________#
+    #        |        |        #
+    # craft4 | craft5 | craft6 #
+    #________|________|________#
+    #        |        |        #
+    # craft7 | craft8 | craft9 #
+    #        |        |        #
+    # # # # # # #  # # # # # # #
+ 
+ # Funkcjonowanie stoniarki
+ 
+on break of stone:
+    {SmartStone.%event-block%} is true:
+        player is holding gold pickaxe:
+            set {SmartStone.%event-block%} to false
+            send "&8» &6Usunales stoniarke!"
+            player can hold 1 end stone:
+                give 1 end stone named "&aStoniarka" to the player
+            player doesn't have enough space for 1 end stone named "&aStoniarka":
+                drop 1 end stone named "&aStoniarka"
+        else:
+            wait 2 second
+            set the event-block to stone
+            stop
+on place of end stone:
+    if tool is end stone named "&aStoniarka":
+        send "&8» &6Postawiles stoniarke!"
+        set {SmartStone.%event-block%} to true
+        wait 1 tick
+        set event-block to stone
+        stop
+on script load:
+    register new shaped recipe for 1 end stone named "&aStoniarka" using {@craft1}, {@craft2}, {@craft3}, {@craft4}, {@craft5}, {@craft6}, {@craft7}, {@craft8}, {@craft9}

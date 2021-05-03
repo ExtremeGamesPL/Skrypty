@@ -1,4 +1,0 @@
-on place tnt:
-	if player doesn't have permission "tnt.postaw":
-		send "&4TNT jest zablokowane!"
-		cancel event

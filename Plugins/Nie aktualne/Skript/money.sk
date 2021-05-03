@@ -1,0 +1,34 @@
+#====================================================================
+#	          █  Plugin: TimeIsMoney                    █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+
+options:
+	tag: &8[&aTime&6Is&bMoney&8]
+	perm: &cBrak uprawnien!          
+	czas: 60                                  # W aktualnej konfiguracji gracz dostaje $1 / 5 minut
+	permission: timeismoney.*    
+
+
+command /timeismoney:
+	trigger:
+		if player has permission "{@permission}":
+			if {money.%player%} is larger than 0:
+				execute console command "eco give %player% %{money.%player%}%"
+				send "{@tag} &cOtrzymales &a%{money.%player%}% &cza bycie online!"
+				set {money.%player%} to 0
+			else:
+				send "{@tag} &cMusisz jeszcze poczekac."
+		else:
+			send "{@tag} {@perm}"
+           
+every {@czas} minutes:
+    loop all players:
+        add 50 to {money.%loop-player%}
+        
+on quit:
+    set {money.%player%} to 0

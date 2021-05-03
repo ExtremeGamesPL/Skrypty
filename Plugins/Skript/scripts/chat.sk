@@ -1,0 +1,65 @@
+command /chat [<text>] [<text>]:
+	permission: chat.pc
+	permission message: &8[&4&l✔&8]&7 
+	trigger:
+		if arg 1 is empty:
+			send "&9&lExtreme&f&lOnly &8&l>> &7Poprawne uzycie: &c/chat <off/on/clear>" to player
+		else if arg 1 is "on":
+			if {chat.stan} is true:
+				send "&fExtreme&4Only &8>> &7Chat jest juz wlaczony!" to player
+				stop trigger
+			set {chat.stan} to true
+			broadcast "&4                             &9    &lMc&F&LTop!"
+			broadcast "&4                     &2       Chat Zostal Wlaczony&7!"
+			broadcast "&4                     &2       "
+			broadcast "&4                     &2       "
+			broadcast "&4                     &2       "
+		else if arg 1 is "off":
+			if {chat.stan} is false:
+				send "&fExtreme&4Only &8>> &7Chat jest juz wylaczony!" to player
+				stop trigger
+			set {chat.stan} to false
+			loop 100 times:
+				broadcast " "
+			if "%arg 2%" is "<none>":
+			broadcast "&4                             &9    &lMc&f&lTop&7!"
+			broadcast "&4                     &4       Chat Zostal Wylaczony&7!"
+			broadcast "&4                     &2       "
+			broadcast "&4                     &2       "
+			broadcast "&4                     &2       "
+		else if arg 1 is "clear":
+			loop 100 times:
+				broadcast " "
+			broadcast "&8---------- &6Chat wyczyszczony przez: &4%player% &8---------"
+		else:
+			send "&8[&4&l✔&8]&7 Poprawne uzycie: &cchat <off/on/clear>" to player
+		stop trigger
+ 
+command /c [<text>]:
+	permission: chat.cc
+	permission message: &8[&4&l✔&8]&7 Wpisz: &c/pomoc
+	trigger:
+		if arg 1 is not set:
+			loop 100 times:
+			broadcast " "
+			broadcast "&4                                &f    &lExtreme&4&lOnly&7!"
+			broadcast "&4                     &c       Chat Zostal Wyczyszczony&7!"
+			broadcast "&4                     &2       "
+			broadcast "&4                     &2       "
+			broadcast "&4                     &2       "
+		else:
+			loop 100 times:
+			broadcast " "
+			broadcast "&4                                &f    &lExtreme&4&lOnly&7!"
+			broadcast "&4                     &c       Chat Zostal Wyczyszczony&7!"
+			broadcast "&4                     &2       "
+			broadcast "&4                     &2       "
+			broadcast "&4                     &2       "
+on chat:
+	if {chat.stan} is false:
+		if player has permission "chat.vip" or "chat.vip":
+			stop trigger
+		else:
+			cancel event
+			send "&fExtreme&4Only &8>> &7Chat jest aktualnie wylaczony&7!"
+			stop trigger

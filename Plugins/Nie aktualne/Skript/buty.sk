@@ -1,0 +1,42 @@
+#====================================================================
+#	          █  Plugin: cloudbots                      █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+every 1 second:      
+    loop all players:
+        if boots of loop-player is diamond boots named "&bCloud boots":
+            apply jump boost 5 to the loop-player for 3 seconds
+            apply speed 2 to the loop-player for 3 seconds
+       
+       
+command /Buty:
+    permission: xfun.buty
+    trigger:
+        give diamond boots named "&bCloud boots" to player
+       
+on enable:
+    register new shaped recipe for diamond boots named "&6Cloud boots" using 57, 57, 57, 57, diamond boots, 57, 57, 57, 57
+       
+on damage:
+    if boots of victim is diamond boots named "&6Cloud boots":
+        damage cause is fall
+        set {_a} to location of victim
+        spawn 15 of particle fireworks Spark offset by 1, 1, 1 at {_a}
+        spawn 15 of particle smoke offset by 1, 1, 1 at {_a}
+        spawn 15 of particle magic crit offset by 1, 1, 1 at {_a}
+        spawn 15 of particle instant Spell offset by 1, 1, 1 at {_a}
+        spawn 15 of particle Spell offset by 1, 1, 1 at {_a}
+        cancel event
+ 
+on jump:
+    if boots of player is diamond boots named "&6Cloud boots":
+        set {_a} to location of player
+        spawn 15 of particle fireworks Spark offset by 1, 1, 1 at {_a}
+        spawn 15 of particle smoke offset by 1, 1, 1 at {_a}
+        spawn 15 of particle magic crit offset by 1, 1, 1 at {_a}
+        spawn 15 of particle instant Spell offset by 1, 1, 1 at {_a}
+        spawn 15 of particle Spell offset by 1, 1, 1 at {_a}

@@ -1,0 +1,21 @@
+command /bc [<text>]:
+        permission: bc.sk
+        permission message: &cNie masz dostepu do tej komendy
+        trigger:
+                if arg 1 is not set:
+                        send "&cPoprawne uzycie &a/bc <wiadomosc> &c!"
+                else:
+                        broadcast "&8========[&4&lInfo&8]===========" 
+                        broadcast "&6&l%colored arg 1%"
+                        broadcast "&8========[&4&lInfo&8]==========="
+
+command /ost [<text>]:
+        permission: ost.sk
+        permission message: &cNie masz dostepu do tej komendy
+        trigger:
+                if arg 1 is not set:
+                        send "&cPoprawne uzycie &a/ost <wiadomosc> &c!"
+                else:
+                        broadcast "&8========[&4&lOSTRZEŻENIE&8]===========" 
+                        broadcast "&4%colored arg 1%"
+                        broadcast "&8========[&4&lOSTRZEŻENIE&8]==========="

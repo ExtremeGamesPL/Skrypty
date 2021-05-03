@@ -1,0 +1,5 @@
+on place armor stand:
+	player has permissions "blocked.armor":
+	else:
+		cancel event 
+		send "&6[ExtremeOnly]: &4Nie masz uprawnien by postawic to!"

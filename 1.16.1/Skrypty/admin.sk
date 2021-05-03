@@ -1,7 +1,0 @@
-command /admin:
-	trigger:
-		open chest with 1 rows named "&4&lAdministracja" to player
-		wait 2 tick
-		format slot 0 of player with 1 of ("Zabujca997" parsed as offline player)'s skull named "&2&lZabujca997" with lore "&4&lWłaściciel" to close
-
-# player head

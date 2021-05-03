@@ -1,0 +1,36 @@
+options:
+	przedmiot: 347 # przedmiot do otwierania listy (musi byc po angielsku lub ID)
+command /list:
+	trigger:
+		wait 2 ticks
+		open chest with 6 rows named "&4>> &2&nLista Graczy&r &4<<" to player
+		wait 1 tick
+		format slot 50 of player with 1 of 159:5 named "&aGracze" to close then run "menu2 %player%"
+		format slot 51 of player with 1 of 159:5 named "&aGracze" to close then run "menu2 %player%"
+		format slot 52 of player with 1 of 159:5 named "&aGracze" to close then run "menu2 %player%"
+		format slot 53 of player with 1 of 159:5 named "&aGracze" to close then run "menu2 %player%"
+		loop all players:
+			add 1 to {_online}
+			if {_online} is smaller than 45:
+				if player is an op:
+					format slot {_online}-1 of player with 1 of red wool named "%loop-player%" to close
+				else:
+					format slot {_online}-1 of player with 1 of light green wool named "%loop-player%" to close
+command /menu2 [<player>]:
+	executable by: console
+	trigger:
+		wait 2 tick
+		open chest with 6 rows named "&2Gracze:" to argument-player
+		wait 1 tick
+		format slot 53 of argument-player with 1 of light blue wool named "&bPowrot" to close then run "lista %argument-player%"
+		loop all players:
+			if loop-player is not an op:
+				add 1 to {_onl}
+				format slot {_onl}-1 of argument-player with 1 of light green wool named "%loop-player%" to close
+on rightclick:
+	if player is holding {@przedmiot}:
+		execute player command "list"
+command /lista [<player>]:
+	executable by: console
+	trigger:
+		execute argument-player command "list"

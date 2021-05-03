@@ -1,0 +1,31 @@
+mine:
+  ==: com.koletar.jj.mineresetlite.Mine
+  maxZ: 37
+  tpYaw: 0
+  maxY: 71
+  maxX: 286
+  lucky_blocks: 0
+  fillMode: false
+  lucky_commands: []
+  world: world
+  composition:
+    STONE:0: 1.0
+  tpY: -2147483647
+  tpX: 0
+  tpZ: 0
+  resetDelay: 15
+  surface: ''
+  resetPercent: -1.0
+  structure: []
+  tpPitch: 0
+  minY: 64
+  resetWarnings:
+  - '10'
+  - '5'
+  - '1'
+  minX: 274
+  potions: {}
+  name: kamien
+  resetClock: 15
+  minZ: 25
+  isSilent: false

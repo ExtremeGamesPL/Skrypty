@@ -1,9 +1,0 @@
-#====================================================================
-#	          █  Plugin  : Rename                       █
-#	          █  Made by : Zabujca997                   █
-#	          █  Version : 1.0                          █
-#			  █  Ts3     : ExtremeGames.gclan.pl        █
-#====================================================================
-# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
-#====================================================================
-options:	tag: &3[Renamer]&2command /name [<text>]:	trigger:		player has permission "items.rename":			arg 1 is empty:				send "{@tag} Uzyj &e/name <nowa nazwa>&2 aby zmienic nazwe przedmiotu!"			else:				set the name of player's tool to coloured argument			    else:					    send "Brak uprawnien!"

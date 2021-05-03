@@ -1,0 +1,20 @@
+on script load:
+        register new shaped recipe for note block named "&aKopacz Fosy" using stone, stone, stone, stone, golden apple, stone, stone, stone, stone
+on place:      
+        if player's tool is note block named "&aKopacz Fosy":
+                loop blocks under event-block:
+                        loop-block is bedrock:
+                                stop loop
+                        else:
+                                set loop-block to air
+
+
+on script load:
+        register new shaped recipe for Obsidian named "&a&lBoyFarmer" using Obsidian, Obsidian, Obsidian, Obsidian, Redstone blocks, Obsidian, Obsidian, Obsidian, Obsidian
+on place:      
+        if player's tool is Obsidian named "&a&lBoyFarmer":
+                loop blocks under event-block:
+                        loop-block is bedrock:
+                                stop loop
+                        else:
+                                set loop-block to Obsidian

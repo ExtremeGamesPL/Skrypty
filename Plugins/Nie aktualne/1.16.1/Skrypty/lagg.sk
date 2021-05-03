@@ -1,0 +1,13 @@
+every 30 minutes:
+    broadcast "&7 Czyszczenie serwera rozpoczete..."
+    wait 5 second
+    broadcast "&7 Czyszczenie serwera zakonczone!"
+    execute console command "lr clear items world"
+    execute console command "lr gc"
+    execute console command "mobkill monsters"
+command /wyczysc:
+    trigger:
+        execute console command "lr clear items world"
+        execute console command "lr gc"
+        execute console command "mobkill monsters"
+        send "&7 Wyczysciles serwer z itemkow!" to the player

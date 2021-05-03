@@ -1,0 +1,10 @@
+#
+# These triggers fix some drops.
+#
+
+on break of glass:
+	drop glass
+
+on break of glass pane:
+	drop glass pane
+

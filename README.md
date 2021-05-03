@@ -1,8 +1,8 @@
 # MINECRAFT ![Logo](https://img.shields.io/discord/708763412670447694?color=blue&label=Discord&logo=Discord) ![Ver](https://img.shields.io/github/v/release/ExtremeOnly/MC?color=darkgreen&label=Ver&logo=Github) ![Serwer](https://img.shields.io/uptimerobot/status/m783941685-9cf0d370ad4beaa5bb4bb1a9?logo=microsoft&logoColor=blue) <img src="https://img.shields.io/static/v1?label=EN&message=Readme&color=blue?style=flat&logo=github" alt="Logo" data-canonical-src="https://github.com/ExtremeOnly/MC/blob/master/README.en.md" style="max-width:100%;"> <img src="https://badgen.net/badge/EN/License/blue?icon=github" alt="Lic" data-canonical-src="https://github.com/ExtremeOnly/MC/blob/master/LICENSE-EN" style="max-width:100%;"> <img src="https://badgen.net/badge/PL/Licencja/blue?icon=github" alt="Lic" data-canonical-src="https://github.com/ExtremeOnly/MC/blob/master/LICENSE-PL" style="max-width:100%;">
-Jest to paczka plików serwera ExtremeOnly Minecraft która jest dla przykładu oraz backupu
+Jest to paczka plików serwera ExtremeOnly Minecraft która jest dla przyszłych twórców serwerów oraz pomocy przy pluginach
 
 # Prawa
-Ten tryb gry musi zostać wydany na licencji CC BY-NC 4.0 co prowadzi do tego iż: 
+Te pliki musiszą zostać wydane na licencji CC BY-NC 4.0 co prowadzi do tego iż: 
 
 **Uznanie autorstwa** — Utwór należy odpowiednio oznaczyć, podać link do licencji i wskazać jeśli zostały dokonane w nim zmiany . Możesz to zrobić w dowolny, rozsądny sposób, o ile nie sugeruje to udzielania prze licencjodawcę poparcia dla Ciebie lub sposobu, w jaki wykorzystujesz ten utwór.
 
@@ -12,6 +12,6 @@ Ten tryb gry musi zostać wydany na licencji CC BY-NC 4.0 co prowadzi do tego i�
 
 ## Nasze strony
 
-Strona www: https://ExtremeOnly.net.pl/www |
-Forum: https://ExtremeOnly.net.pl
-
+Strona www: https://ExtremeOnly.ga
+Forum: https://ExtremeOnly.ga/forum
+Zgłoś błąd: https://ExtremeOnly.ga/bug

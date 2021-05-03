@@ -1,0 +1,1507 @@
+# Autorem skryptu jest: RoYYaLLMiNNa
+# Autor poprawy skryptu jest: Zabójca997 / Max White#8603
+on rightclick on enchantment table:
+	set {enchant.%event-block%} to false
+	wait 0.3 seconds
+	if {enchant.%event-block%} is false:
+		loop 100000 times:
+			if event-block is enchantment table:
+				wait 0.1 seconds
+				set {enchant.%event-block%} to true
+On rightclick on enchantment table:
+	cancel event
+	if player is holding pickaxe or sword or chestplate or leggings or helmet or boots or axe or shovel or bow or crossbow:
+		send "&aOtwarto menu enchantingu!"
+		execute player command "playsound minecraft:block.enchantment_table.use player %player%"
+		execute console command "pr addplayerperm %player% ench.t"
+		if player is holding pickaxe or axe or shovel:
+			open chest with 6 rows named "&9>> &3&lMagiczny enchant &9<<" to player
+			wait 2 tick
+			format slot 1 of player with 1 of enchanted book named "&9>> &c&lWydajnosc 1 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/25 " to run "1fule1x %player%"
+			format slot 2 of player with 1 of enchanted book named "&9>> &c&lWydajnosc 2 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/50 " to run "1fule2x %player%"
+			format slot 3 of player with 1 of enchanted book named "&9>> &c&lWydajnosc 3 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/100 " to run "1fule3x %player%"
+			format slot 4 of player with 1 of enchanted book named "&9>> &c&lWydajnosc 4 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/200 " to run "1fule4x %player%"
+			format slot 5 of player with 1 of enchanted book named "&9>> &c&lWydajnosc 5 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/350 " to run "1fule5x %player%"
+			format slot 10 of player with 1 of enchanted book named "&9>> &c&lSzczescie 1 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/100 " to run "1fulee1x %player%"
+			format slot 11 of player with 1 of enchanted book named "&9>> &c&lSzczescie 2 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/400 " to run "1fulee2x %player%"
+			format slot 12 of player with 1 of enchanted book named "&9>> &c&lSzczescie 3 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/800 " to run "1fulee3x %player%"
+			format slot 19 of player with 1 of enchanted book named "&9>> &c&lNiezniszczalnosc 1 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/250 " to run "fuleee1x %player%"
+			format slot 20 of player with 1 of enchanted book named "&9>> &c&lNiezniszczalnosc 2 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/1000 " to run "fuleee2x %player%"
+			format slot 21 of player with 1 of enchanted book named "&9>> &c&lNiezniszczalnosc 3 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/1200 " to run "fuleee3x %player%"
+			format slot 28 of player with 1 of enchanted book named "&9>> &c&lJedwabny dotyk 1 &9<<" with lore "  &eKliknij &aKoszt: &c&l %{ench.%player%}%/300 " to run "1fuleeeee1x %player%"
+		if player is holding sword:
+			open chest with 6 rows named "&9>> &3&lMagiczny enchant &9<<" to player
+			wait 2 tick
+			format slot 1 of player with 1 of enchanted book named "&9>> &c&lOstrosc 1 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/25 " to run "fule1x %player%"
+			format slot 2 of player with 1 of enchanted book named "&9>> &c&lOstrosc 2 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/50 " to run "fule2x %player%"
+			format slot 3 of player with 1 of enchanted book named "&9>> &c&lOstrosc 3 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/100 " to run "fule3x %player%"
+			format slot 4 of player with 1 of enchanted book named "&9>> &c&lOstrosc 4 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/200 " to run "fule4x %player%"
+			format slot 5 of player with 1 of enchanted book named "&9>> &c&lOstrosc 5 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/350 " to run "fule5x %player%"
+			format slot 10 of player with 1 of enchanted book named "&9>> &c&lPodpalenie 1 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/100 " to run "fulee1x %player%"
+			format slot 11 of player with 1 of enchanted book named "&9>> &c&lPodpalenie 2 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/400 " to run "fulee2x %player%"
+			format slot 19 of player with 1 of enchanted book named "&9>> &c&lNiezniszczalnosc 1 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/250 " to run "fuleee1x %player%"
+			format slot 20 of player with 1 of enchanted book named "&9>> &c&lNiezniszczalnosc 2 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/1000 " to run "fuleee2x %player%"
+			format slot 21 of player with 1 of enchanted book named "&9>> &c&lNiezniszczalnosc 3 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/1200 " to run "fuleee3x %player%"
+			format slot 28 of player with 1 of enchanted book named "&9>> &c&lOdrzut 1 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/200 " to run "fuleeee1x %player%"
+			format slot 29 of player with 1 of enchanted book named "&9>> &c&lOdrzut 2 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/800 " to run "fuleeeee2x %player%"
+			format slot 37 of player with 1 of enchanted book named "&9>> &c&lPogromca nieumarlych 1 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/25 " to run "5fule1x %player%"
+			format slot 38 of player with 1 of enchanted book named "&9>> &c&lPogromca nieumarlych 2 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/50 " to run "5fule2x %player%"
+			format slot 39 of player with 1 of enchanted book named "&9>> &c&lPogromca nieumarlych 3 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/100 " to run "5fule3x %player%"
+			format slot 40 of player with 1 of enchanted book named "&9>> &c&lPogromca nieumarlych 4 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/200 " to run "5fule4x %player%"
+			format slot 41 of player with 1 of enchanted book named "&9>> &c&lPogromca nieumarlych 5 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/350 " to run "5fule5x %player%"
+			format slot 46 of player with 1 of enchanted book named "&9>> &c&lGrabierz 1 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/50 " to run "6fule2x %player%"
+			format slot 47 of player with 1 of enchanted book named "&9>> &c&lGrabierz 2 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/100 " to run "6fule3x %player%"
+			format slot 48 of player with 1 of enchanted book named "&9>> &c&lGrabierz 3 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/200 " to run "6fule4x %player%"
+# ZBROJA
+		if player is holding leggings or chestplate or helmet or boots:
+			open chest with 6 rows named "&9>> &3&lMagiczny enchant &9<<" to player
+			wait 2 tick
+			format slot 1 of player with 1 of enchanted book named "&9>> &c&lOchrona 1 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/25 " to run "2fule1x %player%"
+			format slot 2 of player with 1 of enchanted book named "&9>> &c&lOchrona 2 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/50 " to run "2fule2x %player%"
+			format slot 3 of player with 1 of enchanted book named "&9>> &c&lOchrona 3 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/100 " to run "2fule3x %player%"
+			format slot 4 of player with 1 of enchanted book named "&9>> &c&lOchrona 4 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/200 " to run "2fule4x %player%"
+			format slot 10 of player with 1 of enchanted book named "&9>> &c&lNiezniszczalnosc 1 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/250 " to run "fuleee1x %player%"
+			format slot 11 of player with 1 of enchanted book named "&9>> &c&lNiezniszczalnosc 2 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/1000 " to run "fuleee2x %player%"
+			format slot 12 of player with 1 of enchanted book named "&9>> &c&lNiezniszczalnosc 3 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/1200 " to run "fuleee3x %player%"
+			format slot 19 of player with 1 of enchanted book named "&9>> &c&lCiernie 1 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/250 " to run "7fuleee1x %player%"
+			format slot 20 of player with 1 of enchanted book named "&9>> &c&lCiernie 2 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/1000 " to run "7fuleee2x %player%"
+			format slot 21 of player with 1 of enchanted book named "&9>> &c&lCiernie 3 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/1200 " to run "7fuleee3x %player%"
+			format slot 28 of player with 1 of enchanted book named "&9>> &c&lOdpornosc na ogien 1 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/25 " to run "33fuleeee1x %player%"
+			format slot 29 of player with 1 of enchanted book named "&9>> &c&lOdpornosc na ogien 2 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/50 " to run "33fuleeee2x %player%"
+			format slot 30 of player with 1 of enchanted book named "&9>> &c&lOdpornosc na ogien 3 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/100 " to run "33fuleeee3x %player%"
+			format slot 31 of player with 1 of enchanted book named "&9>> &c&lOdpornosc na ogien 4 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/200 " to run "33fuleeee4x %player%"
+			format slot 37 of player with 1 of enchanted book named "&9>> &c&lOchrona przed wybuchem 1 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/25 " to run "33fuleeee1xx %player%"
+			format slot 38 of player with 1 of enchanted book named "&9>> &c&lOchrona przed wybuchem 2 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/50 " to run "33fuleeee2xx %player%"
+			format slot 39 of player with 1 of enchanted book named "&9>> &c&lOchrona przed wybuchem 3 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/100 " to run "33fuleeee3xx %player%"
+			format slot 40 of player with 1 of enchanted book named "&9>> &c&lOchrona przed wybuchem 4 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/200 " to run "33fuleeee4xx %player%"
+			format slot 46 of player with 1 of enchanted book named "&9>> &c&lOchrona przed pociskami 1 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/25 " to run "33fuleeee1xxx %player%"
+			format slot 47 of player with 1 of enchanted book named "&9>> &c&lOchrona przed pociskami 2 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/50 " to run "33fuleeee2xxx %player%"
+			format slot 48 of player with 1 of enchanted book named "&9>> &c&lOchrona przed pociskami 3 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/100 " to run "33fuleeee3xxx %player%"
+			format slot 49 of player with 1 of enchanted book named "&9>> &c&lOchrona przed pociskami 4 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/200 " to run "33fuleeee4xxx %player%"
+		format slot 0 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 8 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 9 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 17 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 18 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 26 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 27 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 35 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 36 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 44 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 45 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 53 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+# ŁUK
+		if player is holding bow:
+			open chest with 6 rows named "&9>> &3&lMagiczny enchant &9<<" to player
+			wait 2 tick
+			format slot 1 of player with 1 of enchanted book named "&9>> &c&lMoc 1 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/25 " to run "5luk1 %player%"
+			format slot 2 of player with 1 of enchanted book named "&9>> &c&lMoc 2 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/50 " to run "5luk2 %player%"
+			format slot 3 of player with 1 of enchanted book named "&9>> &c&lMoc 3 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/100 " to run "5luk3 %player%"
+			format slot 4 of player with 1 of enchanted book named "&9>> &c&lMoc 4 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/200 " to run "5luk4 %player%"
+			format slot 5 of player with 1 of enchanted book named "&9>> &c&lMoc 5 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/250 " to run "fuleee1x %player%"
+			format slot 10 of player with 1 of enchanted book named "&9>> &c&lOdrzut 1 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/25 " to run "5luk11 %player%"
+			format slot 11 of player with 1 of enchanted book named "&9>> &c&lOdrzut 2 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/50 " to run "5luk12 %player%"
+			format slot 19 of player with 1 of enchanted book named "&9>> &c&lNiezniszczalnosc 1 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/250 " to run "5luk21 %player%"
+			format slot 20 of player with 1 of enchanted book named "&9>> &c&lNiezniszczalnosc 2&9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/1000 " to run "5luk22 %player%"
+			format slot 21 of player with 1 of enchanted book named "&9>> &c&lNiezniszczalnosc 3 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/1200 " to run "5luk23 %player%"
+			format slot 28 of player with 1 of enchanted book named "&9>> &c&lNieskonczonosc  &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/25 " to run "5luk31 %player%"
+			format slot 29 of player with 1 of enchanted book named "&9>> &c&lNaprawa &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/50 " to run "5luk32 %player%"
+			format slot 30 of player with 1 of enchanted book named "&9>> &c&lOgien &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/100 " to run "5luk33 %player%"
+		format slot 0 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 8 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 9 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 17 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 18 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 26 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 27 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 35 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 36 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 44 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 45 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 53 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+# Kusza
+		if player is holding crossbow:
+			open chest with 6 rows named "&9>> &3&lMagiczny enchant &9<<" to player
+			wait 2 tick
+			format slot 1 of player with 1 of enchanted book named "&9>> &c&lSzybkie przeładowanie 1 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/25 " to run "5kusza1 %player%"
+			format slot 2 of player with 1 of enchanted book named "&9>> &c&lSzybkie przeładowanie 2 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/50 " to run "5kusza2 %player%"
+			format slot 3 of player with 1 of enchanted book named "&9>> &c&lSzybkie przeładowanie 3 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/100 " to run "5kusza3 %player%"
+			format slot 10 of player with 1 of enchanted book named "&9>> &c&lWielostrzał &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/25 " to run "5kusza11 %player%"
+			format slot 19 of player with 1 of enchanted book named "&9>> &c&lPrzeszycie 1 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/50 " to run "5kusza21 %player%"
+			format slot 20 of player with 1 of enchanted book named "&9>> &c&lPrzeszycie 2 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/100 " to run "5kusza22 %player%"
+			format slot 21 of player with 1 of enchanted book named "&9>> &c&lPrzeszycie 3 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/150 " to run "5kusza23 %player%"
+			format slot 22 of player with 1 of enchanted book named "&9>> &c&lPrzeszycie 4 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/200 " to run "5kusza24 %player%"
+			format slot 37 of player with 1 of enchanted book named "&9>> &c&lNaprawa &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/25 " to run "5luk32 %player%"
+			format slot 28 of player with 1 of enchanted book named "&9>> &c&lNiezniszczalnosc 1 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/1200 " to run "5luk21 %player%"
+			format slot 29 of player with 1 of enchanted book named "&9>> &c&lNiezniszczalnosc 2  &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/25 " to run "5luk22 %player%"
+			format slot 30 of player with 1 of enchanted book named "&9>> &c&lNiezniszczalnosc 3 &9<<" with lore " &eKliknij &aKoszt: &c&l %{ench.%player%}%/50 " to run "5luk23 %player%"
+		format slot 0 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 8 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 9 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 17 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 18 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 26 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 27 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 35 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 36 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 44 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 45 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+		format slot 53 of player with 1 of bookshelf named "&9>> &c&lMagiczny enchanting &9<<" with lore " &aWybierz enchant! " to close
+	else:
+		send "&cTego przedmiotu nie mozna enchantowac!"
+		send "&cEnchantowac mozna: Zbroje, Narzędzia, Miecze Łuk, Kusze."
+
+command /5kusza24 [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 149:
+			remove 150 from {ench.%player-arg%}
+			enchant player-arg's tool with piercing 4
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /5kusza23 [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 99:
+			remove 100 from {ench.%player-arg%}
+			enchant player-arg's tool with piercing 3
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /5kusza22 [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 49:
+			remove 50 from {ench.%player-arg%}
+			enchant player-arg's tool with piercing 2
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /5kusza21 [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 24:
+			remove 25 from {ench.%player-arg%}
+			enchant player-arg's tool with piercing 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /5kusza11 [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 24:
+			remove 25 from {ench.%player-arg%}
+			enchant player-arg's tool with multishot
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /5kusza3 [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 99:
+			remove 100 from {ench.%player-arg%}
+			enchant player-arg's tool with quick charge 3
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /5kusza2 [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 49:
+			remove 50 from {ench.%player-arg%}
+			enchant player-arg's tool with quick charge 2
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /5kusza1 [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 24:
+			remove 25 from {ench.%player-arg%}
+			enchant player-arg's tool with quick charge 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+
+command /5luk33 [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 99:
+			remove 100 from {ench.%player-arg%}
+			enchant player-arg's tool with flame
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /5luk32 [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 49:
+			remove 50 from {ench.%player-arg%}
+			enchant player-arg's tool with mending
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /5luk31 [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 24:
+			remove 25 from {ench.%player-arg%}
+			enchant player-arg's tool with infinity
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /5luk23 [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 99:
+			remove 100 from {ench.%player-arg%}
+			enchant player-arg's tool with unbreaking 3
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /5luk22 [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 49:
+			remove 50 from {ench.%player-arg%}
+			enchant player-arg's tool with unbreaking 2
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /5luk21 [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 24:
+			remove 25 from {ench.%player-arg%}
+			enchant player-arg's tool with unbreaking 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /5luk12 [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 49:
+			remove 50 from {ench.%player-arg%}
+			enchant player-arg's tool with punch 2
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /5luk11 [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 24:
+			remove 25 from {ench.%player-arg%}
+			enchant player-arg's tool with punch 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /5luk5 [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 249:
+			remove 250 from {ench.%player-arg%}
+			enchant player-arg's tool with Power 5
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /5luk4 [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 199:
+			remove 200 from {ench.%player-arg%}
+			enchant player-arg's tool with Power 4
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /5luk3 [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 99:
+			remove 100 from {ench.%player-arg%}
+			enchant player-arg's tool with Power 3
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /5luk2 [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 49:
+			remove 50 from {ench.%player-arg%}
+			enchant player-arg's tool with Power 2
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /5luk1 [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 24:
+			remove 25 from {ench.%player-arg%}
+			enchant player-arg's tool with Power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+
+command /5fule1x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 24:
+			remove 25 from {ench.%player-arg%}
+			enchant player-arg's tool with smite 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /5fule2x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 49:
+			remove 50 from {ench.%player-arg%}
+			enchant player-arg's tool with smite 2
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /5fule3x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 99:
+			remove 100 from {ench.%player-arg%}
+			enchant player-arg's tool with smite 3
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /5fule4x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 199:
+			remove 200 from {ench.%player-arg%}
+			enchant player-arg's tool with smite 4
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /6fule2x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 49:
+			remove 50 from {ench.%player-arg%}
+			enchant player-arg's tool with looting 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /6fule3x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 99:
+			remove 100 from {ench.%player-arg%}
+			enchant player-arg's tool with looting 2
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /6fule4x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 199:
+			remove 200 from {ench.%player-arg%}
+			enchant player-arg's tool with looting 3
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+
+command /5fule5x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 349:
+			remove 350 from {ench.%player-arg%}
+			enchant player-arg's tool with smite 5
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /fule1x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 24:
+			remove 25 from {ench.%player-arg%}
+			enchant player-arg's tool with sharpness 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /fule2x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 49:
+			remove 50 from {ench.%player-arg%}
+			enchant player-arg's tool with sharpness 2
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /fule3x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 99:
+			remove 100 from {ench.%player-arg%}
+			enchant player-arg's tool with sharpness 3
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /fule4x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 199:
+			remove 200 from {ench.%player-arg%}
+			enchant player-arg's tool with sharpness 4
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /fule5x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 349:
+			remove 350 from {ench.%player-arg%}
+			enchant player-arg's tool with sharpness 5
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /fule6x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 599:
+			remove 600 from {ench.%player-arg%}
+			enchant player-arg's tool with sharpness 6
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /fule7x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 899:
+			remove 900 from {ench.%player-arg%}
+			enchant player-arg's tool with sharpness 7
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /fule8x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 1249:
+			remove 1250 from {ench.%player-arg%}
+			enchant player-arg's tool with sharpness 8
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /fule9x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 1649:
+			remove 1650 from {ench.%player-arg%}
+			enchant player-arg's tool with sharpness 9
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /fule10x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 2099:
+			remove 2100 from {ench.%player-arg%}
+			enchant player-arg's tool with sharpness 10
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /fule11x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 2599:
+			remove 2600 from {ench.%player-arg%}
+			enchant player-arg's tool with sharpness 11
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /fule12x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 3199:
+			remove 3200 from {ench.%player-arg%}
+			enchant player-arg's tool with sharpness 12
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /fule13x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 3999:
+			remove 4000 from {ench.%player-arg%}
+			enchant player-arg's tool with sharpness 13
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /fule14x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 5199:
+			remove 5200 from {ench.%player-arg%}
+			enchant player-arg's tool with sharpness 14
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /fule15x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 6399:
+			remove 6400 from {ench.%player-arg%}
+			enchant player-arg's tool with sharpness 15
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /fule16x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 7599:
+			remove 7600 from {ench.%player-arg%}
+			enchant player-arg's tool with sharpness 16
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /fule17x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 8799:
+			remove 8800 from {ench.%player-arg%}
+			enchant player-arg's tool with sharpness 17
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /fule18x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 9999:
+			remove 10000 from {ench.%player-arg%}
+			enchant player-arg's tool with sharpness 18
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /fule19x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 11499:
+			remove 11500 from {ench.%player-arg%}
+			enchant player-arg's tool with sharpness 19
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /fule20x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 12999:
+			remove 13000 from {ench.%player-arg%}
+			enchant player-arg's tool with sharpness 20
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+
+command /fulee1x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 99:
+			remove 100 from {ench.%player-arg%}
+			enchant player-arg's tool with fire aspect 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /fulee2x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 399:
+			remove 400 from {ench.%player-arg%}
+			enchant player-arg's tool with fire aspect 2
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /fulee3x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 799:
+			remove 800 from {ench.%player-arg%}
+			enchant player-arg's tool with fire aspect 3
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /fulee4x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 1199:
+			remove 1200 from {ench.%player-arg%}
+			enchant player-arg's tool with fire aspect 4
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /fulee5x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 1999:
+			remove 2000 from {ench.%player-arg%}
+			enchant player-arg's tool with fire aspect 5
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /fulee6x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 2599:
+			remove 2600 from {ench.%player-arg%}
+			enchant player-arg's tool with fire aspect 6
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /fulee7x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 3199:
+			remove 3200 from {ench.%player-arg%}
+			enchant player-arg's tool with fire aspect 7
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /fuleee1x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 249:
+			remove 250 from {ench.%player-arg%}
+			enchant player-arg's tool with unbreaking 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /fuleee2x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 999:
+			remove 1000 from {ench.%player-arg%}
+			enchant player-arg's tool with unbreaking 2
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /fuleee3x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 2499:
+			remove 1200 from {ench.%player-arg%}
+			enchant player-arg's tool with unbreaking 3
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /7fuleee1x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 249:
+			remove 250 from {ench.%player-arg%}
+			enchant player-arg's tool with thorns 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /7fuleee2x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 999:
+			remove 1000 from {ench.%player-arg%}
+			enchant player-arg's tool with thorns 2
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /7fuleee3x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 2499:
+			remove 1200 from {ench.%player-arg%}
+			enchant player-arg's tool with thorns 3
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+
+command /fuleee4x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 3999:
+			remove 4000 from {ench.%player-arg%}
+			enchant player-arg's tool with unbreaking 1000
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /fuleeeee1x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 199:
+			remove 200 from {ench.%player-arg%}
+			enchant player-arg's tool with knockback 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /fuleeeee2x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 799:
+			remove 800 from {ench.%player-arg%}
+			enchant player-arg's tool with knockback 2
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /fuleeeee3x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 2999:
+			remove 3000 from {ench.%player-arg%}
+			enchant player-arg's tool with knockback 2
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /addpkten5 [<player>]:
+	permission: ench.t
+	trigger:
+		player has permission "event4xoff.admin":
+			send "&6[XTopHc] &aGracz &c%player%&a dodal graczowi &c%player-arg% + 5k &apkt enchantu!" to all players
+			add 5000 to {ench.%player-arg%}
+command /1fule1x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 24:
+			remove 25 from {ench.%player-arg%}
+			enchant player-arg's tool with efficiency 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /1fule2x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 49:
+			remove 50 from {ench.%player-arg%}
+			enchant player-arg's tool with efficiency 2
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /1fule3x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 99:
+			remove 100 from {ench.%player-arg%}
+			enchant player-arg's tool with efficiency 3
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /1fule4x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 199:
+			remove 200 from {ench.%player-arg%}
+			enchant player-arg's tool with efficiency 4
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /1fule5x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 349:
+			remove 350 from {ench.%player-arg%}
+			enchant player-arg's tool with efficiency 5
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /1fule6x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 599:
+			remove 600 from {ench.%player-arg%}
+			enchant player-arg's tool with efficiency 6
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /1fule7x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 899:
+			remove 900 from {ench.%player-arg%}
+			enchant player-arg's tool with efficiency 7
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /1fule8x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 1249:
+			remove 1250 from {ench.%player-arg%}
+			enchant player-arg's tool with efficiency 8
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /1fule9x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 1649:
+			remove 1650 from {ench.%player-arg%}
+			enchant player-arg's tool with efficiency 9
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /1fule10x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 2099:
+			remove 2100 from {ench.%player-arg%}
+			enchant player-arg's tool with efficiency 10
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /1fule11x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 2599:
+			remove 2600 from {ench.%player-arg%}
+			enchant player-arg's tool with efficiency 11
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /1fule12x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 3199:
+			remove 3200 from {ench.%player-arg%}
+			enchant player-arg's tool with efficiency 12
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /1fule13x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 3999:
+			remove 4000 from {ench.%player-arg%}
+			enchant player-arg's tool with efficiency 13
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /1fule14x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 5199:
+			remove 5200 from {ench.%player-arg%}
+			enchant player-arg's tool with efficiency 14
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /1fule15x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 6399:
+			remove 6400 from {ench.%player-arg%}
+			enchant player-arg's tool with efficiency 15
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /1fule16x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 7599:
+			remove 7600 from {ench.%player-arg%}
+			enchant player-arg's tool with efficiency 16
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /1fule17x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 8799:
+			remove 8800 from {ench.%player-arg%}
+			enchant player-arg's tool with efficiency 17
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /1fule18x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 9999:
+			remove 10000 from {ench.%player-arg%}
+			enchant player-arg's tool with efficiency 18
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /1fule19x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 11499:
+			remove 11500 from {ench.%player-arg%}
+			enchant player-arg's tool with efficiency 19
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /1fule20x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 12999:
+			remove 13000 from {ench.%player-arg%}
+			enchant player-arg's tool with efficiency 20
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /1fulee1x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 99:
+			remove 100 from {ench.%player-arg%}
+			enchant player-arg's tool with fortune 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /1fulee2x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 399:
+			remove 400 from {ench.%player-arg%}
+			enchant player-arg's tool with fortune 2
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /1fulee3x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 799:
+			remove 800 from {ench.%player-arg%}
+			enchant player-arg's tool with fortune 3
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /1fuleeeee1x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 299:
+			remove 800 from {ench.%player-arg%}
+			enchant player-arg's tool with silk touch 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+# ZBROJA
+command /2fule1x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 24:
+			remove 25 from {ench.%player-arg%}
+			enchant player-arg's tool with protection 1
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /2fule2x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 49:
+			remove 50 from {ench.%player-arg%}
+			enchant player-arg's tool with protection 2
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /2fule3x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 99:
+			remove 100 from {ench.%player-arg%}
+			enchant player-arg's tool with protection 3
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /2fule4x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 199:
+			remove 200 from {ench.%player-arg%}
+			enchant player-arg's tool with protection 4
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /2fule5x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 349:
+			remove 350 from {ench.%player-arg%}
+			enchant player-arg's tool with protection 5
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /2fule6x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 599:
+			remove 600 from {ench.%player-arg%}
+			enchant player-arg's tool with protection 6
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /2fule7x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 899:
+			remove 900 from {ench.%player-arg%}
+			enchant player-arg's tool with protection 7
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /2fule8x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 1249:
+			remove 1250 from {ench.%player-arg%}
+			enchant player-arg's tool with protection 8
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /2fule9x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 1649:
+			remove 1650 from {ench.%player-arg%}
+			enchant player-arg's tool with protection 9
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /2fule10x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 2099:
+			remove 2100 from {ench.%player-arg%}
+			enchant player-arg's tool with protection 10
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /2fule11x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 2599:
+			remove 2600 from {ench.%player-arg%}
+			enchant player-arg's tool with protection 11
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /2fule12x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 3199:
+			remove 3200 from {ench.%player-arg%}
+			enchant player-arg's tool with protection 12
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /2fule13x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 3999:
+			remove 4000 from {ench.%player-arg%}
+			enchant player-arg's tool with protection 13
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /2fule14x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 5199:
+			remove 5200 from {ench.%player-arg%}
+			enchant player-arg's tool with protection 14
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /2fule15x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 6399:
+			remove 6400 from {ench.%player-arg%}
+			enchant player-arg's tool with protection 15
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /2fule16x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 7599:
+			remove 7600 from {ench.%player-arg%}
+			enchant player-arg's tool with protection 16
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /2fule17x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 8799:
+			remove 8800 from {ench.%player-arg%}
+			enchant player-arg's tool with protection 17
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /2fule18x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 9999:
+			remove 10000 from {ench.%player-arg%}
+			enchant player-arg's tool with protection 18
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /2fule19x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 11499:
+			remove 11500 from {ench.%player-arg%}
+			enchant player-arg's tool with protection 19
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /2fule20x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 12999:
+			remove 13000 from {ench.%player-arg%}
+			enchant player-arg's tool with protection 20
+			enchant player-arg's tool with power 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg	
+command /2fuleee1x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 249:
+			remove 250 from {ench.%player-arg%}
+			enchant player-arg's tool with unbreaking 50
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /2fuleee2x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 999:
+			remove 1000 from {ench.%player-arg%}
+			enchant player-arg's tool with unbreaking 250
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /2fuleee3x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 2499:
+			remove 1200 from {ench.%player-arg%}
+			enchant player-arg's tool with unbreaking 500
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /2fuleee4x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 3999:
+			remove 4000 from {ench.%player-arg%}
+			enchant player-arg's tool with unbreaking 1000
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /2fuleeeee1x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 249:
+			remove 250 from {ench.%player-arg%}
+			enchant player-arg's tool with thorns 3
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /2fuleeeee2x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 649:
+			remove 650 from {ench.%player-arg%}
+			enchant player-arg's tool with thorns 6
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /2fuleeeee3x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 2299:
+			remove 2300 from {ench.%player-arg%}
+			enchant player-arg's tool with thorns 10
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /2fuleeeee4x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 3749:
+			remove 3500 from {ench.%player-arg%}
+			enchant player-arg's tool with thorns 15
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /33fuleeee1x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 25:
+			remove 25 from {ench.%player-arg%}
+			enchant player-arg's tool with fire protection 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /33fuleeee2x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 50:
+			remove 50 from {ench.%player-arg%}
+			enchant player-arg's tool with fire protection 2
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /33fuleeee3x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 100:
+			remove 100 from {ench.%player-arg%}
+			enchant player-arg's tool with fire protection 3
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /33fuleeee4x [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 200:
+			remove 200 from {ench.%player-arg%}
+			enchant player-arg's tool with fire protection 4
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /33fuleeee1xx [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 25:
+			remove 25 from {ench.%player-arg%}
+			enchant player-arg's tool with blast protection 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /33fuleeee2xx [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 50:
+			remove 50 from {ench.%player-arg%}
+			enchant player-arg's tool with blast protection 2
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /33fuleeee3xx [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 100:
+			remove 100 from {ench.%player-arg%}
+			enchant player-arg's tool with blast protection 3
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /33fuleeee4xx [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 200:
+			remove 200 from {ench.%player-arg%}
+			enchant player-arg's tool with blast protection 4
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /33fuleeee1xxx [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 25:
+			remove 25 from {ench.%player-arg%}
+			enchant player-arg's tool with projectile protection 1
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /33fuleeee2xxx [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 50:
+			remove 50 from {ench.%player-arg%}
+			enchant player-arg's tool with projectile protection 2
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /33fuleeee3xxx [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 100:
+			remove 100 from {ench.%player-arg%}
+			enchant player-arg's tool with projectile protection 3
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+command /33fuleeee4xxx [<player>]:
+	permission: ench.t
+	trigger:
+		if {ench.%player-arg%} is larger than 200:
+			remove 200 from {ench.%player-arg%}
+			enchant player-arg's tool with projectile protection 4
+			execute console command "pr delplayerperm %player% ench.t"
+			send "&6[XTopHc] &aPomyslnie dodano enchant do przedmiotu!" to player-arg
+		else:
+			send "&6[XTopHc] &4Masz zbyt malo pkt. enchantu!" to player-arg
+on death:
+	send "&6&l[XTopHc] &a&lZresetowano &3&lPunkty enchantu &a&l oraz &3&lPunkty kowadla!"
+	set {ench.%player%} to 0
+variables:
+        {ench.%player%} = 0
+on break stone:
+	add 1.0 to {ench.%player%}

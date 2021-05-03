@@ -1,0 +1,47 @@
+variables:
+	{smierci::%player%} = 0
+	{zabojstwa::%player%} = 0
+	{stone::%player%} = 0
+	{obsydian::%player%} = 0
+	{refy::%player%} = 0
+	{koxy::%player%} = 0
+	{tnt::%player%} = 0
+on death:
+	if attacker is player:
+		if victim is player:
+		add 1 to {smierci.%player%}
+
+on death:
+	if victim is player:
+		loop all players:
+			if attacker is loop-player:
+				add 1 to {zabojstwa::%loop-player%}		
+
+on mine of stone:
+	add 1 to {stone::%player%}				
+
+on mine of obsidian:
+	add 1 to {obsydian::%player%}
+	
+on consume of golden apple:
+	if event-item isn't enchanted golden apple:
+		add 1 to {refy::%player%}
+		
+on consume of enchanted golden apple:
+	add 1 to {koxy::%player%}	
+ 	
+on place of tnt:
+	add 1 to {tnt::%player%}	
+	
+command /statystyki:
+	aliases: /staty
+	trigger:
+		open chest with 1 rows named "&c&lStatystyki" to player
+		wait 2 tick
+		format slot 1 of player with 1 of iron sword named "&fZabici gracze: &c%{zabojstwa::%player%}%" to close
+		format slot 5 of player with 1 of obsidian named "&fWykopany obsydian: &c%{obsydian::%player%}%" to close
+		format slot 7 of player with 1 of wooden sword named "&fTwoje smierci: &c%{smierci::%player%}%" to close
+		format slot 3 of player with 1 of stone named "&fWykopany stone: &c%{stone::%player%}%" to close
+		format slot 6 of player with 1 of enchanted golden apple named "&fZjedzone koxy: &c%{koxy::%player%}%" to close
+		format slot 2 of player with 1 golden apple named "&fZjedzone refile: &c%{refy::%player%}%" to close
+		format slot 4 of player with 1 of tnt named "&fPołożone tnt: &c%{tnt::%player%}%" to close

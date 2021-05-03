@@ -1,0 +1,131 @@
+options:
+    # Maksymalne ilości koxów, refilli oraz pereł endu
+    koxy-max: 4
+    refy-max: 6
+    perly-max: 3
+    
+    # Nazwa schowka
+    schowek-nazwa: &6&lSchowek
+    
+function reloadSchowekGUI(p: player):
+    set slot 1 of {_p}'s current inventory to enchanted golden apple named "&c&lKOXY" with lore "&6Kliknij i wyplac koxy z depozytu!" and "" and "&bPosiadasz: &e%{schowek::koxy::%{_p}%}%" and "" and "&7Kliknij &aLPM&7, aby wyplacic!"
+    set slot 3 of {_p}'s current inventory to golden apple named "&c&lREFY" with lore "&6Kliknij i wyplac refy z depozytu!" and "" and "&bPosiadasz: &e%{schowek::refille::%{_p}%}%" and "" and "&7Kliknij &aLPM&7, aby wyplacic!"
+    set slot 5 of {_p}'s current inventory to ender pearl named "&c&lPERLY" with lore "&6Kliknij i wyplac perly z depozytu!" and "" and "&bPosiadasz: &e%{schowek::perly::%{_p}%}%" and "" and "&7Kliknij &aLPM&7, aby wyplacic!"
+    set slot 7 of {_p}'s current inventory to magma cream named "&aWypłać wszystko do limitu!" with lore "&7Kliknij &aLPM&7, aby wyplacic!"
+    
+function getKoxSchowek(p: player) :: boolean:
+    if {_p} has {@koxy-max} enchanted golden apple:
+        send "&cJuz masz &6{@koxy-max} &ckoxy!" to {_p}
+        return false
+    if {schowek::koxy::%{_p}%} is less than 1:
+        send "&cProbowalem wyplacic koxa.. ale masz pusty schowek." to {_p}
+        return false
+    if {_p} doesn't have enough space for 1 enchanted golden apple:
+        send "&cProbowalem wyplacic koxa.. ale masz pelny ekwipunek." to {_p}
+        return false
+    loop {@koxy-max} times:
+        if {_p} has {@koxy-max} enchanted golden apple:
+            exit loop
+        if {schowek::koxy::%{_p}%} is less than 1:
+            exit loop
+        if {_p} doesn't have enough space for 1 enchanted golden apple:
+            exit loop
+        add enchanted golden apple to {_p}
+        remove 1 from {schowek::koxy::%{_p}%}
+        add 1 to {_num}
+    if {_num} is not set:
+        return false
+    send "&aWyplacono &6%{_num}% &akoxow!" to {_p}
+    return true
+    
+function getRefillSchowek(p: player) :: boolean:
+    if {_p} has {@refy-max} golden apple:
+        send "&cJuz masz &6{@refy-max} &crefow!" to {_p}
+        return false
+    if {schowek::refille::%{_p}%} is less than 1:
+        send "&cProbowalem wyplacic refilla.. ale masz pusty schowek." to {_p}
+        return false
+    if {_p} doesn't have enough space for 1 golden apple:
+        send "&cProbowalem wyplacic refilla.. ale masz pelny ekwipunek." to {_p}
+        return false
+    loop {@refy-max} times:
+        if {_p} has {@refy-max} golden apple:
+            exit loop
+        if {schowek::refille::%{_p}%} is less than 1:
+            exit loop
+        if {_p} doesn't have enough space for 1 golden apple:
+            exit loop
+        add golden apple to {_p}
+        remove 1 from {schowek::refille::%{_p}%}
+        add 1 to {_num}
+    if {_num} is not set:
+        return false  
+    send "&aWyplacono &6%{_num}% &arefow!" to {_p}
+    return true
+    
+function getPearlSchowek(p: player) :: boolean:
+    if {_p} has {@perly-max} ender pearl:
+        send "&cJuz masz &6{@perly-max} &cperly!" to {_p}
+        return false
+    if {schowek::perly::%{_p}%} is less than 1:
+        send "&cProbowalem wyplacic perle.. ale masz pusty schowek." to {_p}
+        return false
+    if {_p} doesn't have enough space for 1 ender pearl:
+        send "&cProbowalem wyplacic perle.. ale masz pelny ekwipunek." to {_p}
+        return false
+    loop {@perly-max} times:
+        if {_p} has {@perly-max} ender pearl:
+            exit loop
+        if {schowek::perly::%{_p}%} is less than 1:
+            exit loop    
+        if {_p} doesn't have enough space for 1 ender pearl:
+            exit loop
+        add ender pearl to {_p}
+        remove 1 from {schowek::perly::%{_p}%}
+        add 1 to {_num}
+    if {_num} is not set:
+        return false
+    send "&aWyplacono &6%{_num}% &aperel!" to {_p}
+    return true
+    
+every 1 second:
+    loop all players:
+        if loop-player has ({@koxy-max} + 1) of enchanted golden apple:
+            add ((amount of enchanted golden apple in loop-player's inventory) - {@koxy-max}) to {schowek::koxy::%loop-player%}
+            remove ((amount of enchanted golden apple in loop-player's inventory) - {@koxy-max}) of enchanted golden apple from loop-player's inventory
+            send "&cMiales za duzo koxow! Przeniesiono nadmiar do depozytu!" to loop-player
+        if loop-player has ({@refy-max} + 1) of golden apple:
+            add ((amount of golden apple in loop-player's inventory) - {@refy-max}) to {schowek::refille::%loop-player%}
+            remove ((amount of golden apple in loop-player's inventory) - {@refy-max}) of golden apple from loop-player's inventory
+            send "&cMiales za duzo refow! Przeniesiono nadmiar do depozytu!" to loop-player
+        if loop-player has ({@perly-max} + 1) of ender pearl:
+            add ((amount of ender pearl in loop-player's inventory) - {@perly-max}) to {schowek::perly::%loop-player%}
+            remove ((amount of ender pearl in loop-player's inventory) - {@perly-max}) of ender pearl from loop-player's inventory
+            send "&cMiales za duzo perel! Przeniesiono nadmiar do depozytu!" to loop-player
+
+command /schowek:
+    trigger:
+        open chest with 1 row named "{@depozyt-nazwa}" to player 
+        set slot (integers between 0 and 8) of player's current inventory to gray glass pane named " "
+        reloadSchowekGUI(player)
+        
+on inventory click:
+    name of player's current inventory is "{@depozyt-nazwa}"
+    clicked inventory is not player's inventory
+    cancel event
+    if clicked slot is 1:
+        getKoxSchowek(player) is true
+        reloadSchowekGUI(player)
+    else if clicked slot is 3:
+        getRefillSchowek(player) is true
+        reloadSchowekGUI(player)
+    else if clicked slot is 5:
+        getPearlSchowek(player) is true
+        reloadSchowekGUI(player)
+    else if clicked slot is 7:
+        getKoxSchowek(player) is true:
+            reloadSchowekGUI(player)
+        getRefillSchowek(player) is true:
+            reloadSchowekGUI(player)
+        getPearlSchowek(player) is true:
+            reloadSchowekGUI(player)

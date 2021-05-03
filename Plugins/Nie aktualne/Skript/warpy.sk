@@ -1,0 +1,21 @@
+#====================================================================
+#	          █  Plugin  : warp                         █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+command /warpy:
+    trigger:
+        open chest with 3 rows named "&8» &7WARPY" to player
+        wait 2 ticks
+        format slot 0 of player with white glass to be unstealable
+        format slot 9 of player with white glass to be unstealable
+        format slot 18 of player with white glass to be unstealable
+        format slot 27 of player with white glass to be unstealable
+        format slot 1 of player with wool named "&fWarp sklep" to run "warp sklep %player%"
+		format slot 2 of player with end stone named "&5Warp Stoniarki" to run "warp stoniarki %player%"
+		format slot 2 of player with diamond sword named "&5Warp pvp" to run "warp pvp %player%"
+		stop
+		

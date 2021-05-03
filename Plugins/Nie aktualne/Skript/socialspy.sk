@@ -1,0 +1,81 @@
+#====================================================================
+#	          █  Plugin  : SPY                          █
+#	          █  Made by : Zabujca997                   █
+#	          █  Version : 1.0                          █
+#			  █  Ts3     : ExtremeGames.gclan.pl        █
+#====================================================================
+# Copyright © 2017 Text Skripts Zabujca997 ExtremeGames. All rights reserved.
+#====================================================================
+variables:
+	{commandSpy.%player%} = false
+options:
+	logoc: &8[&fCommandSpy&8]&c
+ 	autor: Zabujca997
+	wersja: v0.1
+on command: 
+	loop all players:
+		loop-player has permission "command.spy":
+			if {commandSpy.%loop-player%} is true:
+				send "&4{@logoc} &8%player% &7- &6/%command% %arguments%" to loop-player
+command /commandSpy [<text>] [<player>]:
+	aliases: cspy
+	trigger:
+		if player has permission "command.spy":
+			if arg 1 is not set:
+				send player title "&8[&fCommandSpy&8]" with subtitle "&cPoprawne uzycie: /commandSpy wlacz/wylacz/pokaz [Nick]" for 30 tick
+                send "&8[&fCommandSpy&8] &cPoprawne uzycie: /commandSpy wlacz/wylacz/pokaz [Nick]"
+			if arg 1 is "wlacz":
+				if arg 2 is not set:
+					set {commandSpy.%player%} to true
+					send "{@logoc} ON"
+				if arg 2 is player:
+					if player has permission "command.spy":
+						if arg 2 has permission "command.spy":	
+							set {commandSpy.%arg 2%} to true
+							send "{@logoc} &9Gracz &a%player% &9wlaczyl ci podglad komend" to arg 2
+							send "{@logoc} &aWlaczyles &9podglad komend dla gracza &a%arg 2%" to player
+						else:
+							send "{@logoc} &9Gracz &a%arg 2% &9nie moze podgladac komend"
+					else:
+						send "{@logoc} &9Nie masz uprawnien dawac komus podglad komend"
+			if arg 1 is "wylacz":
+				if arg 2 is not set:
+					set {commandSpy.%player%} to false
+					send "{@logoc} OFF"
+				if arg 2 is player:
+					if player has permission "command.spy":
+						if arg 2 has permission "command.spy":	
+							set {commandSpy.%arg 2%} to false
+							send "{@logoc} &9Gracz &a%player% &9wylaczyl ci podglad komend" to arg 2
+							send "{@logoc} &cWylaczyles &9podglad komend dla gracza &a%arg 2%" to player
+						else:
+							send "{@logoc} &9Gracz &a%arg 2% &9nie moze podgladac komend"
+					else:
+						send "{@logoc} &9Nie masz uprawnien wylaczac komus podglad komend"
+			if arg 1 is "pokaz":
+				if arg 2 is not set:
+					if player has permission "command.spy":
+						if {commandSpy.%player%} is false:
+							send "{@logoc} &9Masz wylaczony podglad komend"
+						if {commandSpy.%player%} is true:
+							send "{@logoc} &9Masz wlaczony podglad komend"
+					else:
+						send "{@logoc} Nie masz uprawnien!"
+				if arg 2 is player:
+					if player has permission "command.spy":
+						if arg 2 has permission "command.spy":
+							if {commandSpy.%arg 2%} is false:
+								send "{@logoc} &9Gracz &a%arg 2% &9ma &cwylaczony &9podglad komend" to player
+							if {commandSpy.%arg 2%} is true:
+								send "{@logoc} &9Gracz &a%arg 2% &9ma &awlaczony &9podglad komend" to player
+						else:
+							send "{@logoc} &9Gracz &a%arg 2% &9nie moze podgladac komend!"
+					else:
+						send "{@logoc} Nie masz uprawnien!"
+			if arg 1 is "autor":
+				send "{@logoc} &9Skrypt na podglad komend zrobiony przez &aXWG_TV&9!"
+				send "{@logoc} &9Wersja skryptu: &a{@wersja}"
+			if arg 1 is "reload":
+				if player has permission "command.spy":
+					execute player command "/sk reload %script%"
+					send "{@logoc} &9Przeladowano!"
