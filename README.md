@@ -21,5 +21,5 @@ TS3: ExtremeOnly
 FanPage: https://www.facebook.com/ExtremeGamesFanPage/Sklep 
 
 ```
-Copyright © 2018 Zabujca997 ExtremeGames. All rights reserved.
+Copyright © 2018 Max White ExtremeOnly. All rights reserved.
 ```
