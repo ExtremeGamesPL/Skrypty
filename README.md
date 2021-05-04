@@ -1,5 +1,5 @@
 # Skrypty
-Skrypty z pluginu Script By Zabujca997
+Skrypty z pluginu Script wykonane przez: Max White
 
 ## INFORMACJE
 
@@ -8,19 +8,18 @@ Skrypty z pluginu Script By Zabujca997
 - Błędy można pisac w Komentarzu
 
 ### Praca
-Skrypty zostały wykorzystane na serwerze ExtremeGames.maxc.pl i działają poprawnie są skryptowane od podstaw i dodawane tylko jeżeli poprawnie działają nie wrzucamy plików które nie działają 
+Skrypty zostały wykorzystane na serwerze ExtremeOnly i działają poprawnie na dane wersje są skryptowane od podstaw i dodawane tylko jeżeli poprawnie działają nie wrzucamy plików które nie działają 
 
 # Osoby pomagające
--Mateuszanierusza - Technik sieci ExtremeGames
+Brak
 
 ### KONTAKT
 
-Forum: http://Onlykill.pl
-Strona WWW: http://z57354.webwavecms.com/
-TS3: ExtremeGames.gclan.pl
+Forum: https://ExtremeOnly.ga/forum
+Strona WWW: https://ExtremeOnly.ga/
+TS3: ExtremeOnly
 FanPage: https://www.facebook.com/ExtremeGamesFanPage/Sklep 
 
-###1
 ```
 Copyright © 2018 Zabujca997 ExtremeGames. All rights reserved.
 ```
